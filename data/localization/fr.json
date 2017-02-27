@@ -1,0 +1,1155 @@
+{
+    "login":
+    {
+        "user_email" : "Nom d'utilisateur : ",
+        "password" : "Mot de passe : ",
+        "force_change" : "Forcer changement"
+    },
+    "includes":
+    {
+        "langue":"EN",
+        "department":"Départements",
+        "user":"Utilisateurs",
+        "report":"Rapports",
+        "account":"Compte",
+        "client":"Clients",
+        "module":"Modules",
+        "content":"Contenu",
+        "doc":"Documentation",
+        "edit":"éditer",
+        "add_sub":"Ajouter départements",
+        "manage":"Utilisateurs",
+        "admin_title":"Comptes",
+        "add":"Ajouter",
+        "error400":"Mauvaise Requete",
+        "error404":"Pas trouvé",
+        "error409":"est existent déjà",
+        "date_placeholder":"aaaa-mm-jj",
+        "email_placeholder":"example@compagnie.com",
+        "phone_placeholder":"xxx-xxx-xxxx",
+        "responseTrue":"OUI",
+        "responseFalse":"NON",
+        "results":"résultats par page : ",
+        "logOut":"Se déconnecter",
+        "myAccount":"Mes Comptes",
+        "footer":"&copy; 2016 NOVACONCEPT"
+    },
+    "account":
+    {
+        "titleFront":"Gestion de compte",
+        "owner":"Propietaire du compte : ",
+        "newUser":"Nouveau Utlisateur : ",
+        "account_create" : "Créer Compte",
+        "edit_config":"Éditer Configuration",
+        "edit_billing":"Éditer Facturation",
+        "edit_contact":"Éditer Contact",
+        "edit_settings":"Éditer Réglages",
+        "create_settings":"Ajouter Réglages",
+        "titleCreate":"Nouvelle Compte",
+        "user_info":"Information de l'utilisateur",
+        "user_email":"Courriel",
+        "user_psw":"Mot de passe",
+        "user_force":"Changer mot de passe?",
+        "account_info":"Information de la compte",
+        "account_name" : "Nom de la compte : ",
+        "account_description" : "Description de la compte : ",
+        "account_company" : "Compagnie : ",
+        "account_firstname" : "Prenom : ",
+        "account_lastname" : "Nom : ",
+        "account_address1" : "Address 1 : ",
+        "account_address2" : "Address 2 : ",
+        "account_postalcode" : "Code Postal : ",
+        "account_city" : "Ville : ",
+        "account_province" : "Province : ",
+        "account_country" : "Pays : ",
+        "account_phone" : "Téléphone : ",
+        "account_expire" : "Date d'expiration : ",
+        "account_created" : "Créé : ",
+        "account_modified" : "Modifié : ",
+        "account_email" : "Courriel : ",
+        "account_settings" : "Réglages (.json) : ",
+        "account_metadata" : "Metadonnées : ",
+        "account_min_version" : "Version minimale : ",
+        "account_supported_languages" : "Supported languages : ",
+        "app_settings" : "Réglages",
+        "attempt_limit" : "limite de tentatives : ",
+        "psw_life_cycle":"Cycle de vie de mot de passe : ",
+        "items_page":"items par page : ",
+        "add_contact":"Ajouter de contact",
+        "remove_contact":"Retirer contact"
+    },
+    "department":
+    {
+        "titleFront":"Gestion de Départements",
+        "titleAdd":"Ajouter",
+        "titleEdit":"Editer",
+        "titleUsers":"Manage Utilisateurs",
+        "add":"Ajouter Département",
+        "edit":"Editer Département",
+        "name":"Nom du département : ",
+        "description":"Description : ",
+        "parent":"Département en charge : ",
+        "id":"Id du département : ",
+        "isActive":"C'est active"
+    },
+    "user":
+    {
+        "titleFront":"Gestion des utilisateurs",
+        "infoAuthentication":"Information d'authentification",
+        "infoAuthorization":"Permissions de l'utilisateur",
+        "add":"Ajouter utilisateur",
+        "list":"Liste des utilisateurs",
+        "find":"Trouver des utilisateurs",
+        "id":"Id de l'utilisateur",
+        "email":"Courriel : ",
+        "name":"Nom : ",
+        "firstName":"Prenom : ",
+        "username":"Username : ",
+        "psw":"Mot de passe : ",
+        "edit":"Éditer utilisateur",
+        "profile":"Information personnelle",
+        "departments":"Gerer départements",
+        "titleDepartments":"Gestion de départements",
+        "info":"Information de l'utilisateur",
+        "isActive":"C'est active?",
+        "created":"Créé : ",
+        "changed":"Mot de passe modifié : ",
+        "modified":"Modifié : ",
+        "force":"Changer mot de passe?",
+        "attempt_limit":"tentatives échouées : ",
+        "remove":"Effacer utilisateur",
+        "change":"Changer mot de passe",
+        "newPsw":"Nouveau mot de passe : ",
+        "newPswVerification":"Confirmer le nouveau mot de passe : "
+    },
+    "client":
+    {
+        "titleFront":"Gestion de clients",
+        "frontAdd":"Ajouter un nouveau client",
+        "edit":"Éditer Client",
+        "frontList":"Liste de clients",
+        "authorization":"Permissions du client",
+        "authentication":"information de validation",
+        "id":"Id du client : ",
+        "name":"Nom du client : ",
+        "description":"Description du client : ",
+        "created":"Créé : ",
+        "modified":"Modifié : ",
+        "isActive":"C'est active? ",
+        "publicKey":"Clé publique",
+        "privateKey":"Clé privée",
+        "add":"Ajouter client"
+    },
+    "module":
+    {
+        "titleFront":"Gestion de Modules",
+        "add":"Ajouter Module",
+        "edit":"Éditer Module",
+        "confEvents":"Éditer Événements",
+        "conflisteners":"Éditer Listeners",
+        "name":"Nom du Module : ",
+        "description":"Description : ",
+        "endpoint":"endpoint : ",
+        "id":"Id du module : ",
+        "idEvent":"Id de l'événement : ",
+        "isActive":"C'est Active?",
+        "titleEvents":"Événements de",
+        "addEvents":"Ajouter événement",
+        "editEvent":"Éditer événement",
+        "titleListeners":"Listeners de",
+        "addListeners":"Ajouter listener",
+        "editListeners":"Éditer listener",
+        "tag":"Tag : ",
+        "idListeners":"Id du Listener : ",
+        "listEvents":"Liste d'événements",
+        "listListeners":"Liste de Listeners",
+        "callback_path":"callback_path : "
+    },
+    "content":
+    {
+        "titleFront":"Gestion de Contenu",
+        "add":"Ajouter Contenu",
+        "edit":"Éditer Contenu",
+        "editVersion":"Éditer Version",
+        "getVersion":"Obtenir Version",
+        "removeVersion":"Effacer Version",
+        "add_version":"Ajouter version",
+        "added_version":"Version ajoutée",
+        "last_version":"Version courante",
+        "all_versions":"Versions",
+        "code":"Code : ",
+        "id":"Id du contenu : ",
+        "idVersion":"Id de la version : ",
+        "titleVersion":"Title de la version : ",
+        "description":"Description : ",
+        "langue":"Langue : ",
+        "cover":"Cover : ",
+        "thumbnail":"Thumbnail : ",
+        "version":"Version : ",
+        "isActive":"C'est active? : ",
+        "expire":"Expire : ",
+        "release" : "Libérée : ",
+        "created" : "Créé : ",
+        "modified" : "Modifié : ",
+        "departments":"Départements à associer : ",
+        "send":"Envoyer ce dossier : ",
+        "addVersion":"Ajouter Version",
+        "getMedia":"Obtenir Media",
+        "removeMedia":"Effacer Media",
+        "subject":"subject"
+    },
+    "documentation":
+    {
+        "title":"Documentation",
+        "DescriptionTitle":"Description",
+        "MethodTitle":"Méthode",
+        "calls":
+        [
+            {
+               "title":"account_billing : get by id",
+               "Method":"GET",
+               "URL":"{version}/account_info/{account_info_id}/account_billing",
+               "Status":"200",
+               "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "{account_info_id} : integer",
+                    "includes : account_info*" 
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id: integer",
+                    "data->company : string",
+                    "data->firstName : string",
+                    "data->lastName : string",
+                    "data->address1 : string",
+                    "data->address2 : string",
+                    "data->postalCode : string",
+                    "data->city : string",
+                    "data->province : string",
+                    "data->country : string",
+                    "data->phone : string",
+                    "data->email : string",
+                    "data->expiresOn : timestamp",
+                    "data->accountInfo : std Class",
+                    "*data->accountInfo->id : integer",
+                    "*data->accountInfo->name : integer",
+                    "*data->accountInfo->description : string",
+                    "*data->accountInfo->isActive : boolean",
+                    "*data->accountInfo->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+               "title":"account_billing : edit",
+               "Method":"PUT",
+               "URL":"{version}/account_info/{account_info_id}/account_billing",
+               "Status":"200",
+               "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->company : string",
+                    "data->firstName : string",
+                    "data->lastName : string",
+                    "data->address1 : string",
+                    "data->address2 : string",
+                    "data->postalCode : string",
+                    "data->city : string",
+                    "data->province : string",
+                    "data->country : string",
+                    "data->phone : string",
+                    "data->email : string",
+                    "data->expiresOn : timestamp" 
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id: integer",
+                    "data->company : string",
+                    "data->firstName : string",
+                    "data->lastName : string",
+                    "data->address1 : string",
+                    "data->address2 : string",
+                    "data->postalCode : string",
+                    "data->city : string",
+                    "data->province : string",
+                    "data->country : string",
+                    "data->phone : string",
+                    "data->email : string",
+                    "data->expiresOn : timestamp",
+                    "data->accountInfo : std Class"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_config : get",
+                "Method":"GET",
+                "URL":"{version}/account_info/{account_info_id}/account_config",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "{account_info_id} : integer",
+                    "includes : account_info*" 
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->loginAttemptLimit : integer",
+                    "data->passwordLifeCycle : integer",
+                    "data->defaultItemsPerPage : integer",
+                    "*data->accountInfo->id : integer",
+                    "*data->accountInfo->name : integer",
+                    "*data->accountInfo->description : string",
+                    "*data->accountInfo->isActive : boolean",
+                    "*data->accountInfo->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_config : edit",
+                "Method":"PUT",
+                "URL":"{version}/account_info/{account_info_id}/account_config",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->loginAttemptLimit : integer",
+                    "data->passwordLifeCycle : integer",
+                    "data->defaultItemsPerPage : integer"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->loginAttemptLimit : integer",
+                    "data->passwordLifeCycle : integer",
+                    "data->defaultItemsPerPage : integer"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_contact : add",
+                "Method":"POST",
+                "URL":"{version}/account_info/{account_info_id}/account_contact",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->userInfo : integer"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->userInfo : integer (id)"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_contact : edit",
+                "Method":"PUT",
+                "URL":"{version}/account_info/{account_info_id}/account_contact/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->userInfo : integer"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->userInfo : integer (id)"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_contact : get by id",
+                "Method":"GET",
+                "URL":"{version}/account_info/{account_info_id}/account_contact/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "{id} : integer",
+                    "includes : account_info*,user_info*" 
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->userInfo : integer (id)",
+                    "*data->accountInfo : std Class",
+                    "*data->accountInfo->id : integer",
+                    "*data->accountInfo->name : string",
+                    "*data->accountInfo->description : string",
+                    "*data->accountInfo->isActive : boolean",
+                    "*data->accountInfo->createdOn : timestamp",
+                    "*data->userInfo : std Class",
+                    "*data->userInfo->id : integer",
+                    "*data->userInfo->email : string",
+                    "*data->userInfo->modifiedOn : timestamp",
+                    "*data->userInfo->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_contact : get by account_info id",
+                "Method":"GET",
+                "URL":"{version}/account_info/{account_info_id}/account_contact/account_info",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "includes : account_info*,user_info*" 
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->userInfo : integer (id)",
+                    "*data->accountInfo : std Class",
+                    "*data->accountInfo->id : integer",
+                    "*data->accountInfo->name : string",
+                    "*data->accountInfo->description : string",
+                    "*data->accountInfo->isActive : boolean",
+                    "*data->accountInfo->createdOn : timestamp",
+                    "*data->userInfo : std Class",
+                    "*data->userInfo->id : integer",
+                    "*data->userInfo->email : string",
+                    "*data->userInfo->modifiedOn : timestamp",
+                    "*data->userInfo->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_contact : get by user_info id",
+                "Method":"GET",
+                "URL":"{version}/account_info/{account_info_id}/account_contact/user_info/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "{id} : integer",
+                    "includes : account_info*,user_info*" 
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->userInfo : integer (id)",
+                    "*data->accountInfo : std Class",
+                    "*data->accountInfo->id : integer",
+                    "*data->accountInfo->name : string",
+                    "*data->accountInfo->description : string",
+                    "*data->accountInfo->isActive : boolean",
+                    "*data->accountInfo->createdOn : timestamp",
+                    "*data->userInfo : std Class",
+                    "*data->userInfo->id : integer",
+                    "*data->userInfo->email : string",
+                    "*data->userInfo->modifiedOn : timestamp",
+                    "*data->userInfo->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_contact : remove",
+                "Method":"DELETE",
+                "URL":"{version}/account_info/{account_info_id}/account_contact/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "{id} : integer"
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_info : create",
+                "Method":"POST",
+                "URL":"{version}/account_info",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "data : std Class",
+                    "data->accountInfo : std Class",
+                    "data->accountInfo->name : string",
+                    "data->accountInfo->description : string",
+                    "data->accountBilling : std Class",
+                    "data->accountBilling->company : string",
+                    "data->accountBilling->firstName : string",
+                    "data->accountBilling->lastName : string",
+                    "data->accountBilling->address1 : string",
+                    "data->accountBilling->address2 : string",
+                    "data->accountBilling->postalCode : string",
+                    "data->accountBilling->city : string",
+                    "data->accountBilling->province : string",
+                    "data->accountBilling->country : string",
+                    "data->accountBilling->phone : string",
+                    "data->accountBilling->email : string",
+                    "data->accountBilling->expiresOn : timestamp",
+                    "data->userInfo : integer"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->accountInfo : std Class",
+                    "data->accountInfo->id : integer",
+                    "data->accountInfo->name : string",
+                    "data->accountInfo->description : string",
+                    "data->accountInfo->isActive : boolean",
+                    "data->accountInfo->createdOn : timestamp",
+                    "data->accountBilling : std Class",
+                    "data->accountBilling->company : string",
+                    "data->accountBilling->firstName : string",
+                    "data->accountBilling->lastName : string",
+                    "data->accountBilling->address1 : string",
+                    "data->accountBilling->address2 : string",
+                    "data->accountBilling->postalCode : string",
+                    "data->accountBilling->city : string",
+                    "data->accountBilling->province : string",
+                    "data->accountBilling->country : string",
+                    "data->accountBilling->phone : string",
+                    "data->accountBilling->email : string",
+                    "data->accountBilling->expiresOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_info : edit",
+                "Method":"PUT",
+                "URL":"{version}/account_info/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "data : std Class",
+                    "data->name : string",
+                    "data->description : string",
+                    "data->isActive : boolean"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->name : string",
+                    "data->description : string",
+                    "data->isActive : boolean",
+                    "data->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"account_info : get by id",
+                "Method":"GET",
+                "URL":"{version}/account_info/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification: token (string 64)",
+                    "{id} : integer",
+                    "includes : account_billing*, department_info*, account_contact*, user_account*, user_info*, user_authorization*"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->name : string",
+                    "data->description : string",
+                    "data->isActive : boolean",
+                    "*data->account_billing : std Class",
+                    "*data->department_info : array",
+                    "*data->account_contact : array",
+                    "*data->user_account : array",
+                    "*data->user_info : array",
+                    "*data->user_authorization : array"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"analytics : add",
+                "Method":"POST",
+                "URL":"{version}/account_info/{account_info_id}/analytics",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "data : std Class",
+                    "data->analyticsTag : string",
+                    "data->contentInfo : integer",
+                    "data->installCode : string",
+                    "data->sessionCode : string",
+                    "data->pageCode : string",
+                    "data->jsonData : string",
+                    "data->createdOn : timestamp"
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"analytics : addList",
+                "Method":"POST",
+                "URL":"{version}/account_info/{account_info_id}/analytics/list",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "data : array",
+                    "data[] : std Class",
+                    "data[]->analyticsTag : string",
+                    "data[]->contentInfo : integer",
+                    "data[]->installCode : string",
+                    "data[]->sessionCode : string",
+                    "data[]->pageCode : string",
+                    "data[]->jsonData : string",
+                    "data[]->createdOn : timestamp"
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"client_account : add",
+                "Method":"POST",
+                "URL":"{version}/account_info/{account_info_id}/client_account",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->clientInfo : integer"
+                ],
+                "Response_Data":
+                [
+                    "data = std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->clientInfo : integer (id)",
+                    "data->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"client_account : get",
+                "Method":"GET",
+                "URL":"{version}/account_info/{account_info_id}/client_account/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "{id} : integer",
+                    "includes : account_info*, client_info*"
+                ],
+                "Response_Data":
+                [
+                    "data = std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->clientInfo : integer (id)",
+                    "data->createdOn : timestamp",
+                    "*data->accountInfo : std Class",
+                    "*data->accountInfo->id : integer",
+                    "*data->accountInfo->name : string",
+                    "*data->accountInfo->description : string",
+                    "*data->accountInfo->isActive : boolean",
+                    "*data->clientInfo : std Class",
+                    "*data->clientInfo->id : integer",
+                    "*data->clientInfo->name : string",
+                    "*data->clientInfo->description : string",
+                    "*data->clientInfo->clientAuthentication : std Class",
+                    "*data->clientInfo->modifiedOn : timestamp",
+                    "*data->clientInfo->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"client_account : remove",
+                "Method":"DELETE",
+                "URL":"{version}/account_info/{account_info_id}/client_account/{id}",
+                "Status":"200",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "{id} : integer"
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"client_authorization : add",
+                "Method":"POST",
+                "URL":"{version}/account_info/{account_info_id}/client_authorization",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->clientInfo : integer",
+                    "data->clientPermission : integer"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->clientInfo : integer (id)",
+                    "data->clientPermission : integer (id)",
+                    "data->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"client_authorization : add",
+                "Method":"POST",
+                "URL":"{version}/account_info/{account_info_id}/client_authorization",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->clientInfo : integer",
+                    "data->clientPermission : integer"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->clientInfo : integer (id)",
+                    "data->clientPermission : integer (id)",
+                    "data->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"client_authorization : addList",
+                "Method":"POST",
+                "URL":"{version}/account_info/{account_info_id}/client_authorization/list",
+                "Status":"201",
+                "Request_Data":
+                [
+                    "authentification : token (string 64)",
+                    "{account_info_id} : integer",
+                    "data : std Class",
+                    "data->clientInfo : integer",
+                    "data->clientPermission : integer"
+                ],
+                "Response_Data":
+                [
+                    "data : std Class",
+                    "data->id : integer",
+                    "data->accountInfo : integer (id)",
+                    "data->clientInfo : integer (id)",
+                    "data->clientPermission : integer (id)",
+                    "data->createdOn : timestamp"
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            },
+            {
+                "title":"",
+                "Method":"",
+                "URL":"",
+                "Status":"",
+                "Request_Data":
+                [
+                    ""
+                ],
+                "Response_Data":
+                [
+                    ""
+                ],
+                "Description":
+                [
+                    "- a",
+                    "- b"
+                ]
+            }           
+        ]
+    }
+}

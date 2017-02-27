@@ -1,0 +1,242 @@
+body{
+    font-family: "Helvetica neue" , Helvetica , "Times New Roman", Georgia, Serif;
+}
+#pageTitle{
+    width:100%;
+    text-align:center;
+    padding-top: 1%;
+    padding-bottom:2%;
+    border-bottom: 1px solid #ccc;
+    position:fixed;
+    white-space: nowrap;
+    overflow: hidden;	
+    background-color:white;
+    display: block;
+    z-index:1;
+}
+#pageTitle h2{
+    color:#002395;
+    padding-left:1.3em;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+a{
+    color:black;
+}
+a:hover{
+    color:black;
+}
+
+a:visited{
+    color:black;
+}
+a:active {
+    color: black;
+}
+#rectangle {
+    width: 50px;
+    height:  100%;
+    /*background: white;*/
+    position:fixed;
+    z-index:0;
+    left: 0px;
+}
+#quiz{
+    padding-left: 50px;
+    padding-top: 4em;
+
+}
+.hidden{
+    display: none;
+    visibility: hidden;
+}
+.helper_height{
+    height: 100%;    
+}
+
+#footer{
+    background-color:white;
+    position:fixed;
+    height:30px;
+    bottom:60px;
+    height : 6%;
+    width:100%;
+    border-top: 1px solid #ccc;
+    text-align:center;
+    padding-top:10px;      /* <==== adjust this for distance between items and footer top line */
+    padding-left: 50px;     
+    padding-right: 50px;   
+}
+#previousButton{
+    font-size: large;
+    /*left:50px;*/
+    font-weight: bold;
+    /*position:fixed;*/
+    /*bottom:15px;*/
+}
+#nextButton{
+    font-size: large;
+    /*right: 50px;*/
+    font-weight: bold;
+    /*position: fixed;*/
+    /*bottom: 15px;*/
+}
+.inline{
+    display:inline;
+}
+
+#timerPlacement{
+    font-size: medium;
+    width:500px;
+    font-weight: bold;
+
+}
+.hoursClass{
+    display:none;
+}
+.minutesClass{
+    display:inline;
+}
+.secondsClass{
+    display:inline;
+}
+.white-container{
+    padding:0;
+}
+.moving-row{
+    padding:2em;		
+    position:absolute;
+    background-color:white;
+    display:block;
+    width:1170px;
+}
+
+
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+        url('./assets/loading.gif') 
+        50% 50% 
+        no-repeat;
+}
+body.loading {
+    overflow: hidden;   
+}
+body.loading .modal {
+    display: block;
+}
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    top:50%;
+    background: #fff;
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+.popup .close:hover {
+    color: #06D85F;
+}
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+@keyframes slideOutRight {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        visibility: hidden;
+        transform: translate3d(200%, 0, 0);
+    }
+}
+
+.slideOutRight {
+    animation-name: slideOutRight;
+}
+
+
+@keyframes slideEnRight {
+    from {
+        visibility: hidden;
+        transform: translate3d(50%, 0, 0);
+
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.slideEnRight {
+    animation-name: slideInRight;
+}
+
+
+
+@media (min-width: 1200px){
+    .moving-row{    
+        width: 1170px;
+        top:50px;
+    }}
+@media (min-width: 992px){
+    .moving-row{    
+        width: 970px;
+        top:50px;
+    }
+}
+@media (min-width: 768px){
+    .moving-row{
+        width: 750px;
+        top:50px;
+    }
+}

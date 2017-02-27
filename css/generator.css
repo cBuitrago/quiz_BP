@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url(fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+}
+html * {
+  font-family: 'Roboto' !important;
+}
+body {
+  overflow-x: hidden;
+}
+.gwd-img-ttig {
+  position: fixed;
+  width: 226px;
+  height: 58px;
+  left: 34px;
+  top: 33px;
+}
+.img_flag {
+  margin: 0 auto;
+  padding-top: 25%;
+  padding-left: 15px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  margin-top: 40px;
+  background-color: black;
+  width: 100%;
+  color: white;
+  font-family: 'Roboto';
+  text-align: center;
+  line-height: 40px;
+}
+a:link,
+a:visited {
+  color: white;
+  outline: 0;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  outline: 0;
+}
+a:active {
+  color: black;
+  outline: 0;
+}
+a img {
+  text-decoration: none;
+  border: 0 none;
+  outline: 0;
+}
+.div_img {
+  position: fixed;
+  top: 130px;
+  left: 0px;
+  z-index: -1;
+}
+th,
+td {
+  padding: 0px 50px 0px 50px;
+}
+.tr_info {
+  font-family: 'Roboto';
+  font-size: 150%;
+}
+a.dt-button.black {
+  color: black;
+  font-weight: bold;
+  background: #969696;
+  border-radius: 4px !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5) inset, 0 1px 2px #000000 !important;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8) url('../media/assets/loading.gif') 50% 50% no-repeat;
+}
+body.loading {
+  overflow: hidden;
+}
+body.loading .modal {
+  display: block;
+}
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+section {
+  float: left;
+  width: 30%;
+}
+.filters {
+  margin: 0 1.5% 24px 1.5%;
+}
+/*# sourceMappingURL=generator.css.map */
