@@ -3,32 +3,31 @@
     <li role="presentation"><a href="#manageUsers" aria-controls="profile" role="tab" data-toggle="tab">GESTION D'UTILISATEURS</a></li>
 </ul>
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="infoAgency">
-        <h1>{$data->agency->name}</h1>
-        <h2>Editer Agence</h2>
-        <form id="edit_department_form" method="post">
-            <table>
-                <input type="hidden" name="id" id="id" value="{$data->agency->id}">
-                <input type="hidden" name="description" id="description" value="IS_AGENCY">
-                <input type="hidden" name="parent" id="parent" value="{$data->group->id}">
-                <tr>
-                    <td>
-                        <label for="name">Nom de l'agence</label>
-                    </td>
-                    <td>
-                        <input type="text" name="name" id="name" value="{$data->agency->name}">
-                    </td>
-                    <td>
-                        <button type="button" class="edit" id="onDepartmentEdit"
-                                data-toggle="tooltip" data-placement="left" title="editer agence">
-                            <span class="glyphicon glyphicon-pencil"></span>
+    <div role="tabpanel" class="tab-pane active bg-image" id="infoAgency">
+        <div role="tabpanel" class="tab-pane active bg-image" id="infoCorpo">
+            <div class="editItem">
+                <h1>Éditer Agence</h1>
+                <p>Nom de l'agence</p>
+                <form id="edit_department_form" method="post">
+                    <input type="hidden" name="id" id="id" value="{$data->agency->id}">
+                    <input type="hidden" name="description" id="description" value="IS_AGENCY">
+                    <input type="hidden" name="parent" id="parent" value="{$data->group->id}">
+                    <input type="text" name="name" id="name"  class="editInput" value="{$data->agency->name}">
+                    <div class="double-input">
+                        <button type="button" class="cancel" id="cancelAll" 
+                                data-toggle="tooltip" data-placement="left" title="">
+                            Annuler
                         </button>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                        <button type="button" class="edit" id="onDepartmentEdit" 
+                                data-toggle="tooltip" data-placement="left" title="editer le nom de l'agence">
+                            Éditer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div role="tabpanel" class="tab-pane active" id="manageUsers">
+    <div role="tabpanel" class="tab-pane" id="manageUsers">
         <h2>Utilisateurs</h2>
         <table id="dataTableAgency" class="display" cellspacing="0" width="100%"></table>
     </div>

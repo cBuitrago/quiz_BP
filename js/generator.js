@@ -39,7 +39,6 @@ var CreatePDF_Param_options_data;
 var CreatePDF_Param_quiz_data;
 
 var chartjs_config;
-
 var offscreenCanvas;
 var currentChart;
 
@@ -308,7 +307,6 @@ function GetQuizResultsFromServer()
             }
             update_data = JSON.parse(return_data);
             GetQuizStructureFromServer();
-            //LoadDataTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
@@ -424,25 +422,25 @@ function LoadDataTable()
                 ],
                 //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilis�s dans la fonction ApplyFilters()...
                 columns: [
-                    {name: "ID", data: DB_QUIZ_RESULTS_ID, title: "ID unique", visible: false},
-                    {name: "USER_ID", data: DB_QUIZ_RESULTS_USER_ID, title: "ID Usager", visible: false},
-                    {name: "USER_NAME", data: DB_QUIZ_RESULTS_USER_NAME, title: "Usager", className: "dt-center"},
-                    {name: "CORPORATE_ID", data: DB_QUIZ_RESULTS_CORPORATE_ID, title: "ID Compagnie", visible: false},
-                    {name: "CORPORATE_NAME", data: DB_QUIZ_RESULTS_CORPORATE_NAME, title: "Compagnie", className: "dt-center"},
-                    {name: "GROUP_ID", data: DB_QUIZ_RESULTS_GROUP_ID, title: "ID Groupe", visible: false},
-                    {name: "GROUP_NAME", data: DB_QUIZ_RESULTS_GROUP_NAME, title: "Groupe", className: "dt-center"},
-                    {name: "AGENCY_ID", data: DB_QUIZ_RESULTS_AGENCY_ID, title: "ID Agence", visible: false},
-                    {name: "AGENCY_NAME", data: DB_QUIZ_RESULTS_AGENCY_NAME, title: "Agence", className: "dt-center"},
-                    {name: "QUIZ_ID", data: DB_QUIZ_RESULTS_QUIZ_ID, title: "ID Quiz", visible: false},
-                    {name: "QUIZ_NAME", data: DB_QUIZ_RESULTS_QUIZ_NAME, title: "Quiz", className: "dt-center"},
-                    {name: "START_DATE", data: DB_QUIZ_RESULTS_START_DATE, title: "Date d&eacute;but", className: "dt-center"},
-                    {name: "END_DATE", data: DB_QUIZ_RESULTS_END_DATE, title: "Date fin", className: "dt-center"},
-                    {name: "PROGRESS_ID", data: DB_QUIZ_RESULTS_PROGRESS_ID, title: "ID Progr&egrave;s", visible: false},
-                    {name: "PROGRESS_NAME", data: DB_QUIZ_RESULTS_PROGRESS_NAME, title: "Progr&egrave;s", className: "dt-center"},
-                    {name: "ANSWERS", data: DB_QUIZ_RESULTS_ANSWERS, title: "R&eacute;ponses", visible: false},
-                    {name: "QUIZ_SCORE", data: DB_QUIZ_RESULTS_QUIZ_SCORE, title: "Pointage Quiz", visible: false},
-                    {name: "PREVIOUS_ANSWERS", data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes R&eacute;ponses", visible: false},
-                    {name: "PREVIOUS_SCORES", data: DB_QUIZ_RESULTS_PREVIOUS_SCORES, title: "Pointage Quiz", visible: false}
+                    {name: "ID",                data: DB_QUIZ_RESULTS_ID,               title: "ID unique",                 visible: false},
+                    {name: "USER_ID",           data: DB_QUIZ_RESULTS_USER_ID,          title: "ID Usager",                 visible: false},
+                    {name: "USER_NAME",         data: DB_QUIZ_RESULTS_USER_NAME,        title: "Usager",                    className: "dt-center"},
+                    {name: "CORPORATE_ID",      data: DB_QUIZ_RESULTS_CORPORATE_ID,     title: "ID Compagnie",              visible: false},
+                    {name: "CORPORATE_NAME",    data: DB_QUIZ_RESULTS_CORPORATE_NAME,   title: "Compagnie",                 className: "dt-center"},
+                    {name: "GROUP_ID",          data: DB_QUIZ_RESULTS_GROUP_ID,         title: "ID Groupe",                 visible: false},
+                    {name: "GROUP_NAME",        data: DB_QUIZ_RESULTS_GROUP_NAME,       title: "Groupe",                    className: "dt-center"},
+                    {name: "AGENCY_ID",         data: DB_QUIZ_RESULTS_AGENCY_ID,        title: "ID Agence",                 visible: false},
+                    {name: "AGENCY_NAME",       data: DB_QUIZ_RESULTS_AGENCY_NAME,      title: "Agence",                    className: "dt-center"},
+                    {name: "QUIZ_ID",           data: DB_QUIZ_RESULTS_QUIZ_ID,          title: "ID Quiz",                   visible: false},
+                    {name: "QUIZ_NAME",         data: DB_QUIZ_RESULTS_QUIZ_NAME,        title: "Quiz",                      className: "dt-center"},
+                    {name: "START_DATE",        data: DB_QUIZ_RESULTS_START_DATE,       title: "Date d&eacute;but",         className: "dt-center"},
+                    {name: "END_DATE",          data: DB_QUIZ_RESULTS_END_DATE,         title: "Date fin",                  className: "dt-center"},
+                    {name: "PROGRESS_ID",       data: DB_QUIZ_RESULTS_PROGRESS_ID,      title: "ID Progr&egrave;s",         visible: false},
+                    {name: "PROGRESS_NAME",     data: DB_QUIZ_RESULTS_PROGRESS_NAME,    title: "Progr&egrave;s",            className: "dt-center"},
+                    {name: "ANSWERS",           data: DB_QUIZ_RESULTS_ANSWERS,          title: "R&eacute;ponses",           visible: false},
+                    {name: "QUIZ_SCORE",        data: DB_QUIZ_RESULTS_QUIZ_SCORE,       title: "Pointage Quiz",             visible: false},
+                    {name: "PREVIOUS_ANSWERS",  data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes R&eacute;ponses", visible: false},
+                    {name: "PREVIOUS_SCORES",   data: DB_QUIZ_RESULTS_PREVIOUS_SCORES,  title: "Pointage Quiz",             visible: false}
                 ],
                 language: {
                     sProcessing: "Traitement en cours...",

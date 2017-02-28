@@ -18,7 +18,7 @@
                     <input type="password" id="psw" name="psw" placeholder="Mot de Passe" >
                 </div>
                 <hr>
-                <button type="button" id="onLogin">Entrer</button>
+                <button type="submit" id="onLogin">Entrer</button>
             </form>
         </article
     </body>

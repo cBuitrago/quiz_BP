@@ -29,6 +29,9 @@ var DB_QUIZ_RESULTS_AGENCY_NAME = 17;
 var DB_QUIZ_RESULTS_PROGRESS_NAME = 18;
 
 var tableData;
+var tableUsers;
+var tableUserAgency;
+
 window.addEventListener("load", function () {
     var userTable = document.getElementById("usersTable");
     if (userTable) {
@@ -101,12 +104,21 @@ window.addEventListener("load", function () {
     var userResult = document.getElementById("onUserResult");
     if (userResult)
         userResult.addEventListener("click", onUserResult);
+
+    /**/
+    var cancelAll = document.getElementById("cancelAll")
+    if (cancelAll)
+        cancelAll.addEventListener("click", onCancelAll);
     /**
      * TEST
      */
     var test = document.getElementById("test");
     if (test)
         test.addEventListener("click", onTest);
+
+    $("input.editInput").keyup(function () {
+        $(this).addClass('changed');
+    });
 });
 var error404 = "error 404";
 var error409 = "error 409";
@@ -115,6 +127,7 @@ var onTestComplete = function (data)
 {
     console.log(data.responseText);
 }
+
 function onTest()
 {
     var data = {};
@@ -136,6 +149,10 @@ function onTest()
     });
 }
 
+function onCancelAll()
+{
+    location.reload();
+}
 /**
  *  LOGIN, LOGOUT
  */
@@ -166,10 +183,11 @@ var onLoginComplete = function (data)
     }
 }
 
-function onLogin()
+function onLogin(e)
 {
-    var user = document.getElementById("username").value;
-    var password = document.getElementById("psw").value;
+    e.preventDefault();
+    var user = document.getElementById("username").value.trim();
+    var password = document.getElementById("psw").value.trim();
     var encoded = window.btoa(user + ":" + password);
     $.ajax({
         type: "GET",
@@ -225,7 +243,7 @@ function onUserEdit()
     data.id = form["id"].value;
     data.name = form["name"].value;
     data.firstName = form["firstName"].value;
-    data.username = form["username"].value;
+    data.username = form["username"].value.trim();
     data.userAuthentication = {};
     data.userAuthentication.isActive = form["authentication_is_active"].checked;
     data.userAuthentication.attemptFail = form["authentication_attempt_fail"].value;
@@ -321,12 +339,12 @@ function onUserAdd()
         return false;
     }
     if (validateInput(form["email"]), 'name') {
-        data['username'] = form["email"].value;
+        data['username'] = form["email"].value.trim();
     } else {
         return false;
     }
     if (validateInput(form["password"])) {
-        data['password'] = form["password"].value;
+        data['password'] = form["password"].value.trim();
     } else {
         return false;
     }
@@ -453,7 +471,7 @@ function onUserEditPassword()
     {
         return;
     }
-    var psw = form["psw"].value;
+    var psw = form["psw"].value.trim();
     var encoded = window.btoa(psw);
     $.ajax({
         method: "POST",
@@ -470,7 +488,7 @@ function onUserChangePassword()
     {
         return;
     }
-    var psw = form["psw"].value;
+    var psw = form["psw"].value.trim();
     var encoded = window.btoa(psw);
     var data = {};
     data.id = form["id"].value;
@@ -534,7 +552,7 @@ function onUserEditProfile()
     var data = {};
     data.firstName = form["firstName"].value;
     data.name = form["name"].value;
-    data.username = form["username"].value;
+    data.username = form["username"].value.trim();
     $.ajax({
         method: "POST",
         url: baseUrl + "/php/user_edit_profile_ajax.php",
@@ -559,6 +577,7 @@ var onDepartmentAddComplete = function (data)
         console.log("bad");
     }
 }
+
 function onDepartmentAdd()
 {
     var data = {};
@@ -596,6 +615,7 @@ var onDepartmentEditComplete = function (data)
         console.log("bad");
     }
 }
+
 function onDepartmentEdit()
 {
     var data = {};
@@ -634,6 +654,7 @@ var onQuizAddComplete = function (data)
      console.log("bad");
      }*/
 }
+
 function onAddQuiz()
 {
     var data = {};
@@ -689,7 +710,7 @@ function onUserResult()
 {
     var form = document.getElementById('quizResultsSelf');
     var idQuiz = form['idQuiz'].value;
-    
+
     $.ajax({
         url: "../../php/nova_api_get_report_self_data.php",
         type: 'post',
@@ -709,13 +730,13 @@ function onUserResult()
             var data0 = return_data_array[0];
             var data1 = return_data_array[1];
             var data2 = return_data_array[2];
-            CreateUserPDF(JSON.stringify(data0),JSON.stringify(data1),JSON.stringify(data2));
+            CreateUserPDF(JSON.stringify(data0), JSON.stringify(data1), JSON.stringify(data2));
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
             alert("ERREUR: lecture de la base de donn\351es impossible...");
         }
-    });    
+    });
 }
 /**
  *  UTILITY
@@ -847,13 +868,13 @@ function GetAllUsersAgencyFromServer()
  */
 function LoadDataTable()
 {
-    table = $('#usersTable').DataTable(
+    tableUsers = $('#usersTable').DataTable(
             {
                 aLengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tous"]],
                 data: tableData,
                 select:
                         {
-                            style: 'multi'
+                            style: 'single'
                         },
                 dom: 'Bflrtip',
                 buttons: [
@@ -877,17 +898,17 @@ function LoadDataTable()
                 ],
                 //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilis�s dans la fonction ApplyFilters()...
                 columns: [
-                    {name: "USER_ID", data: 0, title: "ID", className: "dt-center"},
+                    {name: "USER_ID", data: 0, title: "ID", visible: false},
                     {name: "USER_NOM", data: 1, title: "NOM DE FAMILLE", className: "dt-center"},
                     {name: "USER_PRENOM", data: 2, title: "PRENOM", className: "dt-center"},
-                    {name: "USERNAME", data: 3, title: "NOM D'USAGER", className: "dt-center"},
+                    {name: "USERNAME", data: 3, title: "NOM D'USAGER", visible: false},
                     {name: "AGENCY", data: 4, title: "AGENCE", className: "dt-center"},
                     {name: "GROUP", data: 5, title: "GROUPE", className: "dt-center"},
-                    {name: "CORPO", data: 6, title: "CORPO", className: "dt-center"}
+                    {name: "CORPO", data: 6, title: "CORPO", visible: false}
                 ],
                 language: {
                     sProcessing: "Traitement en cours...",
-                    sSearch: "Rechercher&nbsp;:",
+                    sSearch: "",
                     sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
                     sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
                     sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
@@ -898,8 +919,8 @@ function LoadDataTable()
                     sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
                     oPaginate: {
                         sFirst: "Premier",
-                        sPrevious: "Pr&eacute;c&eacute;dent",
-                        sNext: "Suivant",
+                        sPrevious: "< Pr&eacute;c&eacute;dent",
+                        sNext: "Suivant >",
                         sLast: "Dernier"
                     },
                     oAria: {
@@ -915,50 +936,38 @@ function LoadDataTable()
                     }
                 },
             });
+    $('input[type="search"]').attr('placeholder', 'Rechercher');
+    tableUsers
+            .on('select', function (e, dt, type, indexes) {
+                var dataSelected = tableUsers.rows({selected: true}).data().toArray()
+                var newUrl = baseUrl + '/' + account + '/user/' + dataSelected[0][0] + '/edit';
+                window.location.assign(newUrl);
+            });
 }
 
 function LoadDataTableAgency()
 {
-    table = $('#dataTableAgency').DataTable(
+    tableUserAgency = $('#dataTableAgency').DataTable(
             {
                 aLengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tous"]],
                 data: tableData,
                 select:
                         {
-                            style: 'multi'
+                            style: 'single'
                         },
                 dom: 'Bflrtip',
-                buttons: [
-                    {
-                        text: 'S&eacute;lectionner tout',
-                        className: 'black',
-                        action: function () {
-                            //table.rows().select();
-                            //Reset selection first
-                            table.rows().deselect();
-                            table.rows({search: 'applied'}).select();
-                        }
-                    },
-                    {
-                        text: 'S&eacute;lectionner aucun',
-                        className: 'black',
-                        action: function () {
-                            table.rows().deselect();
-                        }
-                    },
-                ],
                 //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilis�s dans la fonction ApplyFilters()...
                 columns: [
-                    {name: "USER_ID", data: 0, title: "ID", className: "dt-center"},
+                    {name: "USER_ID", data: 0, title: "ID", visible: false},
                     {name: "USER_NOM", data: 2, title: "NOM DE FAMILLE", className: "dt-center"},
                     {name: "USER_PRENOM", data: 3, title: "PRENOM", className: "dt-center"},
                     {name: "USERNAME", data: 1, title: "NOM D'USAGER", className: "dt-center"},
-                    {name: "CREATED", data: 4, title: "CREE", className: "dt-center"},
-                    {name: "MODIFIED", data: 5, title: "MODIFIE", className: "dt-center"}
+                    {name: "CREATED", data: 4, title: "CREE", visible: false},
+                    {name: "MODIFIED", data: 5, title: "MODIFIE", visible: false}
                 ],
                 language: {
                     sProcessing: "Traitement en cours...",
-                    sSearch: "Rechercher&nbsp;:",
+                    sSearch: "",
                     sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
                     sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
                     sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
@@ -969,8 +978,8 @@ function LoadDataTableAgency()
                     sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
                     oPaginate: {
                         sFirst: "Premier",
-                        sPrevious: "Pr&eacute;c&eacute;dent",
-                        sNext: "Suivant",
+                        sPrevious: "< Pr&eacute;c&eacute;dent",
+                        sNext: "Suivant >",
                         sLast: "Dernier"
                     },
                     oAria: {
@@ -979,11 +988,18 @@ function LoadDataTableAgency()
                     },
                     select: {
                         rows: {
-                            _: "%d lignes s&eacute;lectionn&eacute;es",
-                            0: "Cliquez pour s&eacute;lectionner une ligne",
-                            1: "1 ligne s&eacute;lectionn&eacute;e"
+                            _: "&nbsp; %d lignes s&eacute;lectionn&eacute;es",
+                            0: "&nbsp; Cliquez pour s&eacute;lectionner une ligne",
+                            1: "&nbsp; 1 ligne s&eacute;lectionn&eacute;e"
                         }
                     }
                 },
+            });
+
+    tableUserAgency
+            .on('select', function (e, dt, type, indexes) {
+                var dataSelected = tableUserAgency.rows({selected: true}).data().toArray()
+                var newUrl = baseUrl + '/' + account + '/user/' + dataSelected[0][0] + '/edit';
+                window.location.assign(newUrl);
             });
 }

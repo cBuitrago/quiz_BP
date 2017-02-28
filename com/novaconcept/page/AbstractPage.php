@@ -26,6 +26,7 @@ class AbstractPage {
     protected $builder;
 
     public function __construct($request) {
+        header("Cache-Control: no-store, no-cache, must-revalidate");
         $this->request = $request;
         $this->builder = new RestBuilder();
         $this->builder->setKeys(WebConfig::getEnvironment()->privateKey, WebConfig::getEnvironment()->publicKey);

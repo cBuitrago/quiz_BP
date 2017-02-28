@@ -9,7 +9,6 @@ $restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore.'/'.$webCon
         ->setHttpMethod(RestBuilder::GET)
         ->setKeys($webConfig::getEnvironment()->privateKey, $webConfig::getEnvironment()->publicKey)
         ->excecute();
-
 if ($restBuilder->getResponseInfo()["http_code"] == 200) {
     echo $restBuilder->getResponse();
 }

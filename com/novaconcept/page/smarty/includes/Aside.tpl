@@ -5,14 +5,16 @@
     }
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/user">
-            <span class="glyphicon glyphicon-user"></span><br>UTILISATEURS
+            <span class="nv-glyphicon nv-glyphicon-user"></span><br>
+            <span class="text">UTILISATEURS</span>
         </a>
     </li>
     {/if}
     {if (isset($view->is_corpo_admin) && $view->is_corpo_admin === TRUE) }
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/corpo">
-            <span class="glyphicon glyphicon-globe"></span><br>CORPO
+            <span class="nv-glyphicon nv-glyphicon-corpo"></span><br>
+            <span class="text">CORPO</span>
         </a>
     </li>
     {/if}
@@ -21,7 +23,8 @@
     }
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/group/{$smarty.session.group}">
-            <span class="glyphicon glyphicon-user"></span><br>GROUPE
+            <span class="nv-glyphicon nv-glyphicon-groupe"></span><br>
+            <span class="text">GROUPE</span>
         </a>
     </li>
     {/if}
@@ -31,7 +34,8 @@
     }
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/agency/{$smarty.session.agency}">
-            <span class="glyphicon glyphicon-edit"></span><br>AGENCE
+            <span class="nv-glyphicon nv-glyphicon-agency"></span><br>
+            <span class="text">AGENCE</span>
         </a>
     </li>
     {/if}
@@ -42,7 +46,8 @@
     }
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/quiz">
-            <span class="glyphicon glyphicon-user"></span><br>QUIZ
+            <span class="nv-glyphicon nv-glyphicon-edit"></span><br>
+            <span class="text">QUIZ</span>
         </a>
     </li>
     {/if}
@@ -52,7 +57,8 @@
     }
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/report">
-            <span class="glyphicon glyphicon-user"></span><br>REPORTS
+            <span class="nv-glyphicon nv-glyphicon-report"></span><br>
+            <span class="text">REPORTS</span>
         </a>
     </li>
     {/if}

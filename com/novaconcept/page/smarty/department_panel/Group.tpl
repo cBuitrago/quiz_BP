@@ -1,56 +1,47 @@
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#infoGroup" aria-controls="home" role="tab" data-toggle="tab">GROUPE INFO</a></li>
-    <li role="presentation"><a href="#manageAgences" aria-controls="profile" role="tab" data-toggle="tab">GESTION DE AGENCES</a></li>
+    <li role="presentation" class="active">
+        <a href="#infoGroup" aria-controls="home" role="tab" data-toggle="tab">GROUPE INFO</a>
+    </li>
+    <li role="presentation">
+        <a href="#manageAgences" aria-controls="profile" role="tab" data-toggle="tab">GESTION DE AGENCES</a>
+    </li>
 </ul>
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="infoGroup">
-        <h1>{$data->group->name}</h1>
-        <h2>Editer Group</h2>
-        <form id="edit_department_form" method="post">
-            <table>
-                <input type="hidden" name="id" id="id" value="{$data->group->id}">
-                <input type="hidden" name="description" id="description" value="IS_GROUP">
-                <input type="hidden" name="parent" id="parent" value="{$data->group->parent}">
-                <tr>
-                    <td>
-                        <label for="name">Nom du groupe</label>
-                    </td>
-                    <td>
-                        <input type="text" name="name" id="name" value="{$data->group->name}">
-                    </td>
-                    <td>
-                        <button type="button" class="edit" id="onDepartmentEdit" 
-                                data-toggle="tooltip" data-placement="left" title="editer le nom du group">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </form>
+    <div role="tabpanel" class="tab-pane active bg-image" id="infoGroup">
+        <div class="editItem">
+            <h1>Éditer Groupe</h1>
+            <p>Nom du groupe</p>
+            <form id="edit_department_form" method="post">
+                <input type="hidden"    name="id"           id="id"             value="{$data->group->id}">
+                <input type="hidden"    name="description"  id="description"    value="IS_GROUP">
+                <input type="hidden"    name="parent"       id="parent"         value="{$data->group->parent}">
+                <input type="text"      name="name"         id="name"           value="{$data->group->name}" class="editInput" >
+                <div class="double-input">
+                    <button type="button" class="cancel" id="cancelAll" 
+                            data-toggle="tooltip" data-placement="left" title="">
+                        Annuler
+                    </button>
+                    <button type="button" class="edit" id="onDepartmentEdit" 
+                            data-toggle="tooltip" data-placement="left" title="editer le nom du group">
+                        Éditer
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div role="tabpanel" class="tab-pane active" id="manageAgences">
-        <h2>Ajouter Agence</h2>
-        <form id="add_department_form" method="post">
-            <table>
-                <input type="hidden" name="description" id="description" value="IS_AGENCY">
-                <input type="hidden" name="parent" id="parent" value="{$data->group->id}">
-                <tr>
-                    <td>
-                        <label for="name">Nom de l'agence</label>
-                    </td>
-                    <td>
-                        <input type="text" name="name" id="name">
-                    </td>
-                    <td>
-                        <button type="button" class="edit" id="onDepartmentAdd" 
-                                data-toggle="tooltip" data-placement="left" title="ajouter une agence">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </td>
-                </tr>
-            </table>
-
-        </form>
+    <div role="tabpanel" class="tab-pane bg-image" id="manageAgences">
+        <div class="addItem">
+            <h1>Ajouter Agence</h1>
+            <form id="add_department_form" method="post">
+                <input type="hidden"    name="description"  id="description"    value="IS_AGENCY">
+                <input type="hidden"    name="parent"       id="parent"         value="{$data->group->id}">
+                <input type="text"      name="name"         id="name"           placeholder="Nom de l'agence">
+                <button type="button" class="edit"  id="onDepartmentAdd" 
+                        data-toggle="tooltip" data-placement="left" title="ajouter une agence">
+                    Créér agence
+                </button>
+            </form>
+        </div>
         <h2>Agencies</h2>
         <ul>
             {foreach from=$data->agency item=agence}
@@ -67,7 +58,3 @@
         </ul>  
     </div>
 </div>
-
-
-
-
