@@ -44,13 +44,13 @@
 *   FOOTER
 */
 /**
-*   @font-color-button-add;
+*   BUTTON
 */
 /**
 *   INPUT
 */
 /**
-*
+*   BUTTON
 */
 /**
 *   TABLES
@@ -183,7 +183,7 @@ article.title-top div.title-container nav.head div.dropdown ul.dropdown-menu {
   padding: 0;
   margin: 0;
   list-style: none;
-  color: #000000;
+  color: #2b2b2b;
   background-color: #171717;
 }
 article.title-top div.title-container nav.head div.dropdown ul.dropdown-menu li {
@@ -200,7 +200,7 @@ article.title-top div.title-container nav.head div.dropdown ul.dropdown-menu li 
   text-align: left;
   display: block;
   text-decoration: none;
-  color: #000000;
+  color: #2b2b2b;
   margin: 0;
 }
 article.title-top div.title-container nav.head div.dropdown ul.dropdown-menu li a:hover,
@@ -222,7 +222,7 @@ article.content-login h1 {
   text-align: center;
 }
 article.content-login form {
-  padding: 10px;
+  padding: 0;
 }
 article.content-login form div label {
   min-width: 150px;
@@ -238,6 +238,19 @@ article.content-login form div input {
   margin-bottom: 20px;
   font-size: 20px;
   text-align: left;
+}
+article.content-login form .login_failed {
+  display: block;
+  visibility: visible;
+  background-color: #ffffff;
+  height: 44px;
+  padding-left: 15px;
+  line-height: 44px;
+  width: 100%;
+}
+article.content-login form .login_failed.hidden_failed {
+  display: none;
+  visibility: hidden;
 }
 article.content-login form button {
   width: 300px;
@@ -307,9 +320,9 @@ article.center {
   background-color: #ffffff;
   width: calc(100% - 200px);
   margin-left: 200px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   overflow: auto;
-  min-height: calc(100% - 50px);
+  min-height: calc(100% - 70px);
   border-top-color: #e4e4e4;
   border-top-style: solid;
   border-top-width: 2px;
@@ -331,12 +344,14 @@ article.center ul.nav-tabs li {
   white-space: nowrap;
 }
 article.center ul.nav-tabs li a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
   height: 100%;
   line-height: 65px;
   padding: 0;
   cursor: pointer;
   font-weight: 400;
-  color: #bfbfbf;
+  color: #8e8d8d;
 }
 article.center ul.nav-tabs li a:hover {
   background-color: #f6f6f6;
@@ -350,11 +365,24 @@ article.center ul.nav-tabs li.active a {
   font-weight: 500;
   border-width: 0;
   border-radius: 0;
-  border-bottom-color: #106eb0;
+  border-bottom-color: #157ddd;
   border-bottom-style: solid;
   border-bottom-width: 4px;
-  color: #000000;
+  color: #2b2b2b;
   background-color: #f6f6f6;
+}
+article.center ul.nav-tabs p {
+  height: 65px;
+  font-size: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  line-height: 65px;
+  /* hauteur de ligne (identique) */
+  white-space: nowrap;
+  font-weight: 500;
+  border-width: 0;
+  border-radius: 0;
+  color: #2b2b2b;
 }
 article.center .tab-content .tab-pane {
   width: 100%;
@@ -384,7 +412,7 @@ article.center .tab-content .tab-pane .editItem form input {
 }
 article.center .tab-content .tab-pane .editItem form input.changed {
   background-color: #ffffff;
-  color: #000000;
+  color: #2b2b2b;
 }
 article.center .tab-content .tab-pane .editItem .double-input input,
 article.center .tab-content .tab-pane .editItem .double-input button.edit,
@@ -406,16 +434,54 @@ article.center .tab-content .tab-pane .addItem {
   margin: auto;
 }
 article.center .tab-content .tab-pane .addItem h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 34px;
   color: #ffffff;
   margin: 0;
   margin-bottom: 20px;
-  font-weight: 400;
+  font-weight: 300;
 }
 article.center .tab-content .tab-pane .addItem .double-input input {
   width: calc(50% - 10px);
 }
 article.center .tab-content .tab-pane .addItem .double-input input:first-of-type {
   margin-right: 16px;
+}
+article.center .tab-content .tab-pane .addItem table {
+  width: 100%;
+  background-color: #ffffff;
+}
+article.center .tab-content .tab-pane .addItem table tbody tr {
+  border-width: 1px;
+  border-color: #4b4b4b;
+}
+article.center .tab-content .tab-pane .addItem table tbody tr td {
+  border-width: 1px;
+}
+article.center .tab-content .tab-pane .addItem table tbody tr td a {
+  padding: 15px;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  background-color: #ffffff;
+  text-align: left;
+  padding-left: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #4b4b4b;
+  font-size: 16px;
+}
+article.center .tab-content .tab-pane .addItem table tbody tr td a:hover {
+  background-color: #f0f0f0;
+  text-decoration: none;
+}
+article.center .tab-content .tab-pane .addItem table tbody tr td:hover {
+  background-color: #f0f0f0;
+  text-decoration: none;
+}
+article.center .tab-content .tab-pane .addItem table tbody tr:hover {
+  background-color: #f0f0f0;
+  text-decoration: none;
 }
 article.center .tab-content .tab-pane.bg-image {
   min-height: 100vh;
@@ -424,6 +490,9 @@ article.center .tab-content .tab-pane.bg-image {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top left;
+}
+article.center .tab-content .tab-pane .dataTables_wrapper.no-border {
+  border-top-width: 0;
 }
 article.center .tab-content .tab-pane .dataTables_wrapper {
   margin-top: 20px;
@@ -446,7 +515,7 @@ article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_filter lab
   min-width: 300px;
   max-width: 400px;
   width: 100%;
-  color: #000000;
+  color: #2b2b2b;
   padding-right: 50px;
   margin-left: 0;
   margin-top: 20px;
@@ -468,7 +537,7 @@ article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_length {
 article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_length label {
   margin-top: 20px;
   margin-left: 25px;
-  color: #000000;
+  color: #2b2b2b;
 }
 article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_length label select {
   width: 90px;
@@ -491,6 +560,30 @@ article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTabl
   max-width: 200px;
   border-width: 0;
   text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #4b4b4b;
+  font-size: 18px;
+}
+article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTable.no-footer tbody td {
+  border-width: 0;
+}
+article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTable.no-footer tbody td a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+  display: block;
+  text-decoration: none;
+  width: 100px;
+  background-color: #106daf;
+  color: #ffffff;
+  height: 30px;
+  border-radius: 15px;
+}
+article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTable.no-footer tbody td a:hover {
+  text-decoration: none;
 }
 article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTable.no-footer tbody tr.odd,
 article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTable.no-footer tbody tr.even {
@@ -514,6 +607,10 @@ article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTabl
   max-width: 200px;
   text-align: left;
   padding-left: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #4b4b4b;
+  font-size: 16px;
 }
 article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTable.no-footer tbody tr.odd td.dt-center.sorting_1,
 article.center .tab-content .tab-pane .dataTables_wrapper table.display.dataTable.no-footer tbody tr.even td.dt-center.sorting_1 {
@@ -538,19 +635,19 @@ article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_paginate {
 article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_paginate .paginate_button.current {
   background: none;
   border-width: 0;
-  color: #106eb0 !important;
+  color: #157ddd !important;
 }
 article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #bfbfbf !important;
+  color: #4b4b4b !important;
 }
 article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   background: none;
   border-width: 0;
-  color: #bfbfbf !important;
+  color: #4b4b4b !important;
 }
 article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_paginate .paginate_button.next,
 article.center .tab-content .tab-pane .dataTables_wrapper .dataTables_paginate .paginate_button.previous {
-  color: #000000 !important;
+  color: #2b2b2b !important;
 }
 article.center h1 {
   color: #343434;
@@ -576,7 +673,7 @@ article.center table tr td input[type='checkbox'] {
   border-radius: 0;
   height: 20px;
   vertical-align: top;
-  border: solid 1px #000000;
+  border: solid 1px #2b2b2b;
   width: 20px;
   margin-left: 90px;
   padding: 0;
@@ -609,6 +706,88 @@ article.center div.panel-body table.doc tr td {
   padding-left: 5px;
   min-width: 140px;
 }
+article.center div.containerEdit {
+  clear: both;
+  margin-left: 50px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  width: 100%;
+  max-width: 460px;
+  min-width: 300px;
+}
+article.center div.containerEdit h1 {
+  font-size: 27px;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  margin-bottom: 30px;
+  font-weight: 300;
+  color: #2b2b2b;
+}
+article.center div.containerEdit .single-input {
+  margin-bottom: 16px;
+  width: 100%;
+}
+article.center div.containerEdit .double-input {
+  overflow: auto;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+article.center div.containerEdit .double-input div {
+  float: left;
+  width: calc(50% - 15px);
+}
+article.center div.containerEdit .double-input div:first-of-type {
+  margin-right: 30px;
+}
+article.center div.containerEdit .double-input button {
+  overflow: hidden;
+  float: left;
+  width: calc(50% - 15px);
+}
+article.center div.containerEdit .double-input button:first-of-type {
+  margin-right: 30px;
+}
+article.center div.containerEdit label {
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+article.center div.containerEdit input {
+  height: 35px;
+  line-height: 35px;
+  font-weight: 500;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  border-width: 0;
+  border-bottom-width: 1px;
+  padding: 0;
+  color: #a9a9a9;
+}
+article.center div.containerEdit input:focus {
+  color: #4b4b4b;
+  outline-offset: -2px;
+  outline-width: 0;
+}
+article.center div.containerEdit input[type="text"]:disabled {
+  background-color: #ffffff;
+}
+article.center div.containerEdit input[type="checkbox"],
+article.center div.containerEdit input[type="radio"] {
+  height: 18px;
+  width: 18px;
+  margin: 0;
+}
+article.center form + hr {
+  clear: both;
+  border-color: #e4e4e4;
+  border-width: 0px;
+  border-bottom-width: 1px;
+  border-style: solid;
+  width: calc(100% - 100px);
+  margin-left: 50px;
+}
 footer {
   position: fixed;
   bottom: 0;
@@ -628,11 +807,13 @@ footer div p {
   font-weight: 400;
 }
 label {
-  font-weight: 400;
   margin-top: 7px;
   margin-bottom: 7px;
   margin-left: 15px;
   color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
 }
 .generalButton {
   display: block;
@@ -668,9 +849,13 @@ button.add {
   white-space: nowrap;
   font-size: 16px;
   font-weight: 100;
+  height: 44px;
   color: #ffffff;
   background-color: #106cad;
   border-color: #106cad;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
 }
 button.add:hover {
   cursor: pointer;
@@ -726,26 +911,11 @@ button.create:hover {
   background-color: #00cc00;
 }
 button.remove {
-  display: block;
-  border-width: 1px;
-  border-radius: 2px;
-  border-style: solid;
-  margin: 0;
-  margin-top: 30px;
-  padding: 0;
-  text-decoration: none;
   width: 100%;
-  height: 40px;
-  line-height: 40px;
-  white-space: nowrap;
-  font-size: 16px;
-  font-weight: 100;
-  border-color: #b32400;
+  height: 44px;
+  border-width: 0;
   background-color: #cc2900;
-  max-width: 200px;
-}
-button.remove:hover {
-  cursor: pointer;
+  color: #ffffff;
 }
 button.remove:hover {
   background-color: #e62e00;
@@ -783,7 +953,7 @@ button.btnLangue {
   color: #454545;
 }
 button.btnLangue:hover {
-  color: #000000;
+  color: #2b2b2b;
 }
 button.edit {
   height: 44px;
@@ -924,13 +1094,16 @@ input[type="search"] {
   width: 100%;
   padding-right: 5px;
   padding-left: 12px;
-  border-color: #bfbfbf;
+  border-color: #a9a9a9;
   border-style: solid;
   border-width: 1px;
   text-align: left;
   font-size: 14px;
   margin-top: 7px;
   margin-bottom: 7px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
 }
 input[type="file"] {
   margin: 20px;
@@ -938,19 +1111,19 @@ input[type="file"] {
 }
 input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #bfbfbf;
+  color: #a9a9a9;
 }
 input::-moz-placeholder {
   /* Firefox 19+ */
-  color: #bfbfbf;
+  color: #a9a9a9;
 }
 input:-ms-input-placeholder {
   /* IE 10+ */
-  color: #bfbfbf;
+  color: #a9a9a9;
 }
 input:-moz-placeholder {
   /* Firefox 18- */
-  color: #bfbfbf;
+  color: #a9a9a9;
 }
 ul {
   padding-left: 0;

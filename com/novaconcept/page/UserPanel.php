@@ -73,7 +73,6 @@ class UserPanel extends AbstractPage {
                 ->addPathParam('agency')
                 ->setHttpMethod(RestBuilder::GET)
                 ->excecute();
-
         $this->data->agencies = json_decode($this->builder->getResponse());
         if ($this->builder->getResponseInfo()["http_code"] != 200) {
             $this->display("error/ForbiddenError.tpl");

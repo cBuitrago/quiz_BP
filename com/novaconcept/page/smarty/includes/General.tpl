@@ -20,7 +20,9 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="icon-remove" aria-hidden="true"></span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="icon-remove" aria-hidden="true"></span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <h1 id="errorMsg"></h1>

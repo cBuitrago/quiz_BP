@@ -41,15 +41,22 @@
         <div>
             <img src="{$head->baseUrl}/media/assets/logo-novafr.png" class="gwd-img-ttig">
         </div>-->
+        <div class="load">
+            <div>
+            </div>
+        </div>
         <article class="container">
             <article class="aside">
                 {include file="com/novaconcept/page/smarty/includes/Aside.tpl" lang=$lang head=$head view=$view}
             </article>
             <article class="center">
                 <div>
-                    <p align="center">
-                        <img src="{$head->baseUrl}/media/assets/Background_demo_01.jpg" class="div_img">
-                    <div align="center" style="margin: 30px auto; padding: 0 50px 0 50px">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <p>Reports</p>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div align="center" style="margin: 30px auto; padding: 0">
                         <div class="filters">
                             <h1>Filtrer les r&eacute;sultats</h1>
                             <div>
@@ -87,7 +94,7 @@
                                         </th>
                                     </tr>
                                 </table>
-                                <p><input type="button" value="Appliquer les filtres" onclick="ApplyFilters();"/></p>
+                                <p><input type="button" class='btn_filters' value="Appliquer les filtres" onclick="ApplyFilters();"/></p>
                             </div>
                         </div>
                         <table id="example" class="display" width="100%"></table>
@@ -98,33 +105,34 @@
                                         <th>
                                             G&eacute;n&eacute;rer les rapports usagers:
                                             <hr>
-                                            <p align="left">Afficher le graphique de r&eacute;sultats <input type="checkbox" id="show_graph" value="show_graph" checked></p>
-                                            <p align="left">
+                                            <label for="show_graph">Afficher le graphique de r&eacute;sultats</label>
+                                            <input type="checkbox" id="show_graph" value="show_graph" checked><br>
+                                            <label for="user_report_compare">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                Graphique r&eacute;sultats - Comparer usager(s) avec:
-                                                <select id="user_report_compare">
-                                                    <option value="none">Aucun</option>
-                                                    <option value="AGENCIES">Agence</option>
-                                                    <option value="GROUPS">Groupe</option>
-                                                    <option value="CORPORATES">Compagnie</option>
-                                                </select>
-                                            </p>
-                                            <p align="left">Afficher les questions/r&eacute;ponses <input type="checkbox" id="show_answers" value="show_answers" checked> </p>
-                                            <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;Afficher les pointages obtenus aux questions<input type="checkbox" id="show_answers_score" value="show_answers_score" checked> </p>
-                                            <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;Afficher les meilleures r&eacute;ponses aux questions<input type="checkbox" id="show_best_answers" value="show_best_answers" checked> </p>
-                                            <input type="button" value="G&eacute;n&eacute;rer rapport(s) usager(s)" onclick="GenerateUsersReports();" />
+                                                Graphique r&eacute;sultats - Comparer usager(s) avec:</label><br>
+                                            <select id="user_report_compare">
+                                                <option value="none">Aucun</option>
+                                                <option value="AGENCIES">Agence</option>
+                                                <option value="GROUPS">Groupe</option>
+                                                <option value="CORPORATES">Compagnie</option>
+                                            </select><br>
+                                            <label for="show_answers">Afficher les questions/r&eacute;ponses</label><input type="checkbox" id="show_answers" value="show_answers" checked><br>
+                                            <label for="show_answers_score">&nbsp;&nbsp;&nbsp;&nbsp;Afficher les pointages obtenus aux questions</label><input type="checkbox" id="show_answers_score" value="show_answers_score" checked><br>
+                                            <label for="show_best_answers">&nbsp;&nbsp;&nbsp;&nbsp;Afficher les meilleures r&eacute;ponses aux questions</label><input type="checkbox" id="show_best_answers" value="show_best_answers" checked><br>
+                                            <input type="button" class='btn_filters' value="G&eacute;n&eacute;rer rapport(s) usager(s)" 
+                                                   onclick="GenerateUsersReports();" />
                                         </th>
                                         <th>
                                             G&eacute;n&eacute;rer les rapports de participation:
                                             <hr>
-                                            <input type="button" value="G&eacute;n&eacute;rer rapport de participation" onclick="GenerateParticipationReport();"/>
+                                            <input type="button" class='btn_filters' value="G&eacute;n&eacute;rer rapport de participation" 
+                                                   onclick="GenerateParticipationReport();"/>
                                         </th>
                                     </tr>
                                 </table>
                             </div>
                         </div>		
                     </div>
-                    </p>
                 </div>
             </article>
         </article>

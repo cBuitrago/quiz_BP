@@ -42,19 +42,19 @@
                 </button>
             </form>
         </div>
-        <h2>Agencies</h2>
-        <ul>
-            {foreach from=$data->agency item=agence}
-                <ul class="tree">
-                    <li class="department">{$agence->name}</li>
-                    <li>
-                        <a class="edit" href="{$head->baseUrl}/{$smarty.session.accountInfo}/agency/{$agence->id}"
-                           data-toggle="tooltip" data-placement="left" title="info de l'agence">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
-                    </li>
-                </ul>  
-            {/foreach}
-        </ul>  
+        <div class="addItem">
+            <h1>Agences</h1>
+            <table class="">
+                <tbody>
+                    {foreach from=$data->agency item=agence}
+                        <tr>
+                            <td>
+                                <a class="" href="{$head->baseUrl}/{$smarty.session.accountInfo}/agency/{$agence->id}">{$agence->name}</a>
+                            </td>
+                        </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

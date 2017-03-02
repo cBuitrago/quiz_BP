@@ -12,11 +12,12 @@
         <!--<title><?php echo "quiz TITLE";?>BP - QUIZ VALIDATION</title>-->
 
         <link href="{$head->baseUrl}/css/animate.css" rel="stylesheet">
-        <link href="{$head->baseUrl}/css/style.css" rel="stylesheet">
+
         <link href="{$head->baseUrl}/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
         <link href="{$head->baseUrl}/js/libs/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.css">
+        <link href="{$head->baseUrl}/css/style.css" rel="stylesheet">
 
         <script src="{$head->baseUrl}/js/libs/jquery/jquery.js" type="text/javascript"></script>
         <script type="text/javascript" src="{$head->baseUrl}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
@@ -25,13 +26,6 @@
         <script src="{$head->baseUrl}/js/quiz.js"  type="text/javascript"></script>
         <script type="text/javascript"> baseUrl = "{$head->baseUrl}";</script>
         <script type="text/javascript">var account = {if isset($smarty.session.accountInfo)}{$smarty.session.accountInfo}{else}0{/if}</script>
-
-        <!--<script src="{$head->baseUrl}/js/main.js" type="text/javascript"></script>-->
-        <!--<script  src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>-->
-        <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-        <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
-        <!--<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>-->
         <style>
             canvas {
                 -moz-user-select: none;
@@ -57,10 +51,11 @@
                 </ul>
             </div>
         </nav>
+        <div id="pageTitle">
+            <h2 style='text-align:left;' >{$data->quizData->pageTitle}</h2>
+        </div>
         <article class="container">
-            <div id="pageTitle">
-                <h2 style='text-align:left;' >{$data->quizData->pageTitle}</h2>
-            </div>
+
             <div class='container-fluid' id='quiz'>
                 <div id="quiz-carousel" class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
@@ -97,7 +92,7 @@
                         {/foreach}
 
                     </div>
-                        <input type="hidden" id='quiz_name' value="{$data->QUIZ_ID}">
+                    <input type="hidden" id='quiz_name' value="{$data->QUIZ_ID}">
                     <a class="left carousel-control hidden" href="#quiz-carousel" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
@@ -109,48 +104,15 @@
                 </div>
             </div>
         </article>
-        <div id="footer" >  
+        <footer class="quiz">  
             <a class="" href="#" role="button" id="previousSection">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+                <span>Precedent</span>
             </a>
             <a class="" href="#" role="button"  id='nextSection'>
+                <span>Suivant</span>
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
             </a>
-
-
-            <!-- Controls 
-            <a class="left carousel-control" href="#quiz-carousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#quiz-carousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>-->
-            <!--<div class="row">
-                <div class="col-xs-3 text-left">
-                    <div id ="previousButton"> 
-                        <a  href="#" onclick="previousForm();">	&#60; &nbsp&nbsp Previous</a> 
-                    </div> 
-                </div>
-                <div class="col-xs-6">
-            <!--<div id="timerPlacement"> Il vous reste 
-                <b><span class="timer inline" data-seconds-left= <?php echo $_SESSION['quizData'][0][5]; ?>></span></b>
-            </div>
-        </div>		
-        <div class="col-xs-3 text-right">
-            <div id="nextButton">  
-                <a  href="#" onclick="submitForm();"> Next&nbsp &nbsp></a> 
-            </div>
-        </div>
-    </div>-->
-        </div>
-        <footer>
-            <div class="footer">
-                <p>{$lang->includes->footer}</p>
-            </div>
         </footer>
     </body>
 </html>

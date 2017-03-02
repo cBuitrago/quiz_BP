@@ -1,27 +1,52 @@
 {strip}
-<html>
-    {include file="com/novaconcept/page/smarty/includes/HeadTag.tpl" lang=$lang head=$head view=$view}
-    <body>
-        <article class="title-top">
-            <div class="title-container">
-                <h1>{$smarty.session.accountName}</h1>
-                {include file="com/novaconcept/page/smarty/includes/NavTag.tpl" lang=$lang head=$head view=$view}
-            </div>
-        </article>
-        <article class="container">
-            <article class="aside">
+    <html>
+        {include file="com/novaconcept/page/smarty/includes/HeadTag.tpl" lang=$lang head=$head view=$view}
+        <body>
+
+            <nav class="head">
+                <div class="image">
+                    <img src="/quiz_panel/media/images/logo-cfc-fr.jpeg">
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {$smarty.session.userInfo->firstName} {$smarty.session.userInfo->name}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
+                        <li><a href="{$head->baseUrl}/logout">{$lang->includes->logOut}</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <article class="container">
+                <article class="aside">
+                </article>
+                <article class="center">
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <p>Changez votre mot de passe s.v.p!</p>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane bg-image active" id="">
+                                <div class="addItem">
+                                    <h1>Mot de passe</h1>
+                                    <form id="edit_user_password_form">
+                                        <div class="single-input">
+                                            <input type="password" name="psw" id="psw" placeholder="Nouveau mot de passe">
+                                        </div>
+                                        <div class="single-input">
+                                            <input type="password" name="psw1" id="psw1" placeholder="Confirmer le mot de passe">
+                                        </div>
+                                        <button type="button" class="add" id="onUserEditPassword" 
+                                                data-toggle="tooltip" data-placement="left" title="change mot de passe">
+                                            Modifier mot de passe
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </article>
-            <article class="center">
-                <h1>{$lang->user->change}</h1>
-                <form id="edit_user_password_form">
-                    <table>
-                        <tr><td><label for="psw">{$lang->user->newPsw}</label></td><td><input type="text" name="psw" id="psw" ></td></tr>
-                        <tr><td><label for="psw1">{$lang->user->newPswVerification}</label></td><td><input type="text" name="psw1" id="psw1" ></td></tr>
-                    </table>
-                    <button type="button" class="save" id="onUserEditPassword">{$lang->user->change}</button>
-                </form>
-            </article>
-        </article>
-    </body>
-</html>
+        </body>
+    </html>
 {/strip}

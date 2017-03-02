@@ -119,6 +119,9 @@ window.addEventListener("load", function () {
     $("input.editInput").keyup(function () {
         $(this).addClass('changed');
     });
+    $(".cancelAll").click(function () {
+        location.reload();
+    });
 });
 var error404 = "error 404";
 var error409 = "error 409";
@@ -169,7 +172,8 @@ var onLoginComplete = function (data)
         {
             location.reload();
         }
-    } else if (data.responseText === "forceChange")
+    } 
+    else if (data.responseText === "forceChange")
     {
         var url = window.location.pathname.split("/");
         if (url[url.length - 1] == 'login' || url[url.length - 1] == 'connexion' || url[url.length - 1] == 'logout')
@@ -180,11 +184,14 @@ var onLoginComplete = function (data)
         {
             location.reload();
         }
+    }else{
+        $('.login_failed').removeClass('hidden_failed');
     }
 }
 
 function onLogin(e)
 {
+    $('.login_failed').addClass('hidden_failed');
     e.preventDefault();
     var user = document.getElementById("username").value.trim();
     var password = document.getElementById("psw").value.trim();

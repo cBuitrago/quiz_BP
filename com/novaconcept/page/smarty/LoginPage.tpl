@@ -17,6 +17,9 @@
                 <div>
                     <input type="password" id="psw" name="psw" placeholder="Mot de Passe" >
                 </div>
+                <div class="login_failed hidden_failed">
+                    <p>Connexion échoué!</p>
+                </div>
                 <hr>
                 <button type="submit" id="onLogin">Entrer</button>
             </form>

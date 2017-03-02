@@ -43,15 +43,20 @@
                     </button>
                 </form>
             </div>
-            <h2>Groupes</h2>
-            <ul>
-                {foreach from=$data->groups item=group}
-                    <ul class="tree">
-                        <li class="department">{$group->name}</li>
-                        <li><a class="edit" href="{$head->baseUrl}/{$smarty.session.accountInfo}/group/{$group->id}" data-toggle="tooltip" data-placement="left" title="info du groupe"><span class="glyphicon glyphicon-pencil"></span></a>
-                    </ul>  
-                {/foreach}
-            </ul>
+            <div class="addItem">
+                <h1>Groupes</h1>
+                <table class="">
+                    <tbody>
+                        {foreach from=$data->groups item=group}
+                            <tr>
+                                <td>
+                                    <a class="" href="{$head->baseUrl}/{$smarty.session.accountInfo}/group/{$group->id}">{$group->name}</a>
+                                </td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
