@@ -6,7 +6,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/user">
             <span class="nv-glyphicon nv-glyphicon-user"></span><br>
-            <span class="text">UTILISATEURS</span>
+            <span class="text">Utilisateur</span>
         </a>
     </li>
     {/if}
@@ -14,7 +14,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/corpo">
             <span class="nv-glyphicon nv-glyphicon-corpo"></span><br>
-            <span class="text">CORPO</span>
+            <span class="text">Corporate</span>
         </a>
     </li>
     {/if}
@@ -24,7 +24,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/group/{$smarty.session.group}">
             <span class="nv-glyphicon nv-glyphicon-groupe"></span><br>
-            <span class="text">GROUPE</span>
+            <span class="text">Groupe</span>
         </a>
     </li>
     {/if}
@@ -35,7 +35,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/agency/{$smarty.session.agency}">
             <span class="nv-glyphicon nv-glyphicon-agency"></span><br>
-            <span class="text">AGENCE</span>
+            <span class="text">Agence</span>
         </a>
     </li>
     {/if}
@@ -47,7 +47,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/quiz">
             <span class="nv-glyphicon nv-glyphicon-edit"></span><br>
-            <span class="text">QUIZ</span>
+            <span class="text">Quiz</span>
         </a>
     </li>
     {/if}
@@ -58,7 +58,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/report">
             <span class="nv-glyphicon nv-glyphicon-report"></span><br>
-            <span class="text">REPORTS</span>
+            <span class="text">Reports</span>
         </a>
     </li>
     {/if}

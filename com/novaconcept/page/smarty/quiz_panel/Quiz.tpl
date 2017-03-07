@@ -37,7 +37,7 @@
     <body>
         <nav class="head">
             <div class="image">
-                <img src="/quiz_panel/media/images/logo-cfc-fr.jpeg">
+                <img src="/quiz_panel/media/images/logoCompany.png">
             </div>
             <div class="dropdown">
                 <button class="dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -90,13 +90,47 @@
                                 {assign var="secc" value=$secc+1}
                             </div>
                         {/foreach}
-
                     </div>
                     <input type="hidden" id='quiz_name' value="{$data->QUIZ_ID}">
                     <a class="left carousel-control hidden" href="#quiz-carousel" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
+                    {assign var="timerQuiz" value=($smarty.session.quizStartTime + 1200) - $smarty.now}
+                    <p class="timer"></p>
+
+                    {literal}
+                        <script>
+                            //var start = new Date({/literal}   {$smarty.session.quizStartTime}{literal} * 1000);
+                            //var finish = new Date(start.getTime() + parseInt({/literal}{$data->TIME_TO_COMPLETE} {literal} * 1000));
+
+                            var start = {/literal}{$smarty.session.quizStartTime}{literal};
+                            var finish = start + {/literal}{$data->TIME_TO_COMPLETE}{literal};
+                            var secondspasses = parseInt({/literal}{$smarty.now}{literal});
+                            var timerQuiz = function () {
+
+                                var testerTimeQuiz = true;
+                                
+                                var currentTime = (finish - (secondspasses));
+                                secondspasses += 1;
+                                var timer = {
+                                    'minutes': Math.floor(currentTime / 60),
+                                    'seconds': (Math.round(currentTime % 60) == 60) ? '00' : Math.round(currentTime % 60)
+                                }
+                                var addZero = (timer.seconds < 10) ? '0' : '';
+                                $('.timer').text('Il vous reste : ' + timer.minutes + " : " + addZero + timer.seconds);
+
+                                if (currentTime <= 0) {
+                                    testerTimeQuiz = false;
+                                    nextForm(true);
+                                }
+
+                                if (testerTimeQuiz === true) {
+                                    setTimeout(timerQuiz, 1000);
+                                }
+                            }
+                        </script>
+                    {/literal}
                     <a class="right carousel-control hidden" href="#quiz-carousel" role="button" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>

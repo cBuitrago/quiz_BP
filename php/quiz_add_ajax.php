@@ -9,8 +9,6 @@ $restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore . '/' . $we
         ->setKeys($webConfig::getEnvironment()->privateKey, $webConfig::getEnvironment()->publicKey)
         ->setPostData($data)
         ->excecute();
-print_r($restBuilder->getResponse());
-print_r($restBuilder->getResponseInfo());
 
 if ($restBuilder->getResponseInfo()["http_code"] == 201) {
     echo "true";

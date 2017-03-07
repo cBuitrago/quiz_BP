@@ -172,8 +172,7 @@ var onLoginComplete = function (data)
         {
             location.reload();
         }
-    } 
-    else if (data.responseText === "forceChange")
+    } else if (data.responseText === "forceChange")
     {
         var url = window.location.pathname.split("/");
         if (url[url.length - 1] == 'login' || url[url.length - 1] == 'connexion' || url[url.length - 1] == 'logout')
@@ -184,7 +183,7 @@ var onLoginComplete = function (data)
         {
             location.reload();
         }
-    }else{
+    } else {
         $('.login_failed').removeClass('hidden_failed');
     }
 }
@@ -652,14 +651,14 @@ function onDepartmentEdit()
  */
 var onQuizAddComplete = function (data)
 {
-    console.log(data.responseText);
-    /*if (data.responseText === "true")
-     {
-     location.reload();
-     } else
-     {
-     console.log("bad");
-     }*/
+    console.log(data);
+    if (data.responseText === "true")
+    {
+        location.reload();
+    } else
+    {
+        console.log("bad");
+    }
 }
 
 function onAddQuiz()
@@ -698,6 +697,11 @@ function onAddQuiz()
         if (form['agency_quiz'][i].checked == true) {
             data.agencies.push(form['agency_quiz'][i].value);
         }
+    }
+
+    if (data.agencies.length == 0){
+        $("input:radio[name='agency_quiz']").focus();
+        return false;
     }
 
     $.ajax({

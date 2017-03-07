@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{$head->baseUrl}/css/font-awesome.min.css">
         <link rel="stylesheet" href="{$head->baseUrl}/css/generator.css">
         <link href="{$head->baseUrl}/js/libs/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
-        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.css">
         <!--<script src="{$head->baseUrl}/js/main.js" type="text/javascript"></script>-->
         <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
@@ -59,79 +59,77 @@
                     <div align="center" style="margin: 30px auto; padding: 0">
                         <div class="filters">
                             <h1>Filtrer les r&eacute;sultats</h1>
-                            <div>
-                                <table style="width:70%">
-                                    <tr>
-                                        <th>
-                                            ID Quiz:
-                                            <select id="filter_quiz_id">
-                                                <option value="all">Tous</option>
-                                            </select>
-                                        </th>
-                                        <th>
-                                            ID Compagnie:
-                                            <select id="filter_corporate_id">
-                                                <option value="all">Tous</option>
-                                            </select>
-                                        </th>
-                                        <th>
-                                            ID Groupe:
-                                            <select id="filter_group_id">
-                                                <option value="all">Tous</option>
-                                            </select>
-                                        </th>
-                                        <th>
-                                            ID Agence:
-                                            <select id="filter_agency_id">
-                                                <option value="all">Tous</option>
-                                            </select>
-                                        </th>
-                                        <th>
-                                            Progr&egrave;s:
-                                            <select id="filter_quiz_progress">
-                                                <option value="all">Tous</option>
-                                            </select>
-                                        </th>
-                                    </tr>
-                                </table>
-                                <p><input type="button" class='btn_filters' value="Appliquer les filtres" onclick="ApplyFilters();"/></p>
+                            <div class="fil-select">
+                                <label for="filter_quiz_id">ID Quiz </label>
+                                <select class='select-filter' id="filter_quiz_id">
+                                    <option value="all">Tous</option>
+                                </select>
+                            </div>
+                            <div class="fil-select">
+                                <label for="filter_corporate_id">ID Compagnie </label>
+                                <select class='select-filter' id="filter_corporate_id">
+                                    <option value="all">Tous</option>
+                                </select>
+                            </div>
+                            <div class="fil-select right">
+                                <label for="filter_group_id">ID Groupe </label>
+                                <select class='select-filter' id="filter_group_id">
+                                    <option value="all">Tous</option>
+                                </select>
+                            </div>
+                            <div class="fil-select right">
+                                <label for="filter_agency_id">ID Agence </label>
+                                <select class='select-filter' id="filter_agency_id">
+                                    <option value="all">Tous</option>
+                                </select>
+                            </div>
+                            <div class="fil-select right">
+                                <label for="filter_quiz_progress">Progr&egrave;s </label>
+                                <select class='select-filter' id="filter_quiz_progress">
+                                    <option value="all">Tous</option>
+                                </select>
                             </div>
                         </div>
                         <table id="example" class="display" width="100%"></table>
                         <div class="filters">
-                            <div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>
-                                            G&eacute;n&eacute;rer les rapports usagers:
-                                            <hr>
-                                            <label for="show_graph">Afficher le graphique de r&eacute;sultats</label>
-                                            <input type="checkbox" id="show_graph" value="show_graph" checked><br>
-                                            <label for="user_report_compare">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                Graphique r&eacute;sultats - Comparer usager(s) avec:</label><br>
-                                            <select id="user_report_compare">
-                                                <option value="none">Aucun</option>
-                                                <option value="AGENCIES">Agence</option>
-                                                <option value="GROUPS">Groupe</option>
-                                                <option value="CORPORATES">Compagnie</option>
-                                            </select><br>
-                                            <label for="show_answers">Afficher les questions/r&eacute;ponses</label><input type="checkbox" id="show_answers" value="show_answers" checked><br>
-                                            <label for="show_answers_score">&nbsp;&nbsp;&nbsp;&nbsp;Afficher les pointages obtenus aux questions</label><input type="checkbox" id="show_answers_score" value="show_answers_score" checked><br>
-                                            <label for="show_best_answers">&nbsp;&nbsp;&nbsp;&nbsp;Afficher les meilleures r&eacute;ponses aux questions</label><input type="checkbox" id="show_best_answers" value="show_best_answers" checked><br>
-                                            <input type="button" class='btn_filters' value="G&eacute;n&eacute;rer rapport(s) usager(s)" 
-                                                   onclick="GenerateUsersReports();" />
-                                        </th>
-                                        <th>
-                                            G&eacute;n&eacute;rer les rapports de participation:
-                                            <hr>
-                                            <input type="button" class='btn_filters' value="G&eacute;n&eacute;rer rapport de participation" 
-                                                   onclick="GenerateParticipationReport();"/>
-                                        </th>
-                                    </tr>
-                                </table>
+                            <div class="rapUsagerHead">
+                                <p>G&eacute;n&eacute;rer les rapports usagers:</p>
                             </div>
-                        </div>		
+                            <div class="rapUsagerBody">
+                                <div class="bodyFirstLabel">
+                                    <input type="checkbox" id="show_graph" value="show_graph" checked>
+                                    <label for="show_graph">Afficher le graphique de r&eacute;sultats</label><br>
+                                    <input type="checkbox" id="show_answers" value="show_answers" checked>
+                                    <label for="show_answers">Afficher les questions/r&eacute;ponses</label>
+                                </div>
+                                <div class="bodySelect">
+                                    <label for="user_report_compare">Graphique r&eacute;sultats - Comparer usager(s) avec:</label>
+                                    <select id="user_report_compare">
+                                        <option value="none">Aucun</option>
+                                        <option value="AGENCIES">Agence</option>
+                                        <option value="GROUPS">Groupe</option>
+                                        <option value="CORPORATES">Compagnie</option>
+                                    </select><br>
+                                    <input type="checkbox" id="show_answers_score" value="show_answers_score" checked>
+                                    <label for="show_answers_score">Afficher les pointages obtenus aux questions</label><br>
+                                    <input type="checkbox" id="show_best_answers" value="show_best_answers" checked>
+                                    <label for="show_best_answers">Afficher les meilleures r&eacute;ponses aux questions</label><br>
+                                </div>
+                                <div class="bodyButton">
+                                    <input type="button" class='btn_filters' value="G&eacute;n&eacute;rer rapport(s) usager(s)" 
+                                           onclick="GenerateUsersReports();" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filters">
+                            <div class="bodyEntete">
+                                <p>G&eacute;n&eacute;rer les rapports de participation:</p>
+                            </div>
+                            <div class="bodyButton">
+                                <input type="button" class='btn_filters' value="G&eacute;n&eacute;rer rapport de participation" 
+                                       onclick="GenerateParticipationReport();"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </article>

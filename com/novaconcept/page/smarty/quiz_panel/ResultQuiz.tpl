@@ -29,7 +29,7 @@
         <script src="{$head->baseUrl}/js/javascript/jquery.simple.timer.js"></script>
         <script src="{$head->baseUrl}/js/javascript/pdf_generator.js"  type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/main.js"  type="text/javascript"></script>
-      
+
         <style>
             canvas {
                 -moz-user-select: none;
@@ -41,7 +41,7 @@
     <body>
         <nav class="head">
             <div class="image">
-                <img src="/quiz_panel/media/images/logo-cfc-fr.jpeg">
+                <img src="/quiz_panel/media/images/logoCompany.png">
             </div>
             <div class="dropdown">
                 <button class="dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -61,13 +61,18 @@
             </article>
             <article class="center">
                 <h2 style='text-align:left;' >{$data->quizData->pageTitle}</h2>
-                <form id='quizResultsSelf'>
-                    <input type="hidden" name='idQuiz' value="{$data->ID}">
-                    <button type="button" class="edit" id="onUserResult" 
-                            data-toggle="tooltip" data-placement="left" title="userResult">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                </form>
+                {if ( isset($data->RESULT_PROGRESS_ID) && $data->RESULT_PROGRESS_ID == 3 )}
+                    <form id='quizResultsSelf'>
+                        <input type="hidden" name='idQuiz' value="{$data->ID}">
+                        <button type="button" class="edit" id="onUserResult" 
+                                data-toggle="tooltip" data-placement="left" title="userResult">
+                            Telecharger resultats PDF
+                        </button>
+                    </form>
+                {/if}
+                {if ( isset($data->RESULT_PROGRESS_ID) && $data->RESULT_PROGRESS_ID == 2 )}
+                    <h3>Vous avez pas bien fini votre Quiz</h3>
+                {/if}
             </article>
         </article>
         <footer>

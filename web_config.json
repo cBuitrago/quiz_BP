@@ -163,6 +163,15 @@
             "requestMethod":"GET",
             "requestPath":
             [
+                "{accountInfo}/quiz/{id}/edit"
+            ],
+            "pageClass":"QuizPanel",
+            "pageMethod":"quizEdit"
+        },
+        {
+            "requestMethod":"GET",
+            "requestPath":
+            [
                 "{accountInfo}/add/quiz"
             ],
             "pageClass":"QuizPanel",

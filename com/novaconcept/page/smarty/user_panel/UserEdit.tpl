@@ -137,8 +137,8 @@
                     <input type="text" name="psw" id="psw" >
                 </div>
                 <div>
-                    <label for="psw">{$lang->user->newPsw}</label>
-                    <input type="text" name="psw" id="psw" >
+                    <label for="psw1">{$lang->user->newPsw}</label>
+                    <input type="text" name="psw1" id="psw1" >
                 </div>
             </div>
             <div class="double-input">

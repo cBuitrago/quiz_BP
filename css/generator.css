@@ -206,15 +206,18 @@ div.load div {
   height: 100%;
   width: 100%;
   top: 70px;
-  left: 200px;
+  left: 104px;
   background-image: url('../media/assets/loading.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 .hidden-load {
   visibility: hidden !important;
   background-color: transparent;
 }
-div.tab-content {
-  /*background-image: url('../media/assets/Background_demo_01.jpg');*/
+table#example {
+  max-width: 1750px !important;
 }
 div.tab-content .dataTables_wrapper.no-border {
   border-top-width: 0;
@@ -259,6 +262,7 @@ div.tab-content .dataTables_wrapper .dataTables_filter label input[type='search'
   min-width: 200px;
   max-width: 400px;
   width: 100%;
+  height: 26px;
 }
 div.tab-content .dataTables_wrapper .dataTables_length {
   height: 88px;
@@ -270,6 +274,7 @@ div.tab-content .dataTables_wrapper .dataTables_length label {
 }
 div.tab-content .dataTables_wrapper .dataTables_length label select {
   width: 90px;
+  height: 26px;
 }
 div.tab-content .dataTables_wrapper table.display.dataTable.no-footer {
   margin-top: 0;
@@ -382,6 +387,114 @@ div.tab-content .dataTables_wrapper .dataTables_paginate .paginate_button:visite
 div.tab-content .dataTables_wrapper .dataTables_paginate .paginate_button.next,
 div.tab-content .dataTables_wrapper .dataTables_paginate .paginate_button.previous {
   color: #2b2b2b !important;
+}
+div.tab-content .filters {
+  overflow: auto;
+  margin: 0 25px 30px 25px;
+}
+div.tab-content .filters div.rapUsagerHead {
+  width: 100%;
+  text-align: left;
+  margin-left: 0;
+}
+div.tab-content .filters div.rapUsagerHead p {
+  font-weight: 500;
+}
+div.tab-content .filters .fil-select {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  width: 20%;
+  float: left;
+}
+div.tab-content .filters .fil-select label {
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+}
+div.tab-content .filters .fil-select select {
+  padding-left: 2px;
+  width: 50%;
+  color: #4b4b4b;
+  height: 26px;
+  margin: 0;
+  font-weight: 400;
+  float: left;
+}
+div.tab-content .filters .fil-select.right label {
+  text-align: right;
+  width: 50%;
+}
+div.tab-content .filters div.rapUsagerBody {
+  margin-bottom: 25px;
+  overflow: auto;
+  width: 100%;
+}
+div.tab-content .filters div.rapUsagerBody .bodyFirstLabel {
+  float: left;
+  width: 30%;
+  text-align: left;
+  padding-left: 10%;
+}
+div.tab-content .filters div.rapUsagerBody .bodyFirstLabel label {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 500;
+  margin-left: 20px;
+}
+div.tab-content .filters div.rapUsagerBody .bodyFirstLabel input {
+  margin-top: 0;
+}
+div.tab-content .filters div.rapUsagerBody .bodySelect {
+  float: left;
+  width: 35%;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+  padding-left: 1%;
+}
+div.tab-content .filters div.rapUsagerBody .bodySelect select {
+  padding-left: 2px;
+  width: 118px;
+  color: #4b4b4b;
+  height: 26px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+div.tab-content .filters div.rapUsagerBody .bodySelect label {
+  margin-bottom: 0;
+  margin-top: 0;
+  margin-left: 20px;
+}
+div.tab-content .filters div.rapUsagerBody .bodySelect label:first-of-type {
+  margin-left: 0;
+}
+div.tab-content .filters div.rapUsagerBody .bodySelect input {
+  margin-top: 0;
+}
+div.tab-content .filters .bodyButton {
+  float: left;
+  width: 35%;
+  height: 100%;
+}
+div.tab-content .filters .bodyEntete {
+  float: left;
+  width: 65%;
+  text-align: left;
+}
+div.tab-content .filters .bodyEntete p {
+  font-weight: 500;
+}
+div.tab-content .filters label {
+  color: #4b4b4b;
+  font-family: 'Roboto', sans-serif;
+  margin-right: 10px;
+  cursor: pointer;
+}
+div.tab-content .filters input[type='checkbox'] {
+  height: 18px;
+  width: 18px;
 }
 a.dt-button.black {
   display: inline-block;

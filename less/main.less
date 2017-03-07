@@ -18,7 +18,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 .nv-glyphicon-agency        { &:before { content: "\e900"; } }
 .nv-glyphicon-corpo         { &:before { content: "\e901"; } }
 .nv-glyphicon-edit          { &:before { content: "\e902"; } }
@@ -39,12 +38,14 @@
 */
 @bgNav-color: #ffffff;
 @fontNav-color: #040404;
+@bg-color-image-color: #106cae;
 /**
 * Aside
 */
 @bg-color-aside: #171717;
 @bg-color-aside-active: #242424;
-@font-color-aside: #ffffff;
+@font-color-aside: rgba(255,255,255, 0.4);
+@font-color-aside-active: #ffffff;
 /*
 *    ARTICLE CENTER
 */
@@ -108,19 +109,20 @@ nav{
     top: 0;
     left: 0;
     position: fixed;
-    height: 70px;
+    height: 80px;
     width: 100%;
     background-color: @bgNav-color;
-    //-webkit-box-shadow: 0 6px 6px rgba(0, 0, 0, 0.375);
-    //box-shadow: 0 6px 6px rgba(0, 0, 0, 0.375);
     div.image{
         position: absolute;
-        margin-left: 20px;
-        margin-top: 10px;
-        width: 180px;
+        background-color: @bg-color-image-color;
+        margin: 0;
+        height: 80px;
+        width: 104px;
         img{
-            width: 100%;
-            height: auto;
+            margin-left: 20px;
+            margin-top: 8px;
+            width: 66px;
+            height: 66px;
         }
     }
     div.text-login{
@@ -177,8 +179,10 @@ nav{
 
 //ARTICLES
 article.container{
-    width: 98%;
+    width: 100%;
     margin: auto;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 article.title-top{
@@ -293,7 +297,7 @@ article.content-login{
         .login_failed.hidden_failed{
             display: none;
             visibility: hidden;
-            
+
         }
         button{
             width: 300px;
@@ -333,29 +337,32 @@ article.nav-account{
 article.aside{
     position: fixed;
     top: 70px;
-    width: 200px;
+    width: 104px;
     background-color: @bg-color-aside;  
     height: 100%;
+    padding-top: 30px;
     float: left;
     ul{
         margin-top: 0;
         li{
-            height: 160px;
+            height: 98px;
             text-align: center;
             list-style: none;
             margin: 0;
             a{
+
                 display: block;
                 font-weight: 300;
                 padding-left: 0;
                 text-decoration: none;
                 color: @font-color-aside;
                 span{
-                    font-size: 60px;
+                    font-size: 30px;
                 }
                 span.text{
+                    font-family: 'Roboto', sans-serif;
                     margin-top: 10px;
-                    font-size: 20px;
+                    font-size: 16px;
                 }
                 &:hover{
                     font-weight: 400;
@@ -369,11 +376,12 @@ article.center{
     position: relative;
     top: 0;
     background-color: @font-color-light;
-    width: calc(~"100% - 200px");
-    margin-left: 200px;
+    width: calc(~"100% - 104px");
+    min-width: 896px;
+    margin-left: 104px;
     margin-bottom: 0;
     overflow: auto;
-    min-height: calc(~"100% - 70px");
+    min-height: calc(~"100vh - 70px");
     border-top-color: @border-color-central-article;
     border-top-style: solid;
     border-top-width: 2px;
@@ -439,6 +447,7 @@ article.center{
         .tab-pane{
             width: 100%;
             .editItem{
+                padding-top: 4%;
                 width: 30%;
                 max-width: 400px;
                 min-width: 280px;
@@ -479,6 +488,7 @@ article.center{
                 }
             }
             .addItem{
+                padding-top: 4%;
                 width: 30%;
                 max-width: 400px;
                 min-width: 280px;
@@ -540,7 +550,7 @@ article.center{
                 }
             }
             &.bg-image{
-                min-height: 100vh;
+                min-height: calc(~"100vh - 105px");
                 background-color: #ffffff;
                 background-image: url('../media/images/bg1.jpg');
                 background-size: cover;
@@ -832,7 +842,11 @@ article.center{
             width: 18px;
             margin: 0;
         }
-
+        textarea{
+            width: 100%;
+            min-height: 200px;
+            margin-top: 8px;
+        }
     }
     form + hr{
         clear: both;

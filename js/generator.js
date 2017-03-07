@@ -404,7 +404,7 @@ function LoadDataTable()
                 buttons: [
                     {
                         text: 'S&eacute;lectionner tout',
-                        className: 'black',
+                        className: 'black tout',
                         action: function () {
                             //table.rows().select();
                             //Reset selection first
@@ -414,7 +414,7 @@ function LoadDataTable()
                     },
                     {
                         text: 'S&eacute;lectionner aucun',
-                        className: 'black',
+                        className: 'black aucun',
                         action: function () {
                             table.rows().deselect();
                         }
@@ -426,7 +426,7 @@ function LoadDataTable()
                     {name: "USER_ID", data: DB_QUIZ_RESULTS_USER_ID, title: "ID Usager", visible: false},
                     {name: "USER_NAME", data: DB_QUIZ_RESULTS_USER_NAME, title: "Usager", className: "dt-center"},
                     {name: "CORPORATE_ID", data: DB_QUIZ_RESULTS_CORPORATE_ID, title: "ID Compagnie", visible: false},
-                    {name: "CORPORATE_NAME", data: DB_QUIZ_RESULTS_CORPORATE_NAME, title: "Compagnie", className: "dt-center"},
+                    {name: "CORPORATE_NAME", data: DB_QUIZ_RESULTS_CORPORATE_NAME, title: "Compagnie", visible: false},
                     {name: "GROUP_ID", data: DB_QUIZ_RESULTS_GROUP_ID, title: "ID Groupe", visible: false},
                     {name: "GROUP_NAME", data: DB_QUIZ_RESULTS_GROUP_NAME, title: "Groupe", className: "dt-center"},
                     {name: "AGENCY_ID", data: DB_QUIZ_RESULTS_AGENCY_ID, title: "ID Agence", visible: false},
@@ -554,8 +554,11 @@ function LoadDataTable()
     $("#filter_group_id").val("all");
     $("#filter_agency_id").val("all");
     $("#filter_quiz_progress").val("all");
-    
-    $( 'div.load' ).addClass('hidden-load');
+
+    $('div.load').addClass('hidden-load');
+    $('select.select-filter').change(function () {
+        ApplyFilters();
+    });
 
 }
 
