@@ -699,7 +699,7 @@ function onAddQuiz()
         }
     }
 
-    if (data.agencies.length == 0){
+    if (data.agencies.length == 0) {
         $("input:radio[name='agency_quiz']").focus();
         return false;
     }
@@ -883,6 +883,11 @@ function LoadDataTable()
             {
                 aLengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tous"]],
                 data: tableData,
+                autoWidth: false,
+                columnDefs: [
+                    {width: 100, targets: 0}
+                ],
+                fixedColumns: true,
                 select:
                         {
                             style: 'single'
@@ -907,14 +912,14 @@ function LoadDataTable()
                         }
                     },
                 ],
-                //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilis�s dans la fonction ApplyFilters()...
+                //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilisés dans la fonction ApplyFilters()...
                 columns: [
                     {name: "USER_ID", data: 0, title: "ID", visible: false},
-                    {name: "USER_NOM", data: 1, title: "NOM DE FAMILLE", className: "dt-center"},
-                    {name: "USER_PRENOM", data: 2, title: "PRENOM", className: "dt-center"},
+                    {name: "USER_NOM", data: 1, title: "NOM DE FAMILLE", className: "dt-center", width: "100"},
+                    {name: "USER_PRENOM", data: 2, title: "PRENOM", className: "dt-center", width: "100"},
                     {name: "USERNAME", data: 3, title: "NOM D'USAGER", visible: false},
-                    {name: "AGENCY", data: 4, title: "AGENCE", className: "dt-center"},
-                    {name: "GROUP", data: 5, title: "GROUPE", className: "dt-center"},
+                    {name: "AGENCY", data: 4, title: "AGENCE", className: "dt-center", width: "100"},
+                    {name: "GROUP", data: 5, title: "GROUPE", className: "dt-center", width: "100"},
                     {name: "CORPO", data: 6, title: "CORPO", visible: false}
                 ],
                 language: {
@@ -967,7 +972,7 @@ function LoadDataTableAgency()
                             style: 'single'
                         },
                 dom: 'Bflrtip',
-                //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilis�s dans la fonction ApplyFilters()...
+                //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilisés dans la fonction ApplyFilters()...
                 columns: [
                     {name: "USER_ID", data: 0, title: "ID", visible: false},
                     {name: "USER_NOM", data: 2, title: "NOM DE FAMILLE", className: "dt-center"},
@@ -1006,7 +1011,7 @@ function LoadDataTableAgency()
                     }
                 },
             });
-
+    $('input[type="search"]').attr('placeholder', 'Rechercher');
     tableUserAgency
             .on('select', function (e, dt, type, indexes) {
                 var dataSelected = tableUserAgency.rows({selected: true}).data().toArray()

@@ -124,15 +124,7 @@ th, td {
     font-family: 'Roboto';
     font-size: 150%;
 }
-/*a.dt-button.black {
-    color: black;
-    font-weight: bold;
-    background: rgba(150,150,150,1);
-    border-radius:4px !important;
-    border-style:solid !important;
-    border-width:1px !important;
-    box-shadow:0 1px 0 rgba(0, 0, 0, 0.5) inset, 0 1px 2px rgba(0, 0, 0, 1) !important;
-}*/
+
 .modal {
     display:    none;
     position:   fixed;
@@ -252,7 +244,8 @@ div.load{
     background-color: transparent;
 }
 table#example{
-    max-width: 1750px !important;
+    width: 100%;
+    min-width: 838px !important;
 }
 div.tab-content{
     .dataTables_wrapper.no-border{
@@ -267,14 +260,38 @@ div.tab-content{
         border-style: solid;
         border-top-width: 1px;
         .dt-buttons{
-            padding-left: 15px;
+            float: left !important;
+            display: inline-block;
+            padding-left: 10px;
             height: 88px;
             border-width: 0;
             border-left-width: 1px;
             border-left-color: @border-color-central-article;
             border-style: solid;
+            a.dt-button.black{
+                display: inline-block;
+                width: 178px;
+                background-color: @bg-color-filters;
+                height: 44px;
+                color: white;
+                border-width: 0 !important;
+                border-radius: 2px !important;
+                margin-top: 20px;
+                line-height: 44px;
+                font-size: 14px;
+                font-family: 'Roboto', sans-serif;
+                background-image: none;
+                padding: 0;
+                &:hover, &:focus{
+                    background-image: none;
+                    background-color: @bg-color-filters !important;
+                }
+            }
         }
         .dataTables_filter{
+            margin-top: 0;
+            float: right;
+            display: inline-block;
             height: 88px;
             margin-left: 0;
             border-width: 0;
@@ -282,29 +299,37 @@ div.tab-content{
             border-right-color: @border-color-central-article;
             border-style: solid;
             label{
-                min-width: 300px;
+                /*min-width: 300px;
                 max-width: 400px;
-                width: 100%;
+                width: 100%;*/
+                width: 220px;
                 color: @font-color-dark-active;
-                padding-right: 50px;
+                padding-right: 10px;
                 margin-left: 0;
                 margin-top: 20px;
                 input[type='search']{
                     margin-left: 0;
                     margin-right: 0;
-                    min-width: 200px;
+                    /*min-width: 200px;
                     max-width: 400px;
-                    width: 100%;
+                    width: 100%;*/
+                    width: 210px;
                     height: 26px;
                 }
             }
         }
         .dataTables_length{
+            display: inline-block;
+            float:left;
+            min-width: 236px;
+            width: 28%;
+            text-align: center;
             height: 88px;
-
             label{
+                font-size: 16px;
                 margin-top: 20px;
-                margin-left: 25px;
+                margin-left: 8px;
+                margin-right: 8px;
                 color: @font-color-dark-active;
                 select{
                     width: 90px;
@@ -324,18 +349,24 @@ div.tab-content{
                 tr{
                     border-width: 0;
                     th{
-                        max-width: 200px;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        max-width: 100px;
                         border-width: 0;
                         text-align: left;
                         font-family: 'Roboto', sans-serif;
                         font-weight: 500;
                         color: @font-color-dark;
                         font-size: 18px;
+                        box-sizing: border-box;
                     }
                 }
             }
             tbody{
                 td{
+                    box-sizing: border-box;
+                    padding-left: 5px;
+                    padding-right: 5px;
                     border-width: 0;
                     a{
                         font-family: 'Roboto', sans-serif;
@@ -367,9 +398,11 @@ div.tab-content{
                     }
                     td.dt-center, td.dt-center.sorting_1{
                         border-width: 0;
-                        max-width: 200px;
+                        max-width: 100px;
                         text-align: left;
-                        padding-left: 18px; 
+                        //padding-left: 18px; 
+                        padding-left: 5px;
+                        padding-right: 5px;
                         font-family: 'Roboto', sans-serif;
                         font-weight: 400;
                         color: @font-color-dark;
@@ -377,6 +410,7 @@ div.tab-content{
                     }
                     td.dt-center.sorting_1{
                         background-color: @bg-color-table;
+                        max-width: 100px;
                     }
                 }
                 tr.odd.selected, tr.even.selected{
@@ -385,22 +419,45 @@ div.tab-content{
             }
         }
         .dataTables_info{
-            padding-left: 40px;
+            text-align: left;
+            display: inline-block;
+            width: 50%;
+            padding-left: 0;
+            margin-bottom: 20px;
             border-width: 0;
             span.select-info{
-                margin-left: 15px;
+                &:before{
+                    content: '\A';
+                }
+                span{
+                    white-space: nowrap;
+                    clear: left;
+                    width: 100%;
+                    margin-left: 0;
+                }
             }
         }
         .dataTables_paginate{
-            padding-right: 40px;
+            margin-top: 0;
+            display: inline-block;
+            width: 50%;
+            padding-right: 20px;
             margin-bottom: 20px;
             border-width: 0;
+            .ellipsis{
+                padding-left: 4px;
+                padding-right: 4px;
+            }
             .paginate_button.current{
+                padding-left: 4px;
+                padding-right: 4px;
                 background: none;
                 border-width: 0;
                 color: @border-color-central-article-tab-active !important;
             }
             .paginate_button{
+                padding-left: 4px;
+                padding-right: 4px;
                 color: @font-color-dark !important;
                 &:hover, &:focus, &:visited{
                     outline: none !important;
@@ -431,16 +488,15 @@ div.tab-content{
             text-align: center;
             padding-top: 20px;
             padding-bottom: 40px;
-            width: 20%;
             float: left;
             label{
+                font-size: 16px;
                 margin: 0;
-                //width: 50%;
                 float: left;
-                //text-align: right;
-                padding-right: 10px;
+                padding-right: 5px;
             }
             select{
+                font-size: 16px;
                 padding-left: 2px;
                 width: 50%;
                 color: @font-color-dark;
@@ -457,20 +513,37 @@ div.tab-content{
                 width: 50%;
             }
         }
+        .fil-select:nth-of-type(1){
+            width: 17%;
+        }
+        .fil-select:nth-of-type(2){
+            width: 26%;
+        }
+        .fil-select:nth-of-type(3){
+            width: 19%;
+        }
+        .fil-select:nth-of-type(4){
+            width: 20%;
+        }
+        .fil-select:nth-of-type(5){
+            width: 18%;
+        }
         div.rapUsagerBody{
             margin-bottom: 25px;
             overflow: auto;
             width: 100%;
             .bodyFirstLabel{
                 float: left;
-                width: 30%;
+                width: 40%;
                 text-align: left;
-                padding-left: 10%;
+                padding-left: 0;
                 label{
                     margin-bottom: 0;
                     margin-top: 0;
+                    font-size: 16px;
                     font-weight: 500;
-                    margin-left: 20px;
+                    margin-left: 5px;
+                    margin-right: 0;
                 }
                 input{
                     margin-top: 0;
@@ -478,7 +551,7 @@ div.tab-content{
             }
             .bodySelect{
                 float: left;
-                width: 35%;
+                width: 60%;
                 margin-top: 0;
                 margin-bottom: 0;
                 text-align: left;
@@ -495,9 +568,11 @@ div.tab-content{
                 }
 
                 label{
+                    font-size: 16px;
                     margin-bottom: 0;
                     margin-top: 0;
-                    margin-left: 20px;
+                    margin-right: 0;
+                    margin-left: 5px;
                     &:first-of-type{
                         margin-left: 0;
                     }
@@ -513,8 +588,11 @@ div.tab-content{
 
         .bodyButton{
             float: left;
-            width: 35%;
+            width: 100%;
             height: 100%;
+            btn_filters{
+                max-width: 300px;
+            }
         }
 
         .bodyEntete{
@@ -556,5 +634,146 @@ a.dt-button.black{
     &:hover, &:focus{
         background-image: none;
         background-color: @bg-color-filters !important;
+    }
+}
+
+@media screen and (min-width: 1355px) {
+    article.center{
+        div.tab-content{
+            .filters{
+                .fil-select{
+                    width: 20%;
+                    font-size: 18px;
+                }
+                div.rapUsagerBody {
+                    .bodyFirstLabel{
+                        width: 28%;
+                    }
+                    .bodySelect{
+                        width: 40%;
+                    }
+                    .bodyButton{
+                        width: 32%;
+                    }
+                }
+                .bodyEntete{
+                    width: 68%;
+                }
+                .bodyButton{
+                    width: 32%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1200px){
+    div.tab-content{
+        .dataTables_wrapper.no-border{
+
+        }
+        .dataTables_wrapper{
+            .dt-buttons{
+                a.dt-button.black{
+
+                    &:hover, &:focus{
+
+                    }
+                }
+            }
+            .dataTables_filter{
+                label{
+
+                    input[type='search']{
+
+                    }
+                }
+            }
+            .dataTables_length{
+                label{
+
+                    select{
+
+                    }
+                }
+            }
+            table.display.dataTable.no-footer {
+                thead{
+                    tr{
+                        th{
+                            font-size: 14px;
+                        }
+                    }
+                }
+                tbody{
+                    tr.odd, tr.even{
+                        td.dt-center{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 922px) {
+    div.tab-content {
+        .filters {
+            div.rapUsagerBody {
+                .bodyFirstLabel{
+                    padding-left: 5%;
+                }
+            }
+        }
+    }
+    .dataTables_info{
+        padding-left: 40px;
+        border-width: 0;
+        span.select-info{
+            margin-left: 15px;
+        }
+    }
+    .dataTables_paginate{
+        padding-right: 40px;
+        margin-bottom: 20px;
+        border-width: 0;
+        .paginate_button.current{
+            background: none;
+            border-width: 0;
+            color: @border-color-central-article-tab-active !important;
+        }
+        .paginate_button{
+            color: @font-color-dark !important;
+            &:hover, &:focus, &:visited{
+                outline: none !important;
+                background: none !important;
+                border-width: 0 !important;
+                color: @font-color-dark !important;
+                background: none;
+                box-shadow: none;
+            }
+        }
+        .paginate_button.next, .paginate_button.previous{
+            color: @font-color-dark-active !important;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    div.tab-content {
+        .dataTables_wrapper{
+            .filters {
+                div.rapUsagerBody {
+                    .bodyFirstLabel{
+                    }
+                }
+            }
+        }
+        .dataTables_info{
+            span.select-info{
+            }
+        }
+        .dataTables_paginate{
+            float: right;
+        }
     }
 }

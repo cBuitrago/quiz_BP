@@ -6,7 +6,7 @@ use com\novaconcept\utility\RestBuilder;
 use com\novaconcept\utility\WebConfig;
 
 class QuizPanel extends AbstractPage {
-
+    
     public function front() {
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
@@ -55,7 +55,7 @@ class QuizPanel extends AbstractPage {
                 return;
             }
         }
-
+        $this->view->is_quiz_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Quiz";
         $this->view->center = "com/novaconcept/page/smarty/quiz_panel/QuizFront.tpl";
         $this->display("includes/General.tpl");
@@ -124,6 +124,7 @@ class QuizPanel extends AbstractPage {
             return;
         }
 
+        $this->view->is_quiz_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Quiz";
         $this->view->center = "com/novaconcept/page/smarty/quiz_panel/addQuiz.tpl";
         $this->display("includes/General.tpl");
@@ -164,7 +165,9 @@ class QuizPanel extends AbstractPage {
             $this->display("error/ForbiddenError.tpl");
             return;
         }
-
+        
+        $this->view->is_quiz_active = true;
+        $this->view->title = $_SESSION['accountName'] . " - Results";
         $this->data->quizData = json_decode($this->data->QUIZ_DATA);
         $this->display("quiz_panel/ResultQuiz.tpl");
     }
@@ -230,6 +233,7 @@ class QuizPanel extends AbstractPage {
             return;
         }
 
+        $this->view->is_quiz_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Quiz";
         $this->view->center = "com/novaconcept/page/smarty/quiz_panel/editQuiz.tpl";
         $this->display("includes/General.tpl");

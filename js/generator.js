@@ -6,7 +6,6 @@ var PDF_GEN_OPTION_SEPERATE_PDF = 3;
 var PDF_GEN_OPTION_USER_REPORT_COMPARE = 4;
 var PDF_GEN_OPTION_SHOW_ANSWERS_SCORES = 5;
 var PDF_GEN_OPTION_SHOW_BEST_ANSWERS = 6;
-
 //Constants from DB "nova_api_get_report_data.php" call
 var DB_QUIZ_RESULTS_ID = 0;
 var DB_QUIZ_RESULTS_QUIZ_ID = 1;
@@ -27,9 +26,6 @@ var DB_QUIZ_RESULTS_GROUP_NAME = 15;
 var DB_QUIZ_RESULTS_AGENCY_ID = 16;
 var DB_QUIZ_RESULTS_AGENCY_NAME = 17;
 var DB_QUIZ_RESULTS_PROGRESS_NAME = 18;
-
-
-
 var table;
 var update_data;
 var quiz_table;
@@ -37,13 +33,10 @@ var progress_table;
 var CreatePDF_Param_json_data;
 var CreatePDF_Param_options_data;
 var CreatePDF_Param_quiz_data;
-
 var chartjs_config;
 var offscreenCanvas;
 var currentChart;
-
 $body = $("body");
-
 $(document).on({
     ajaxStart: function () {
         $body.addClass("loading");
@@ -52,7 +45,6 @@ $(document).on({
         $body.removeClass("loading");
     }
 });
-
 function GenerateParticipationReport()
 {
     var count = table.rows({selected: true}).count();
@@ -63,7 +55,6 @@ function GenerateParticipationReport()
     }
 
     var selected_data = table.rows('.selected').data();
-
     CreateReportPDF(selected_data);
 }
 
@@ -77,7 +68,6 @@ function GenerateUsersReports()
     }
 
     var selected_data = table.rows('.selected').data();
-
     //Check if one selected data is not completed
     var incomplete_count = 0;
     for (var i = 0; i < count; i++)
@@ -116,7 +106,6 @@ function GenerateUsersReports()
     options_array[PDF_GEN_OPTION_USER_REPORT_COMPARE] = report_compare_Select.options[report_compare_Select.selectedIndex].value;
     options_array[PDF_GEN_OPTION_SHOW_ANSWERS_SCORES] = document.getElementById('show_answers_score').checked ? 1 : 0;
     options_array[PDF_GEN_OPTION_SHOW_BEST_ANSWERS] = document.getElementById('show_best_answers').checked ? 1 : 0;
-
     //Check if options are valid
     if ((options_array[PDF_GEN_OPTION_SHOW_GRAPH] == 0) && (options_array[PDF_GEN_OPTION_SHOW_ANSWERS] == 0))
     {
@@ -128,11 +117,9 @@ function GenerateUsersReports()
     CreatePDF_Param_json_data = JSON.stringify(selected_array);
     CreatePDF_Param_options_data = JSON.stringify(options_array)
     CreatePDF_Param_quiz_data = JSON.stringify(quiz_table);
-
     // window.open('#popup1',"_self");
 
     CreatePDF(CreatePDF_Param_json_data, CreatePDF_Param_options_data, CreatePDF_Param_quiz_data);
-
     /*************
      offscreenCanvas = document.createElement('canvas');
      offscreenCanvas.width = 600;
@@ -160,7 +147,6 @@ function ApplyFilters()
     var group_select = document.getElementById("filter_group_id");
     var agency_select = document.getElementById("filter_agency_id");
     var completed_select = document.getElementById("filter_quiz_progress");
-
     if (quiz_select.options[quiz_select.selectedIndex].value == "all")
     {
         table.column(table.column('QUIZ_ID:name').index()).search("").draw();
@@ -231,7 +217,6 @@ $('#submitBtn').click(function () {
         }
     });
 });
-
 function GetAllQuizInfoFromServer()
 {
     $.ajax({
@@ -313,7 +298,6 @@ function GetQuizResultsFromServer()
             alert("ERREUR: lecture de la base de donn\351es impossible...");
         }
     });
-
 }
 
 function compareSecondColumn(a, b)
@@ -332,7 +316,6 @@ Array.prototype.contains = function (v) {
     }
     return false;
 };
-
 Array.prototype.unique_quiz_id = function () {
     var arr = [];
     for (var i = 0; i < this.length; i++) {
@@ -389,13 +372,17 @@ Array.prototype.unique_agency_id = function () {
     return arr.sort(compareSecondColumn);
 }
 
-
 function LoadDataTable()
 {
-    table = $('#example').DataTable(
+    table = $('#example').removeAttr('width').DataTable(
             {
                 aLengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tous"]],
                 data: update_data,
+                autoWidth: false,
+                columnDefs: [
+                    {width: 100, targets: 0}
+                ],
+                fixedColumns: true,
                 select:
                         {
                             style: 'multi'
@@ -420,48 +407,48 @@ function LoadDataTable()
                         }
                     },
                 ],
-                //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilis�s dans la fonction ApplyFilters()...
+                //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilisés dans la fonction ApplyFilters()...
                 columns: [
-                    {name: "ID", data: DB_QUIZ_RESULTS_ID, title: "ID unique", visible: false},
-                    {name: "USER_ID", data: DB_QUIZ_RESULTS_USER_ID, title: "ID Usager", visible: false},
-                    {name: "USER_NAME", data: DB_QUIZ_RESULTS_USER_NAME, title: "Usager", className: "dt-center"},
-                    {name: "CORPORATE_ID", data: DB_QUIZ_RESULTS_CORPORATE_ID, title: "ID Compagnie", visible: false},
-                    {name: "CORPORATE_NAME", data: DB_QUIZ_RESULTS_CORPORATE_NAME, title: "Compagnie", visible: false},
-                    {name: "GROUP_ID", data: DB_QUIZ_RESULTS_GROUP_ID, title: "ID Groupe", visible: false},
-                    {name: "GROUP_NAME", data: DB_QUIZ_RESULTS_GROUP_NAME, title: "Groupe", className: "dt-center"},
-                    {name: "AGENCY_ID", data: DB_QUIZ_RESULTS_AGENCY_ID, title: "ID Agence", visible: false},
-                    {name: "AGENCY_NAME", data: DB_QUIZ_RESULTS_AGENCY_NAME, title: "Agence", className: "dt-center"},
-                    {name: "QUIZ_ID", data: DB_QUIZ_RESULTS_QUIZ_ID, title: "ID Quiz", visible: false},
-                    {name: "QUIZ_NAME", data: DB_QUIZ_RESULTS_QUIZ_NAME, title: "Quiz", className: "dt-center"},
-                    {name: "START_DATE", data: DB_QUIZ_RESULTS_START_DATE, title: "Date d&eacute;but", className: "dt-center"},
-                    {name: "END_DATE", data: DB_QUIZ_RESULTS_END_DATE, title: "Date fin", className: "dt-center"},
-                    {name: "PROGRESS_ID", data: DB_QUIZ_RESULTS_PROGRESS_ID, title: "ID Progr&egrave;s", visible: false},
-                    {name: "PROGRESS_NAME", data: DB_QUIZ_RESULTS_PROGRESS_NAME, title: "Progr&egrave;s", className: "dt-center"},
-                    {name: "ANSWERS", data: DB_QUIZ_RESULTS_ANSWERS, title: "R&eacute;ponses", visible: false},
-                    {name: "QUIZ_SCORE", data: DB_QUIZ_RESULTS_QUIZ_SCORE, title: "Pointage Quiz", visible: false},
-                    {name: "PREVIOUS_ANSWERS", data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes R&eacute;ponses", visible: false},
-                    {name: "PREVIOUS_SCORES", data: DB_QUIZ_RESULTS_PREVIOUS_SCORES, title: "Pointage Quiz", visible: false}
+                    {name: "ID",                data: DB_QUIZ_RESULTS_ID,               title: "ID unique",                 visible: false},
+                    {name: "USER_ID",           data: DB_QUIZ_RESULTS_USER_ID,          title: "ID Usager",                 visible: false},
+                    {name: "USER_NAME",         data: DB_QUIZ_RESULTS_USER_NAME,        title: "Usager",                    className: "dt-center", width: "100"},
+                    {name: "CORPORATE_ID",      data: DB_QUIZ_RESULTS_CORPORATE_ID,     title: "ID Compagnie",              visible: false},
+                    {name: "CORPORATE_NAME",    data: DB_QUIZ_RESULTS_CORPORATE_NAME,   title: "Compagnie",                 visible: false},
+                    {name: "GROUP_ID",          data: DB_QUIZ_RESULTS_GROUP_ID,         title: "ID Groupe",                 visible: false},
+                    {name: "GROUP_NAME",        data: DB_QUIZ_RESULTS_GROUP_NAME,       title: "Groupe",                    className: "dt-center", width: "100"},
+                    {name: "AGENCY_ID",         data: DB_QUIZ_RESULTS_AGENCY_ID,        title: "ID Agence",                 visible: false},
+                    {name: "AGENCY_NAME",       data: DB_QUIZ_RESULTS_AGENCY_NAME,      title: "Agence",                    className: "dt-center", width: "100"},
+                    {name: "QUIZ_ID",           data: DB_QUIZ_RESULTS_QUIZ_ID,          title: "ID Quiz",                   visible: false},
+                    {name: "QUIZ_NAME",         data: DB_QUIZ_RESULTS_QUIZ_NAME,        title: "Quiz",                      className: "dt-center", width: "100"},
+                    {name: "START_DATE",        data: DB_QUIZ_RESULTS_START_DATE,       title: "Date d&eacute;but",         className: "dt-center", width: "100"},
+                    {name: "END_DATE",          data: DB_QUIZ_RESULTS_END_DATE,         title: "Date fin",                  className: "dt-center", width: "100"},
+                    {name: "PROGRESS_ID",       data: DB_QUIZ_RESULTS_PROGRESS_ID,      title: "ID Progr&egrave;s",         visible: false},
+                    {name: "PROGRESS_NAME",     data: DB_QUIZ_RESULTS_PROGRESS_NAME,    title: "Progr&egrave;s",            className: "dt-center", width: "100"},
+                    {name: "ANSWERS",           data: DB_QUIZ_RESULTS_ANSWERS,          title: "R&eacute;ponses",           visible: false},
+                    {name: "QUIZ_SCORE",        data: DB_QUIZ_RESULTS_QUIZ_SCORE,       title: "Pointage Quiz",             visible: false},
+                    {name: "PREVIOUS_ANSWERS",  data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes R&eacute;ponses", visible: false},
+                    {name: "PREVIOUS_SCORES",   data: DB_QUIZ_RESULTS_PREVIOUS_SCORES,  title: "Pointage Quiz",             visible: false}
                 ],
                 language: {
-                    sProcessing: "Traitement en cours...",
-                    sSearch: "",
-                    sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
-                    sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                    sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
-                    sInfoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                    sInfoPostFix: "",
-                    sLoadingRecords: "Chargement en cours...",
-                    sZeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                    sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
+                    sProcessing:        "Traitement en cours...",
+                    sSearch:            "",
+                    sLengthMenu:        "Afficher _MENU_ &eacute;l&eacute;ments",
+                    sInfo:              "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    sInfoEmpty:         "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                    sInfoFiltered:      "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    sInfoPostFix:       "",
+                    sLoadingRecords:    "Chargement en cours...",
+                    sZeroRecords:       "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    sEmptyTable:        "Aucune donn&eacute;e disponible dans le tableau",
                     oPaginate: {
-                        sFirst: "Premier",
-                        sPrevious: "Pr&eacute;c&eacute;dent",
-                        sNext: "Suivant",
-                        sLast: "Dernier"
+                        sFirst:     "Premier",
+                        sPrevious:  "Pr&eacute;c&eacute;dent",
+                        sNext:      "Suivant",
+                        sLast:      "Dernier"
                     },
                     oAria: {
-                        sSortAscending: ": activer pour trier la colonne par ordre croissant",
-                        sSortDescending: ": activer pour trier la colonne par ordre d&eacute;croissant"
+                        sSortAscending:     ": activer pour trier la colonne par ordre croissant",
+                        sSortDescending:    ": activer pour trier la colonne par ordre d&eacute;croissant"
                     },
                     select: {
                         rows: {
@@ -500,7 +487,6 @@ function LoadDataTable()
     var corporate_id_unique = update_data.unique_corporate_id();
     var group_id_unique = update_data.unique_group_id();
     var agency_id_unique = update_data.unique_agency_id();
-
     //Quiz_ID
     for (var i = 0; i < quiz_id_unique.length; i++)
     {
@@ -554,14 +540,17 @@ function LoadDataTable()
     $("#filter_group_id").val("all");
     $("#filter_agency_id").val("all");
     $("#filter_quiz_progress").val("all");
-
     $('div.load').addClass('hidden-load');
     $('select.select-filter').change(function () {
         ApplyFilters();
     });
-
+   /* $('#example').on('column-sizing.dt', function (e, settings) {
+        console.log('Column width recalculated in table');
+    });*/
 }
-
+/*$(window).resize(function () {
+    console.log(table.columns.adjust().draw());
+});*/
 $(document).ready(function () {
     //GetQuizResultsFromServer();
     GetAllQuizInfoFromServer();

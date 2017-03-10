@@ -31,6 +31,7 @@ class UserPanel extends AbstractPage {
                 ->excecute();
         $this->data = json_decode($this->builder->getResponse());
         
+        $this->view->is_user_active = true;
         $this->view->title = $_SESSION['accountName'] . " - User";
         $this->view->center = "com/novaconcept/page/smarty/user_panel/UserFront.tpl";
         $this->display("includes/General.tpl");
@@ -79,6 +80,7 @@ class UserPanel extends AbstractPage {
             return;
         }
 
+        $this->view->is_user_active = true;
         $this->view->title = $_SESSION['accountName'] . " - User";
         $this->view->center = "com/novaconcept/page/smarty/user_panel/UserEdit.tpl";
         $this->display("includes/General.tpl");
@@ -99,6 +101,7 @@ class UserPanel extends AbstractPage {
             return;
         }
 
+        $this->view->is_user_active = true;
         $this->view->title = "Personal Info";
         $this->display("user_panel/EditProfile.tpl");
     }
@@ -134,6 +137,7 @@ class UserPanel extends AbstractPage {
             $this->data = json_decode($this->builder->getResponse());
         }
 
+        $this->view->is_user_active = true;
         $this->view->title = $_SESSION['accountName'] . " - User";
         $this->view->center = "com/novaconcept/page/smarty/user_panel/UserFind.tpl";
         $this->display("includes/General.tpl");
@@ -145,6 +149,7 @@ class UserPanel extends AbstractPage {
             return;
         }
 
+        $this->view->is_user_active = true;
         $this->view->title = "Change Password";
         $this->display("user_panel/ChangePassword.tpl");
     }

@@ -9,8 +9,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
 
-        <!--<title><?php echo "quiz TITLE";?>BP - QUIZ VALIDATION</title>-->
-
+        <title>{$view->title}</title>
         <link href="{$head->baseUrl}/css/animate.css" rel="stylesheet">
         <link href="{$head->baseUrl}/css/style.css" rel="stylesheet">
         <link href="{$head->baseUrl}/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
@@ -60,7 +59,11 @@
                 {include file="com/novaconcept/page/smarty/includes/Aside.tpl" lang=$lang head=$head view=$view}
             </article>
             <article class="center">
-                <h2 style='text-align:left;' >{$data->quizData->pageTitle}</h2>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <p>{$data->quizData->pageTitle}</p>
+                    </ul>
+                </div>
                 {if ( isset($data->RESULT_PROGRESS_ID) && $data->RESULT_PROGRESS_ID == 3 )}
                     <form id='quizResultsSelf'>
                         <input type="hidden" name='idQuiz' value="{$data->ID}">

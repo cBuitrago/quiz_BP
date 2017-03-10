@@ -28,7 +28,6 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="manageUsers">
-        <h2>Utilisateurs</h2>
         <table id="dataTableAgency" class="display" cellspacing="0" width="100%"></table>
     </div>
 </div>

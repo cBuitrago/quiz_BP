@@ -30,6 +30,8 @@ class ReportPanel extends AbstractPage {
                 ->setHttpMethod(RestBuilder::GET)
                 ->excecute();
         $this->data = json_decode($this->builder->getResponse());
+        
+        $this->view->is_report_active = true;
         $this->display("report_panel/ReportFront.tpl");
     }
 }

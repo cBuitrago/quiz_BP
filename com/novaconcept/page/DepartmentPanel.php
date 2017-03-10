@@ -30,7 +30,8 @@ class DepartmentPanel extends AbstractPage {
             return;
         }
         $this->data = json_decode($this->builder->getResponse());
-
+        
+        $this->view->is_corpo_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Groups";
         $this->view->center = "com/novaconcept/page/smarty/department_panel/Groups.tpl";
         $this->display("includes/General.tpl");
@@ -62,6 +63,7 @@ class DepartmentPanel extends AbstractPage {
         }
         $this->data = json_decode($this->builder->getResponse());
 
+        $this->view->is_group_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Group";
         $this->view->center = "com/novaconcept/page/smarty/department_panel/Group.tpl";
         $this->display("includes/General.tpl");
@@ -94,7 +96,8 @@ class DepartmentPanel extends AbstractPage {
             return;
         }
         $this->data = json_decode($this->builder->getResponse());
-
+        
+        $this->view->is_agency_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Agency";
         $this->view->center = "com/novaconcept/page/smarty/department_panel/Agency.tpl";
         $this->display("includes/General.tpl");

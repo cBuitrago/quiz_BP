@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Novaconcept D&eacute;mo - Mise-&agrave;-jours disponibles</title>
+        <title>Reports</title>
         <link rel="stylesheet" href="{$head->baseUrl}/css/iframe.css">
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/jquery.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/buttons.dataTables.min.css">
@@ -13,10 +13,10 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.css">
         <!--<script src="{$head->baseUrl}/js/main.js" type="text/javascript"></script>-->
-        <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
-        <!--<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
         <script type="text/javascript"> baseUrl = "{$head->baseUrl}";</script>
         <script src="{$head->baseUrl}/js/javascript/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
         <script type="text/javascript" src="{$head->baseUrl}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript">var account = {if isset($smarty.session.accountInfo)}{$smarty.session.accountInfo}{else}0{/if}</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
@@ -90,7 +90,7 @@
                                 </select>
                             </div>
                         </div>
-                        <table id="example" class="display" width="100%"></table>
+                        <table id="example" class="display" cellspacing="0"></table>
                         <div class="filters">
                             <div class="rapUsagerHead">
                                 <p>G&eacute;n&eacute;rer les rapports usagers:</p>
