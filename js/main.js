@@ -122,7 +122,20 @@ window.addEventListener("load", function () {
     $(".cancelAll").click(function () {
         location.reload();
     });
+
+    $(window).resize(function () {
+        sizeImg();
+    });
+
+    sizeImg();
+
 });
+
+function sizeImg() {
+    var wHeight = $(window).height();
+    $('.bg-image').css('min-height', (wHeight - 137) + "px");
+}
+
 var error404 = "error 404";
 var error409 = "error 409";
 var unknownError = "Ouch";
@@ -317,16 +330,11 @@ function onUserEditAgency()
 
 var onUserAddComplete = function (data)
 {
-    if (data.responseText === "user_exists")
-    {
+    if (data.responseText === "user_exists") {
         location.reload();
-    } else if (data.responseText !== "false")
-    {
+    } else if (data.responseText !== "false") {
         var url = baseUrl + '/' + account + '/user/' + data.responseText + '/edit';
         window.location.assign(url);
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -368,13 +376,9 @@ function onUserAdd()
 
 var onUserAddAccountComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         var url = baseUrl + '/' + account + '/user/list';
         window.location.assign(url);
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -398,9 +402,6 @@ var onUsersCreateAccountComplete = function (data)
     {
         var url = baseUrl + '/' + account + '/user/list';
         window.location.assign(url);
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -464,9 +465,6 @@ var onUserEditPasswordComplete = function (data)
     {
         var newUrl = baseUrl + '/profile';
         window.location.assign(newUrl);
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -513,9 +511,6 @@ var onUserEditDepartmentComplete = function (data)
     {
         var newUrl = baseUrl + '/' + account + '/user';
         window.location.assign(newUrl);
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -578,9 +573,6 @@ var onDepartmentAddComplete = function (data)
     if (data.responseText === "true")
     {
         location.reload();
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -616,9 +608,6 @@ var onDepartmentEditComplete = function (data)
     if (data.responseText === "true")
     {
         location.reload();
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -651,13 +640,9 @@ function onDepartmentEdit()
  */
 var onQuizAddComplete = function (data)
 {
-    console.log(data);
     if (data.responseText === "true")
     {
         location.reload();
-    } else
-    {
-        console.log("bad");
     }
 }
 
@@ -714,6 +699,7 @@ function onAddQuiz()
         complete: onQuizAddComplete
     });
 }
+
 /***
  * RESULTS
  */
@@ -872,7 +858,6 @@ function GetAllUsersAgencyFromServer()
         }
     });
 }
-
 
 /**
  *  DATATABLE

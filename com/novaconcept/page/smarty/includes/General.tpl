@@ -1,4 +1,5 @@
 {strip}
+    <!DOCTYPE html>
     <html>
         {include file="com/novaconcept/page/smarty/includes/HeadTag.tpl" lang=$lang head=$head view=$view}
         <body>
