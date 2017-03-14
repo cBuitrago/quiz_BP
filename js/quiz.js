@@ -1,7 +1,3 @@
-var output = "";
-var value;//= 0; 	
-var config;
-var previousData; //= sortSelectedAnswers("<?php echo $_SESSION['previousData'][0][7]; ?>");
 var counter = 0;
 var totalSections;
 
@@ -58,19 +54,18 @@ function nextForm(failed)
         }
         ;
     });
-    if (tester == true && counter != (totalSections - 1)) {
+    if (tester === true && counter != (totalSections - 1)) {
         $("a.right").click();
     }
 
-    if (tester == true && counter == (totalSections - 1)) {
+    if (tester === true && counter == (totalSections - 1)) {
         sendData();
     }
 }
 
 var onQuizResultsAddComplete = function (data)
 {
-    if (data.responseText === "false")
-    {
+    if (data.responseText === "false") {
         var newUrl = baseUrl + '/' + account + '/' + quiz;
         window.location.assign(newUrl);
     } else {

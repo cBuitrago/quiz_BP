@@ -19,7 +19,7 @@
             <div class="addItem">
                 <h1>Ajouter Utilisateur</h1>
                 <form id="add_user_form">
-                    <input type="text" name="email" id="email" placeholder="Nom d'utilisateur">
+                    <input type="text" name="username" id="username" placeholder="Nom d'utilisateur">
                     <div class="double-input">
                         <input type="text" name="firstName" id="firstName" placeholder="Prénom">
                         <input type="text" name="name" id="name" placeholder="Nom de famille">

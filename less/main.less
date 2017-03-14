@@ -1,4 +1,3 @@
-//generated on https://icomoon.io/app/#/select
 @font-face {
     font-family: 'nova-icons';
     src:    url('fonts/icomoon.eot')    format('embedded-opentype'),
@@ -6,7 +5,6 @@
         url('fonts/icomoon.ttf')    format('truetype'),
         url('fonts/icomoon.svg')    format('svg');
 }
-
 .nv-glyphicon {
     position: relative;
     top: 1px;
@@ -25,46 +23,26 @@
 .nv-glyphicon-report        { &:before { content: "\e904"; } }
 .nv-glyphicon-user          { &:before { content: "\e905"; } }
 
-
 @bgBody-color: #f2f2f2;
-
 @font-color-dark-active: #2b2b2b;
 @font-color-dark: #4b4b4b;
 @font-color-light: #ffffff;
 @fontSide-color: #454545;
-/**
-*   NAV
-*/
 @bgNav-color: #ffffff;
 @fontNav-color: #040404;
 @bg-color-image-color: #106cae;
-/**
-* Aside
-*/
 @bg-color-aside: #171717;
 @bg-color-aside-active: #242424;
 @font-color-aside: rgba(255,255,255, 0.4);
 @font-color-aside-active: #ffffff;
-/*
-*    ARTICLE CENTER
-*/
 @border-color-central-article: #e4e4e4;
 @bg-color-nav-central-article: #f6f6f6;
 @border-color-central-article-tab-active: #157ddd;
 @font-color-tab: #8e8d8d;
-/***
-*   FOOTER
-*/
 @bgFooter-color:transparent;
-/**
-*   BUTTON
-*/
 @font-color-button-add: @font-color-light;
 @bg-color-button-add: #106cad;
 @bg-color-button-remove: #ff6666;
-/**
-*   INPUT
-*/
 @font-color-label: #a9a9a9;
 @font-color-input: @font-color-label;
 @font-color-input-focus: @font-color-dark;
@@ -73,17 +51,11 @@
 @bg-color-input-edit: rgba(246,246,246, 0.2);
 @bg-color-input-edited: @font-color-light;
 @bg-color-input-disabled: #ffffff;
-/**
-*   BUTTON
-*/
 @bg-color-button-edit:#106daf;
 @bg-color-button-cancel:#9f9f9f;
-/**
-*   TABLES
-*/
 @bg-color-table: #ffffff;
 @bg-color-table-hover: #f0f0f0; 
-
+@font-color-login: #193481;
 body{
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -92,16 +64,13 @@ body{
     margin: 0;
     background-color: @bgBody-color;
 }
-
 body.login{
-    background-color: #ffffff;
+    background-color: @font-color-light;
     background-image: url('/quiz_panel/media/images/bg1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top left;
 }
-
-//NAV
 nav{
     z-index: 1030;
     top: 0;
@@ -125,10 +94,10 @@ nav{
     }
     div.text-login{
         right: 40px;
-        top: 20px;
+        top: 5px;
         position: fixed;
         text-align: right;
-        color: #193481;
+        color: @font-color-login;
         h1{
             font-size: 34px;
         }
@@ -155,9 +124,8 @@ nav{
             -ms-user-select: none;
             -o-user-select: none;
             user-select: none;
-            color: #333333;
-            background-color: #ffffff;
-            //border-color: #cccccc;
+            color: @font-color-dark;
+            background-color: @bg-color-table;
         }
         ul{
             border-width: 0;
@@ -166,16 +134,14 @@ nav{
                     font-weight: 300;
                     &:hover{
                         font-weight: 400;
-                        color: #333333;
-                        background-color: #ffffff;
+                        color: @font-color-dark;
+                        background-color: @bg-color-table;
                     }
                 }
             }
         }
     }
 }
-
-//ARTICLES
 article.container{
     width: 100%;
     margin: auto;
@@ -183,7 +149,6 @@ article.container{
     padding-right: 0;
     min-width: 992px;
 }
-
 article.title-top{
     z-index: 1030;
     position: fixed;
@@ -229,7 +194,7 @@ article.title-top{
                     li{
                         width: 100%;
                         border-right-width: 3px;
-                        border-right-color: #000000;
+                        border-right-color: @font-color-dark-active;
                         padding: 0;
                         display:inline-block;
                         a, button{
@@ -252,10 +217,8 @@ article.title-top{
                 }
             }
         }
-
     }
 }
-
 article.content-login{
     width: 300px;
     margin: auto;
@@ -304,20 +267,19 @@ article.content-login{
             padding: 0;
             margin-top: 20px;
             text-align: center;
-            color: #ffffff;
-            background-color: #294694;
+            color: @font-color-light;
+            background-color: @bg-color-button-add;
             border-width: 0;
             border-radius: 3px;
             font-weight: 300;
             font-size: 20px;
             &:hover{
-                background-color: #183583;
+                background-color: @border-color-central-article-tab-active;
                 cursor: pointer;
             }
         }
     }
 }
-
 article.nav-account{
     ul{
         li{
@@ -332,7 +294,6 @@ article.nav-account{
         }
     }
 }
-
 article.aside{
     position: fixed;
     top: 70px;
@@ -349,7 +310,6 @@ article.aside{
             list-style: none;
             margin: 0;
             a{
-
                 display: block;
                 font-weight: 300;
                 padding-left: 0;
@@ -398,7 +358,7 @@ article.center{
             height: 65px;
             padding-left: 50px;
             padding-right: 50px;
-            line-height: 65px; /* hauteur de ligne (identique) */
+            line-height: 65px;
             white-space: nowrap; 
             a{
                 font-family: 'Roboto', sans-serif;
@@ -438,7 +398,7 @@ article.center{
             font-size: 20px;
             padding-left: 50px;
             padding-right: 50px;
-            line-height: 65px; /* hauteur de ligne (identique) */
+            line-height: 65px;
             white-space: nowrap;
             font-weight: 500;
             border-width: 0;
@@ -553,7 +513,6 @@ article.center{
                 }
             }
             &.bg-image{
-                //min-height: calc(~"100vh - 147px");
                 box-sizing: border-box;
                 background-color: #ffffff;
                 background-image: url('../media/images/bg1.jpg');
@@ -623,7 +582,6 @@ article.center{
                             border-width: 0;
                             th{
                                 width: 100px;
-                                //max-width: 200px;
                                 border-width: 0;
                                 text-align: left;
                                 font-family: 'Roboto', sans-serif;
@@ -669,7 +627,6 @@ article.center{
                             td.dt-center, td.dt-center.sorting_1{
                                 border-width: 0;
                                 width: 100px;
-                                //max-width: 200px;
                                 text-align: left;
                                 padding-left: 18px; 
                                 font-family: 'Roboto', sans-serif;
@@ -745,7 +702,7 @@ article.center{
         }
     }
     h1{
-        color: #343434;
+        color: @font-color-dark;
         font-size: 22px;
         font-weight: 500;
         margin: 15px 10px;
@@ -753,8 +710,15 @@ article.center{
     h2{
         margin: 10px 10px;
         font-weight: 500;
-        color: #666666;
+        color: @font-color-dark;
         font-size: 18px;
+    }
+    h3{
+        text-align: center;
+        margin: 10px 10px;
+        font-weight: 400;
+        color: @font-color-dark;
+        font-size: 16px;
     }
     table{
         margin-top: 5px;
@@ -892,17 +856,12 @@ article.center{
         margin-left: 50px;
     }
 }
-
-//FOOTER
 footer{
     position: fixed;
     bottom: 0;
     background-color: @bgFooter-color;
     z-index: 1030;
     width: 100%;
-    //-webkit-box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.375);
-    //box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.375);
-    //background-clip: padding-box;
     padding-top: 0;
     div{
         width: 980px;
@@ -916,8 +875,6 @@ footer{
         }
     }
 }
-
-//BUTTONS
 label{
     font-weight: 400;
     margin-top: 7px;
@@ -928,7 +885,6 @@ label{
     font-size: 18px;
     font-weight: 400;
 }
-
 .generalButton{
     display:block;
     border-width: 1px;
@@ -949,7 +905,6 @@ label{
         cursor: pointer;
     }
 }
-
 button.add{
     .generalButton;
     height: 44px;
@@ -960,7 +915,6 @@ button.add{
     font-weight: 500;
     font-size: 18px;
 }
-
 button.btnLangue{
     background-color: transparent;
     border-width: 0;
@@ -972,7 +926,6 @@ button.btnLangue{
         color: @font-color-dark-active;
     }
 }
-
 button.edit{
     height: 44px;
     line-height: 44px;
@@ -983,7 +936,6 @@ button.edit{
     border-width: 0;
     width: 100%;
 }
-
 button.remove{
     height: 44px;
     line-height: 44px;
@@ -994,7 +946,6 @@ button.remove{
     border-width: 0;
     width: 100%;
 }
-
 button.cancel{
     height: 44px;
     line-height: 44px;
@@ -1005,15 +956,12 @@ button.cancel{
     border-width: 0;
     width: 100%;
 }
-
 .tooltip-inner {
     background-color: #aa0066;
 }
-//a
 .marginButtonHelper{
     margin: auto !important;
 }
-
 .generalLink{
     display:block;
     border-width: 1px;
@@ -1026,8 +974,6 @@ button.cancel{
     font-size: 14px;
     color: @font-color-light;
 }
-
-//input
 select,
 input[type="text"], 
 input[type="password"], 
@@ -1066,8 +1012,6 @@ input:-ms-input-placeholder { /* IE 10+ */
 input:-moz-placeholder { /* Firefox 18- */
     color: @placeholder-color;
 }
-
-//ul-li
 ul{
     padding-left: 0;
 }
@@ -1091,9 +1035,6 @@ ul.tree{
         display: inline-block;
         float: right;
         padding-left: 5px;
-        /*border-bottom-width: 1px;
-        border-bottom-color: #000000;
-        border-bottom-style: dashed;*/
         a{
             text-decoration: none;
         }
@@ -1108,8 +1049,6 @@ ul.tree{
         padding-left: 25px;
     }
 }
-
-//hr
 hr{
     width: 300px;
     display: block;
@@ -1119,13 +1058,11 @@ hr{
     margin: 10px 0;
     padding: 0; 
 }
-
 form#quizResultsSelf{
     width: 320px;
     margin:auto;
     padding-top: 4%;
 }
-
 table#usersTable, table#dataTableAgency{
     width: 100%;
     min-width: 838px !important;
@@ -1195,7 +1132,6 @@ table#usersTable, table#dataTableAgency{
         }
     }
 }
-
 @media screen and (min-width: 922px) {
     div.tab-content {
         .filters {
@@ -1238,7 +1174,6 @@ table#usersTable, table#dataTableAgency{
         }
     }
 }
-
 @media screen and (max-width: 767px) {
     div.tab-content {
         .dataTables_wrapper{

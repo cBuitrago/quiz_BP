@@ -47,7 +47,6 @@ a:active {
     width: 50px;
     height:  100%;
     top: 0;
-    /*background: white;*/
     position:fixed;
     z-index:0;
     left: 0px;
@@ -86,12 +85,11 @@ footer.quiz{
     width:100%;
     border-top: 1px solid #ccc;
     text-align:center;
-    padding-top: 0px;      /* <==== adjust this for distance between items and footer top line */
+    padding-top: 0px;      
     padding-left: 50px;     
     padding-right: 50px;  
     line-height: 50px;
     a#nextSection{
-
         float: right;
     }
     a#previousSection{
@@ -107,17 +105,11 @@ footer.quiz{
 }
 #previousButton{
     font-size: large;
-    /*left:50px;*/
     font-weight: bold;
-    /*position:fixed;*/
-    /*bottom:15px;*/
 }
 #nextButton{
     font-size: large;
-    /*right: 50px;*/
     font-weight: bold;
-    /*position: fixed;*/
-    /*bottom: 15px;*/
 }
 .inline{
     display:inline;
@@ -223,42 +215,6 @@ body.loading .modal {
     visibility: visible;
     opacity: 1;
 }
-
-
-
-@keyframes slideOutRight {
-    from {
-        transform: translate3d(0, 0, 0);
-    }
-
-    to {
-        visibility: hidden;
-        transform: translate3d(200%, 0, 0);
-    }
-}
-
-.slideOutRight {
-    animation-name: slideOutRight;
-}
-
-
-@keyframes slideEnRight {
-    from {
-        visibility: hidden;
-        transform: translate3d(50%, 0, 0);
-
-    }
-
-    to {
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-.slideEnRight {
-    animation-name: slideInRight;
-}
-
-
 
 @media (min-width: 1200px){
     .moving-row{    

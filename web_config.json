@@ -3,7 +3,7 @@
             {
                 "pageNamespace": "com\\novaconcept\\page\\",
                 "devMode": true,
-                "defaultLanguage": "en",
+                "defaultLanguage": "fr",
                 "dev":
                         {
                             "host": "192.168.1.133",
@@ -12,8 +12,6 @@
                             "privateKey": "0c783c017072650241fd8c04f1e78b1e",
                             "publicKey": "607352b7a2224366782ba5a66d21264f",
                             "endpointCore": "192.168.1.133/quiz_core",
-                            "endpointStand": "192.168.1.133/quiz_stand",
-                            "endpointStorage": "192.168.1.133/concession-storage",
                             "endpointAdmin": "192.168.1.133/quiz_panel",
                             "version": 1
                         },
@@ -25,8 +23,6 @@
                             "privateKey": "0c783c017072650241fd8c04f1e78b1e",
                             "publicKey": "607352b7a2224366782ba5a66d21264f",
                             "endpointCore": "dev-novaconcept.com/_CFCQuiz/api/core",
-                            "endpointStand": "ec2-52-37-94-27.us-west-2.compute.amazonaws.com/api/stand",
-                            "endpointStorage": "ec2-52-37-94-27.us-west-2.compute.amazonaws.com/api/storage",
                             "endpointAdmin": "ec2-52-37-94-27.us-west-2.compute.amazonaws.com/admin",
                             "version": 1
                         }
@@ -41,15 +37,6 @@
                             ],
                     "pageClass": "LoginPage",
                     "pageMethod": "getLogin"
-                },
-                {
-                    "requestMethod": "GET",
-                    "requestPath":
-                            [
-                                "/test"
-                            ],
-                    "pageClass": "ContentPanel",
-                    "pageMethod": "test"
                 },
                 {
                     "requestMethod": "GET",

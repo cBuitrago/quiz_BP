@@ -26,15 +26,12 @@ function sortSelectedAnswers(suspend_data) {
     section = getDataFromRawString(string[0], "s", "q");
     data['section' + section] = {};
 
-    for (var i = 0; i < string.length; i++)
-    {
+    for (var i = 0; i < string.length; i++) {
         newSection = getDataFromRawString(string[i], "s", "q");
         question = getDataFromRawString(string[i], "q", "a");
         answer = getDataFromRawString(string[i], "a");
 
-
-        if (section != newSection)
-        {
+        if (section != newSection) {
             data['section' + section]['questionLength'] = questionCounter;
             questionCounter = 0;
             section = newSection;
@@ -50,8 +47,6 @@ function sortSelectedAnswers(suspend_data) {
     data['sectionLength'] = sectionCounter;
     data['section' + (sectionCounter - 1)]['questionLength'] = questionCounter;
 
-    console.log("congress", data['section0']['questionLength'], data['sectionLength']);
-    console.log('called ' + string[2] + "section:" + section + " question: " + question + " answer:" + answer);
     return data;
 
 }
@@ -70,10 +65,8 @@ function getDataFromRawString(string, valA, valB)
 }
 
 function manualPost(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
+    method = method || "post";
 
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
     var form = document.createElement("form");
     form.setAttribute("method", method);
     form.setAttribute("action", path);

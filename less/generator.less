@@ -1,53 +1,21 @@
-/*@font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 300;
-    src: url(fonts/Roboto/Roboto-Regular.ttf) format('truetype');
-}
-html *
-{
-    font-family: 'Roboto' !important;
-}*/
 @bg-color-filters: #106daf;
 @bgBody-color: #f2f2f2;
-
 @font-color-dark-active: #2b2b2b;
 @font-color-dark: #4b4b4b;
 @font-color-light: #ffffff;
 @fontSide-color: #454545;
-
-/**
-*   NAV
-*/
 @bgNav-color: #ffffff;
 @fontNav-color: #040404;
-/**
-* Aside
-*/
 @bg-color-aside: #171717;
 @bg-color-aside-active: #242424;
 @font-color-aside: #ffffff;
-/*
-*    ARTICLE CENTER
-*/
 @border-color-central-article: #e4e4e4;
 @bg-color-nav-central-article: #f6f6f6;
 @border-color-central-article-tab-active: #157ddd;
 @font-color-tab: #8e8d8d;
-/***
-*   FOOTER
-*/
 @bgFooter-color:transparent;
-
-/**
-*   BUTTON
-*/
 @font-color-button-add: @font-color-light;
 @bg-color-button-add: #106cad;
-
-/**
-*   INPUT
-*/
 @font-color-label: #a9a9a9;
 @font-color-input: @font-color-label;
 @font-color-input-focus: @font-color-dark;
@@ -56,14 +24,8 @@ html *
 @bg-color-input-edit: rgba(246,246,246, 0.2);
 @bg-color-input-edited: @font-color-light;
 @bg-color-input-disabled: #ffffff;
-/**
-*   BUTTON
-*/
 @bg-color-button-edit:#106daf;
 @bg-color-button-cancel:#9f9f9f;
-/**
-*   TABLES
-*/
 @bg-color-table: #ffffff;
 @bg-color-table-hover: #f0f0f0; 
 body {
@@ -81,18 +43,6 @@ body {
     padding-top: 25%;	
     padding-left: 15px;	
 }
-/*.footer {
-    position : absolute;
-    bottom : 0;
-    height : 40px;
-    margin-top : 40px;
-    background-color: black;
-    width: 100%;
-    color: white;
-    font-family: 'Roboto';
-    text-align: center;
-    line-height: 40px;
-}*/
 a:link, a:visited{
     color: white;
     outline: 0;
@@ -124,7 +74,6 @@ th, td {
     font-family: 'Roboto';
     font-size: 150%;
 }
-
 .modal {
     display:    none;
     position:   fixed;
@@ -299,9 +248,6 @@ div.tab-content{
             border-right-color: @border-color-central-article;
             border-style: solid;
             label{
-                /*min-width: 300px;
-                max-width: 400px;
-                width: 100%;*/
                 width: 220px;
                 color: @font-color-dark-active;
                 padding-right: 10px;
@@ -310,9 +256,6 @@ div.tab-content{
                 input[type='search']{
                     margin-left: 0;
                     margin-right: 0;
-                    /*min-width: 200px;
-                    max-width: 400px;
-                    width: 100%;*/
                     width: 210px;
                     height: 26px;
                 }
@@ -400,7 +343,6 @@ div.tab-content{
                         border-width: 0;
                         max-width: 100px;
                         text-align: left;
-                        //padding-left: 18px; 
                         padding-left: 5px;
                         padding-right: 5px;
                         font-family: 'Roboto', sans-serif;
@@ -415,6 +357,9 @@ div.tab-content{
                 }
                 tr.odd.selected, tr.even.selected{
                     background-color: @bg-color-table-hover;
+                    td.dt-center.sorting_1{
+                        background-color: @bg-color-table-hover;
+                    }
                 }
             }
         }
@@ -585,7 +530,6 @@ div.tab-content{
                 }
             }
         }
-
         .bodyButton{
             float: left;
             width: 100%;
@@ -594,7 +538,6 @@ div.tab-content{
                 max-width: 300px;
             }
         }
-
         .bodyEntete{
             float: left;
             width: 65%;
@@ -603,14 +546,12 @@ div.tab-content{
                 font-weight: 500;
             }
         }
-
         label{
             color: @font-color-dark;
             font-family: 'Roboto', sans-serif;
             margin-right: 10px;
             cursor: pointer;
         }
-
         input[type='checkbox']{
             height: 18px;
             width: 18px;
@@ -669,12 +610,10 @@ a.dt-button.black{
 @media screen and (max-width: 1200px){
     div.tab-content{
         .dataTables_wrapper.no-border{
-
         }
         .dataTables_wrapper{
             .dt-buttons{
                 a.dt-button.black{
-
                     &:hover, &:focus{
 
                     }
@@ -682,17 +621,13 @@ a.dt-button.black{
             }
             .dataTables_filter{
                 label{
-
                     input[type='search']{
-
                     }
                 }
             }
             .dataTables_length{
                 label{
-
                     select{
-
                     }
                 }
             }
@@ -757,7 +692,6 @@ a.dt-button.black{
         }
     }
 }
-
 @media screen and (max-width: 767px) {
     div.tab-content {
         .dataTables_wrapper{

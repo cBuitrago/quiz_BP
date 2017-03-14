@@ -1,8 +1,7 @@
 {if (isset($view->is_agency_admin) && $view->is_agency_admin === TRUE) ||
-(isset($view->is_group_admin) && $view->is_group_admin === TRUE) ||
-(isset($view->is_corpo_admin) && $view->is_corpo_admin === TRUE) ||
-(isset($view->is_user) && $view->is_user === TRUE)
-}
+    (isset($view->is_group_admin) && $view->is_group_admin === TRUE) ||
+    (isset($view->is_corpo_admin) && $view->is_corpo_admin === TRUE) ||
+    (isset($view->is_user) && $view->is_user === TRUE)}
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,18 +23,9 @@
         <script src="{$head->baseUrl}/js/javascript/jspdf_1_2_61.debug.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/javascript/jspdf.plugin.autotable_2_0_22.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/utils.js"></script>
-        <script src="{$head->baseUrl}/js/javascript/utils.js"></script>
         <script src="{$head->baseUrl}/js/javascript/jquery.simple.timer.js"></script>
-        <script src="{$head->baseUrl}/js/javascript/pdf_generator.js"  type="text/javascript"></script>
-        <script src="{$head->baseUrl}/js/main.js"  type="text/javascript"></script>
-
-        <style>
-            canvas {
-                -moz-user-select: none;
-                -webkit-user-select: none;
-                -ms-user-select: none;
-            }
-        </style>
+        <script src="{$head->baseUrl}/js/javascript/pdf_generator.min.js"  type="text/javascript"></script>
+        <script src="{$head->baseUrl}/js/main.min.js"  type="text/javascript"></script>
     </head>
     <body>
         <nav class="head">
@@ -74,7 +64,10 @@
                     </form>
                 {/if}
                 {if ( isset($data->RESULT_PROGRESS_ID) && $data->RESULT_PROGRESS_ID == 2 )}
-                    <h3>Vous avez pas bien fini votre Quiz</h3>
+                    <h3>Vous n'avez pas bien fini votre Quiz!</h3>
+                {/if}
+                {if ( isset($data->RESULT_PROGRESS_ID) && $data->RESULT_PROGRESS_ID == 1 )}
+                    <h3>Vous n'avez pas bien fini votre Quiz!</h3>
                 {/if}
             </article>
         </article>
@@ -86,4 +79,3 @@
     </body>
 </html>
 {/if}
-

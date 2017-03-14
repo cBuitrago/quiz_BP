@@ -11,5 +11,5 @@
     <script type="text/javascript" src="{$head->baseUrl}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
-    <script src="{$head->baseUrl}/js/main.js" type="text/javascript"></script>
+    <script src="{$head->baseUrl}/js/main.min.js" type="text/javascript"></script>
 </head>

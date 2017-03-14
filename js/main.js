@@ -312,8 +312,8 @@ function onUserAdd()
     } else {
         return false;
     }
-    if (validateInput(form["email"]), 'name') {
-        data['username'] = form["email"].value.trim();
+    if (validateInput(form["username"], 'name')) {
+        data['username'] = form["username"].value.trim();
     } else {
         return false;
     }

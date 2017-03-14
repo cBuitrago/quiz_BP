@@ -8,11 +8,10 @@
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/buttons.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/select.dataTables.min.css">
         <link rel="stylesheet" href="{$head->baseUrl}/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{$head->baseUrl}/css/generator.css">
+        <link rel="stylesheet" href="{$head->baseUrl}/css/generator.min.css">
         <link href="{$head->baseUrl}/js/libs/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.css">
-        <!--<script src="{$head->baseUrl}/js/main.js" type="text/javascript"></script>-->
+        <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
         <script type="text/javascript"> baseUrl = "{$head->baseUrl}";</script>
         <script src="{$head->baseUrl}/js/javascript/jquery.min.js"></script>
@@ -24,23 +23,14 @@
         <script type="text/javascript" charset="utf8" src="{$head->baseUrl}/js/javascript/ellipsis.js"></script>
         <script type="text/javascript" charset="utf8" src="{$head->baseUrl}/js/javascript/dataTables.select.min.js"></script>
         <script type="text/javascript" charset="utf8" src="{$head->baseUrl}/js/javascript/dataTables.buttons.min.js"></script>
-        <script src="{$head->baseUrl}/js/javascript/utils.js" type="text/javascript"></script>
+        <script src="{$head->baseUrl}/js/utils.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/javascript/jspdf_1_2_61.debug.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/javascript/jspdf.plugin.autotable_2_0_22.js" type="text/javascript"></script>
-        <script src="{$head->baseUrl}/js/javascript/pdf_generator.js"  type="text/javascript"></script>
-        <script src="{$head->baseUrl}/js/generator.js"  type="text/javascript"></script>
+        <script src="{$head->baseUrl}/js/javascript/pdf_generator.min.js"  type="text/javascript"></script>
+        <script src="{$head->baseUrl}/js/generator.min.js"  type="text/javascript"></script>
     </head>
     <body bgcolor="black">
         {include file="com/novaconcept/page/smarty/includes/NavTag.tpl" lang=$lang head=$head view=$view}
-        <!--<?php
-        // define variables and set to empty values
-        $id_demo = $country = $demo_ver = $xml_ver = $size = $demo_link = $xml_link = $title  = "";
-
-        echo "INSIDE PHP !!!\n";
-        ?>*/
-        <div>
-            <img src="{$head->baseUrl}/media/assets/logo-novafr.png" class="gwd-img-ttig">
-        </div>-->
         <div class="load">
             <div>
             </div>
@@ -146,6 +136,5 @@
                 </div>
             </div>
         </div>
-
     </body>
 </html> 

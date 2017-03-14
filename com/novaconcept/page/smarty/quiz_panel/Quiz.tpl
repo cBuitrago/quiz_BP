@@ -21,7 +21,7 @@
         <script type="text/javascript" src="{$head->baseUrl}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
         <script src="{$head->baseUrl}/js/utils.js"></script>
         <script src="{$head->baseUrl}/js/javascript/jquery.simple.timer.js"></script>
-        <script src="{$head->baseUrl}/js/quiz.js"  type="text/javascript"></script>
+        <script src="{$head->baseUrl}/js/quiz.min.js"  type="text/javascript"></script>
         <script type="text/javascript"> baseUrl = "{$head->baseUrl}";</script>
         <script type="text/javascript">var account = {if isset($smarty.session.accountInfo)}{$smarty.session.accountInfo}{else}0{/if}</script>
         <style>
@@ -97,21 +97,11 @@
                     <p class="timer"></p>
                     {literal}
                         <script>
-                            var a = parseInt({/literal}{$smarty.now}{literal});
-                            var f = function () {
-                                var b = true;
-                                var c = ({/literal}{$smarty.session.quizStartTime}{literal} + {/literal}{$data->TIME_TO_COMPLETE}{literal} - a);
-                                a += 1;
-                                var d = {'e': Math.floor(c / 60), 'g': (Math.round(c % 60) == 60) ? '00' : Math.round(c % 60)}
-                                var h = (d.g < 10) ? '0' : '';
-                                $('.timer').text('Il vous reste : ' + d.e + " : " + h + d.g);
-                                if (c <= 0) {
-                                    b = false;
-                                    nextForm(true);
-                                }
-                                if (b === true) {
-                                    setTimeout(f, 1000);
-                                }
+                            var a = parseInt({/literal}{$smarty.now}{literal}), f = function () {
+                                var t = !0, e = {/literal}{$smarty.session.quizStartTime}{literal} + {/literal}{$data->TIME_TO_COMPLETE}{literal} - a
+                                a += 1
+                                var r = {e: Math.floor(e / 60), g: 60 == Math.round(e % 60) ? "00" : Math.round(e % 60)}, o = r.g < 10 ? "0" : ""
+                                $(".timer").text("Il vous reste : " + r.e + " : " + o + r.g), 0 >= e && (t = !1, nextForm(!0)), t === !0 && setTimeout(f, 1e3)
                             }
                         </script>
                     {/literal}
