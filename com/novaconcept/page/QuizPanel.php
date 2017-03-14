@@ -6,8 +6,9 @@ use com\novaconcept\utility\RestBuilder;
 use com\novaconcept\utility\WebConfig;
 
 class QuizPanel extends AbstractPage {
-    
+
     public function front() {
+        $this->view->title = "Quiz";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -55,6 +56,7 @@ class QuizPanel extends AbstractPage {
                 return;
             }
         }
+
         $this->view->is_quiz_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Quiz";
         $this->view->center = "com/novaconcept/page/smarty/quiz_panel/QuizFront.tpl";
@@ -101,6 +103,7 @@ class QuizPanel extends AbstractPage {
     }
 
     public function addQuiz() {
+        $this->view->title = "Quiz";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -131,7 +134,7 @@ class QuizPanel extends AbstractPage {
     }
 
     public function resultsQuiz() {
-
+        $this->view->title = "Results";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -160,12 +163,12 @@ class QuizPanel extends AbstractPage {
             $this->display("error/ForbiddenError.tpl");
             return;
         }
-        
-        if ( !isset($this->data->RESULT_PROGRESS_ID) ) {
+
+        if (!isset($this->data->RESULT_PROGRESS_ID)) {
             $this->display("error/ForbiddenError.tpl");
             return;
         }
-        
+
         $this->view->is_quiz_active = true;
         $this->view->title = $_SESSION['accountName'] . " - Results";
         $this->data->quizData = json_decode($this->data->QUIZ_DATA);
@@ -173,7 +176,7 @@ class QuizPanel extends AbstractPage {
     }
 
     public function quizEdit() {
-
+        $this->view->title = "Quiz";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -195,10 +198,6 @@ class QuizPanel extends AbstractPage {
                     ->setPostData($_POST)
                     ->setHttpMethod(RestBuilder::PUT)
                     ->excecute();
-            /* if ($this->builder->getResponseInfo()["http_code"] != 200) {
-              //header("Location: ../");
-              return;
-              } */
         }
 
         $this->builder->reset();

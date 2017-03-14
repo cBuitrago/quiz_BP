@@ -8,6 +8,7 @@ use com\novaconcept\utility\WebConfig;
 class UserPanel extends AbstractPage {
 
     public function front() {
+        $this->view->title = "User";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -30,7 +31,7 @@ class UserPanel extends AbstractPage {
                 ->setHttpMethod(RestBuilder::GET)
                 ->excecute();
         $this->data = json_decode($this->builder->getResponse());
-        
+
         $this->view->is_user_active = true;
         $this->view->title = $_SESSION['accountName'] . " - User";
         $this->view->center = "com/novaconcept/page/smarty/user_panel/UserFront.tpl";
@@ -38,6 +39,7 @@ class UserPanel extends AbstractPage {
     }
 
     public function edit() {
+        $this->view->title = "User";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -87,6 +89,7 @@ class UserPanel extends AbstractPage {
     }
 
     public function editProfile() {
+        $this->view->title = "Personal Info";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -102,55 +105,17 @@ class UserPanel extends AbstractPage {
         }
 
         $this->view->is_user_active = true;
-        $this->view->title = "Personal Info";
         $this->display("user_panel/EditProfile.tpl");
     }
 
-    public function userFind() {
-        if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
-            return;
-        }
-
-        if (!$this->authorize(["can_manage", "can_manage_users"]) || $_SESSION['accountInfo'] == '') {
-            $this->display("error/ForbiddenError.tpl");
-            return;
-        }
-
-        if ($this->request->getQueryParam("search_term") !== NULL) {
-            $page = $this->request->getQueryParam("page");
-            $perPage = $this->request->getQueryParam("per_page");
-            $searchTerm = $this->request->getQueryParam("search_term");
-            $this->builder->reset()
-                    ->setEndpoint(WebConfig::getEnvironment()->endpointCore)
-                    ->addPathParam(WebConfig::getEnvironment()->version)
-                    ->addPathParam('account_info')
-                    ->addPathParam($_SESSION['accountInfo'])
-                    ->addPathParam('user_info')
-                    ->addPathParam('find_email')
-                    ->setHttpMethod(RestBuilder::GET)
-                    ->addQueryParam("page", $page)
-                    ->addQueryParam("per_page", $perPage)
-                    ->addQueryParam("search_term", $searchTerm)
-                    ->excecute();
-
-            $this->data = json_decode($this->builder->getResponse());
-        }
-
-        $this->view->is_user_active = true;
-        $this->view->title = $_SESSION['accountName'] . " - User";
-        $this->view->center = "com/novaconcept/page/smarty/user_panel/UserFind.tpl";
-        $this->display("includes/General.tpl");
-    }
-
     public function editPassword() {
+        $this->view->title = "Change Password";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
         }
 
         $this->view->is_user_active = true;
-        $this->view->title = "Change Password";
         $this->display("user_panel/ChangePassword.tpl");
     }
 
@@ -167,4 +132,5 @@ class UserPanel extends AbstractPage {
             }
         }
     }
+
 }

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Reports</title>
+        <title>{$view->title}</title>
         <link rel="stylesheet" href="{$head->baseUrl}/css/iframe.css">
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/jquery.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/buttons.dataTables.min.css">

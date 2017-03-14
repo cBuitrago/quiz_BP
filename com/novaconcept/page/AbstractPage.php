@@ -61,7 +61,7 @@ class AbstractPage {
     }
 
     protected function authorize($requiredAuthorization) {
-        
+
         if (count($_SESSION["userAccount"]) === 1) {
             $userPermissions = $_SESSION["userPermission"];
             $counter = 0;
@@ -205,4 +205,5 @@ class AbstractPage {
             }
         }
     }
+
 }

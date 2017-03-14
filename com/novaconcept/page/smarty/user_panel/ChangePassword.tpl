@@ -5,7 +5,7 @@
 
             <nav class="head">
                 <div class="image">
-                    <img src="/quiz_panel/media/images/logo-cfc-fr.jpeg">
+                    <img src="/quiz_panel/media/images/logoCompany.png">
                 </div>
                 <div class="dropdown">
                     <button class="dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

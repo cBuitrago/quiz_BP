@@ -3,7 +3,7 @@
 (isset($view->is_corpo_admin) && $view->is_corpo_admin === TRUE) ||
 (isset($view->is_user) && $view->is_user === TRUE)
 }
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">

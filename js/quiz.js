@@ -19,7 +19,7 @@ $(document).ready(function () {
     });
     totalSections = document.getElementById('quiz-carousel').querySelectorAll('.item').length;
 
-    timerQuiz();
+    f();
 });
 
 function hiddenIndicators()

@@ -7,6 +7,7 @@ use com\novaconcept\utility\WebConfig;
 class AdminPanel extends AbstractPage {
 
     public function selectAccount() {
+        $this->view->title = "Admin";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -26,4 +27,5 @@ class AdminPanel extends AbstractPage {
         $this->view->center = "com/novaconcept/page/smarty/AdminAccountFront.tpl";
         $this->display("includes/General.tpl");
     }
+
 }

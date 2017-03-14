@@ -465,12 +465,12 @@ function FindUserFirstResults(user_id, quiz_id, averages_array)
     {
         if (averages_array[i].USER_ID == user_id && averages_array[i].QUIZ_ID == quiz_id)
         {
-            
+
             users_quiz_group = averages_array[i].QUIZ_GROUP_ID;
             current_quiz_order = averages_array[i].QUIZ_ORDER
         }
     }
-    
+
     var first_result = new Array();
     //if result is already the first one or not found (for some reason)
     if (current_quiz_order == 1 || current_quiz_order == -1)
@@ -1138,12 +1138,12 @@ function GeneratePDF(doc, current_record)
 IMG_Good_Asnwer.src = baseUrl + "/media/assets/Good_answer.jpg";
 //	  IMG_Good_Asnwer.width = 20;
 //	  IMG_Good_Asnwer.height = 20;
-IMG_unchecked.src =  baseUrl + "/media/assets/Unchecked.jpg";
+IMG_unchecked.src = baseUrl + "/media/assets/Unchecked.jpg";
 //  	  IMG_unchecked.width = 20;
 //  	  IMG_unchecked.height = 20;
-IMG_Best_Answer.src =  baseUrl + "/media/assets/Best_answer.jpg";
+IMG_Best_Answer.src = baseUrl + "/media/assets/Best_answer.jpg";
 //  	  IMG_Best_Answer.width = 20;
 //  	  IMG_Best_Answer.height = 20;
-IMG_Wrong_Answer.src =  baseUrl + "/media/assets/Wrong_answer.jpg";
+IMG_Wrong_Answer.src = baseUrl + "/media/assets/Wrong_answer.jpg";
 //  	  IMG_Wrong_Answer.width = 20;
 //  	  IMG_Wrong_Answer.height = 20;

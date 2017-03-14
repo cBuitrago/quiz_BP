@@ -9,6 +9,7 @@ use stdClass;
 class DepartmentPanel extends AbstractPage {
 
     public function corpo() {
+        $this->view->title = "Corpo";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -30,14 +31,47 @@ class DepartmentPanel extends AbstractPage {
             return;
         }
         $this->data = json_decode($this->builder->getResponse());
-        
+
         $this->view->is_corpo_active = true;
-        $this->view->title = $_SESSION['accountName'] . " - Groups";
+        $this->view->title = $_SESSION['accountName'] . " - Corpo";
         $this->view->center = "com/novaconcept/page/smarty/department_panel/Groups.tpl";
         $this->display("includes/General.tpl");
     }
 
     public function group() {
+        $this->view->title = "Groupe";
+        if ($this->builder->hasToken() == FALSE) {
+            $this->display("LoginPage.tpl");
+            return;
+        }
+        if (!$this->authorize(["is_group_admin"]) &&
+                !$this->authorize(["is_corpo_admin"]) ||
+                $_SESSION['accountInfo'] == '') {
+            $this->display("error/ForbiddenError.tpl");
+            return;
+        }
+
+        $this->builder->setEndpoint(WebConfig::getEnvironment()->endpointCore)
+                ->addPathParam(WebConfig::getEnvironment()->version)
+                ->addPathParam('account_info')
+                ->addPathParam($_SESSION['accountInfo'])
+                ->addPathParam('corpo')
+                ->setHttpMethod(RestBuilder::GET)
+                ->excecute();
+        if ($this->builder->getResponseInfo()["http_code"] != 200) {
+            $this->display("error/ForbiddenError.tpl");
+            return;
+        }
+        $this->data = json_decode($this->builder->getResponse());
+
+        $this->view->is_group_active = true;
+        $this->view->title = $_SESSION['accountName'] . " - Groupe";
+        $this->view->center = "com/novaconcept/page/smarty/department_panel/Group.tpl";
+        $this->display("includes/General.tpl");
+    }
+
+    public function groupId() {
+        $this->view->title = "Groupe";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -64,12 +98,66 @@ class DepartmentPanel extends AbstractPage {
         $this->data = json_decode($this->builder->getResponse());
 
         $this->view->is_group_active = true;
-        $this->view->title = $_SESSION['accountName'] . " - Group";
-        $this->view->center = "com/novaconcept/page/smarty/department_panel/Group.tpl";
+        $this->view->title = $_SESSION['accountName'] . " - Groupe";
+        $this->view->center = "com/novaconcept/page/smarty/department_panel/GroupId.tpl";
         $this->display("includes/General.tpl");
     }
 
     public function agency() {
+        $this->view->title = "Agence";
+        if ($this->builder->hasToken() == FALSE) {
+            $this->display("LoginPage.tpl");
+            return;
+        }
+        if (!$this->authorize(["is_group_admin"]) &&
+                !$this->authorize(["is_corpo_admin"]) ||
+                $_SESSION['accountInfo'] == '') {
+            $this->display("error/ForbiddenError.tpl");
+            return;
+        }
+
+        $query = ( $this->authorize(["is_group_admin"]) ) ? "group" : "corpo";
+
+        $this->builder->setEndpoint(WebConfig::getEnvironment()->endpointCore)
+                ->addPathParam(WebConfig::getEnvironment()->version)
+                ->addPathParam('account_info')
+                ->addPathParam($_SESSION['accountInfo'])
+                ->addPathParam('allAgencies')
+                ->setHttpMethod(RestBuilder::GET)
+                ->excecute();
+
+        if ($this->builder->getResponseInfo()["http_code"] != 200) {
+            $this->display("error/ForbiddenError.tpl");
+            return;
+        }
+        $this->data->agency = json_decode($this->builder->getResponse());
+
+        $this->builder->reset();
+        $this->builder->setEndpoint(WebConfig::getEnvironment()->endpointCore)
+                ->addPathParam(WebConfig::getEnvironment()->version)
+                ->addPathParam('account_info')
+                ->addPathParam($_SESSION['accountInfo'])
+                ->addPathParam($query)
+        ;
+        if ($query == 'group') {
+            $this->builder->addPathParam($_SESSION['group']);
+        }
+        $this->builder->setHttpMethod(RestBuilder::GET)
+                ->excecute();
+        if ($this->builder->getResponseInfo()["http_code"] != 200) {
+            $this->display("error/ForbiddenError.tpl");
+            return;
+        }
+        $this->data->group = json_decode($this->builder->getResponse());
+
+        $this->view->is_agency_active = true;
+        $this->view->title = $_SESSION['accountName'] . " - Agence";
+        $this->view->center = "com/novaconcept/page/smarty/department_panel/Agency.tpl";
+        $this->display("includes/General.tpl");
+    }
+
+    public function agencyId() {
+        $this->view->title = "Agence";
         if ($this->builder->hasToken() == FALSE) {
             $this->display("LoginPage.tpl");
             return;
@@ -96,10 +184,10 @@ class DepartmentPanel extends AbstractPage {
             return;
         }
         $this->data = json_decode($this->builder->getResponse());
-        
+
         $this->view->is_agency_active = true;
-        $this->view->title = $_SESSION['accountName'] . " - Agency";
-        $this->view->center = "com/novaconcept/page/smarty/department_panel/Agency.tpl";
+        $this->view->title = $_SESSION['accountName'] . " - Agence";
+        $this->view->center = "com/novaconcept/page/smarty/department_panel/AgencyId.tpl";
         $this->display("includes/General.tpl");
     }
 

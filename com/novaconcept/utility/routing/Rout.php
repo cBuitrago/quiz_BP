@@ -52,4 +52,5 @@ class Rout {
     public function getRequestPath() {
         return $this->requestPath[0];
     }
+
 }

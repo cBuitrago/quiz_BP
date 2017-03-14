@@ -409,46 +409,46 @@ function LoadDataTable()
                 ],
                 //******* ATTENTION !!!: si on change les valeurs de "name", changer les noms utilisés dans la fonction ApplyFilters()...
                 columns: [
-                    {name: "ID",                data: DB_QUIZ_RESULTS_ID,               title: "ID unique",                 visible: false},
-                    {name: "USER_ID",           data: DB_QUIZ_RESULTS_USER_ID,          title: "ID Usager",                 visible: false},
-                    {name: "USER_NAME",         data: DB_QUIZ_RESULTS_USER_NAME,        title: "Usager",                    className: "dt-center", width: "100"},
-                    {name: "CORPORATE_ID",      data: DB_QUIZ_RESULTS_CORPORATE_ID,     title: "ID Compagnie",              visible: false},
-                    {name: "CORPORATE_NAME",    data: DB_QUIZ_RESULTS_CORPORATE_NAME,   title: "Compagnie",                 visible: false},
-                    {name: "GROUP_ID",          data: DB_QUIZ_RESULTS_GROUP_ID,         title: "ID Groupe",                 visible: false},
-                    {name: "GROUP_NAME",        data: DB_QUIZ_RESULTS_GROUP_NAME,       title: "Groupe",                    className: "dt-center", width: "100"},
-                    {name: "AGENCY_ID",         data: DB_QUIZ_RESULTS_AGENCY_ID,        title: "ID Agence",                 visible: false},
-                    {name: "AGENCY_NAME",       data: DB_QUIZ_RESULTS_AGENCY_NAME,      title: "Agence",                    className: "dt-center", width: "100"},
-                    {name: "QUIZ_ID",           data: DB_QUIZ_RESULTS_QUIZ_ID,          title: "ID Quiz",                   visible: false},
-                    {name: "QUIZ_NAME",         data: DB_QUIZ_RESULTS_QUIZ_NAME,        title: "Quiz",                      className: "dt-center", width: "100"},
-                    {name: "START_DATE",        data: DB_QUIZ_RESULTS_START_DATE,       title: "Date d&eacute;but",         className: "dt-center", width: "100"},
-                    {name: "END_DATE",          data: DB_QUIZ_RESULTS_END_DATE,         title: "Date fin",                  className: "dt-center", width: "100"},
-                    {name: "PROGRESS_ID",       data: DB_QUIZ_RESULTS_PROGRESS_ID,      title: "ID Progr&egrave;s",         visible: false},
-                    {name: "PROGRESS_NAME",     data: DB_QUIZ_RESULTS_PROGRESS_NAME,    title: "Progr&egrave;s",            className: "dt-center", width: "100"},
-                    {name: "ANSWERS",           data: DB_QUIZ_RESULTS_ANSWERS,          title: "R&eacute;ponses",           visible: false},
-                    {name: "QUIZ_SCORE",        data: DB_QUIZ_RESULTS_QUIZ_SCORE,       title: "Pointage Quiz",             visible: false},
-                    {name: "PREVIOUS_ANSWERS",  data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes R&eacute;ponses", visible: false},
-                    {name: "PREVIOUS_SCORES",   data: DB_QUIZ_RESULTS_PREVIOUS_SCORES,  title: "Pointage Quiz",             visible: false}
+                    {name: "ID", data: DB_QUIZ_RESULTS_ID, title: "ID unique", visible: false},
+                    {name: "USER_ID", data: DB_QUIZ_RESULTS_USER_ID, title: "ID Usager", visible: false},
+                    {name: "USER_NAME", data: DB_QUIZ_RESULTS_USER_NAME, title: "Usager", className: "dt-center", width: "100"},
+                    {name: "CORPORATE_ID", data: DB_QUIZ_RESULTS_CORPORATE_ID, title: "ID Compagnie", visible: false},
+                    {name: "CORPORATE_NAME", data: DB_QUIZ_RESULTS_CORPORATE_NAME, title: "Compagnie", visible: false},
+                    {name: "GROUP_ID", data: DB_QUIZ_RESULTS_GROUP_ID, title: "ID Groupe", visible: false},
+                    {name: "GROUP_NAME", data: DB_QUIZ_RESULTS_GROUP_NAME, title: "Groupe", className: "dt-center", width: "100"},
+                    {name: "AGENCY_ID", data: DB_QUIZ_RESULTS_AGENCY_ID, title: "ID Agence", visible: false},
+                    {name: "AGENCY_NAME", data: DB_QUIZ_RESULTS_AGENCY_NAME, title: "Agence", className: "dt-center", width: "100"},
+                    {name: "QUIZ_ID", data: DB_QUIZ_RESULTS_QUIZ_ID, title: "ID Quiz", visible: false},
+                    {name: "QUIZ_NAME", data: DB_QUIZ_RESULTS_QUIZ_NAME, title: "Quiz", className: "dt-center", width: "100"},
+                    {name: "START_DATE", data: DB_QUIZ_RESULTS_START_DATE, title: "Date d&eacute;but", className: "dt-center", width: "100"},
+                    {name: "END_DATE", data: DB_QUIZ_RESULTS_END_DATE, title: "Date fin", className: "dt-center", width: "100"},
+                    {name: "PROGRESS_ID", data: DB_QUIZ_RESULTS_PROGRESS_ID, title: "ID Progr&egrave;s", visible: false},
+                    {name: "PROGRESS_NAME", data: DB_QUIZ_RESULTS_PROGRESS_NAME, title: "Progr&egrave;s", className: "dt-center", width: "100"},
+                    {name: "ANSWERS", data: DB_QUIZ_RESULTS_ANSWERS, title: "R&eacute;ponses", visible: false},
+                    {name: "QUIZ_SCORE", data: DB_QUIZ_RESULTS_QUIZ_SCORE, title: "Pointage Quiz", visible: false},
+                    {name: "PREVIOUS_ANSWERS", data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes R&eacute;ponses", visible: false},
+                    {name: "PREVIOUS_SCORES", data: DB_QUIZ_RESULTS_PREVIOUS_SCORES, title: "Pointage Quiz", visible: false}
                 ],
                 language: {
-                    sProcessing:        "Traitement en cours...",
-                    sSearch:            "",
-                    sLengthMenu:        "Afficher _MENU_ &eacute;l&eacute;ments",
-                    sInfo:              "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                    sInfoEmpty:         "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
-                    sInfoFiltered:      "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                    sInfoPostFix:       "",
-                    sLoadingRecords:    "Chargement en cours...",
-                    sZeroRecords:       "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                    sEmptyTable:        "Aucune donn&eacute;e disponible dans le tableau",
+                    sProcessing: "Traitement en cours...",
+                    sSearch: "",
+                    sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+                    sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                    sInfoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    sInfoPostFix: "",
+                    sLoadingRecords: "Chargement en cours...",
+                    sZeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
                     oPaginate: {
-                        sFirst:     "Premier",
-                        sPrevious:  "Pr&eacute;c&eacute;dent",
-                        sNext:      "Suivant",
-                        sLast:      "Dernier"
+                        sFirst: "Premier",
+                        sPrevious: "Pr&eacute;c&eacute;dent",
+                        sNext: "Suivant",
+                        sLast: "Dernier"
                     },
                     oAria: {
-                        sSortAscending:     ": activer pour trier la colonne par ordre croissant",
-                        sSortDescending:    ": activer pour trier la colonne par ordre d&eacute;croissant"
+                        sSortAscending: ": activer pour trier la colonne par ordre croissant",
+                        sSortDescending: ": activer pour trier la colonne par ordre d&eacute;croissant"
                     },
                     select: {
                         rows: {
@@ -544,13 +544,13 @@ function LoadDataTable()
     $('select.select-filter').change(function () {
         ApplyFilters();
     });
-   /* $('#example').on('column-sizing.dt', function (e, settings) {
-        console.log('Column width recalculated in table');
-    });*/
+    /* $('#example').on('column-sizing.dt', function (e, settings) {
+     console.log('Column width recalculated in table');
+     });*/
 }
 /*$(window).resize(function () {
-    console.log(table.columns.adjust().draw());
-});*/
+ console.log(table.columns.adjust().draw());
+ });*/
 $(document).ready(function () {
     //GetQuizResultsFromServer();
     GetAllQuizInfoFromServer();

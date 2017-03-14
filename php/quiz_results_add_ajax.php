@@ -1,10 +1,12 @@
 <?php
 
 require 'base_ajax.php';
+
 use DateTime;
+
 $data = $request->getPostData();
 $data->START_DATE = $_SESSION['quizStartTime'];
-$data->END_DATE = time(); 
+$data->END_DATE = time();
 
 unset($_SESSION['quizStartTime']);
 

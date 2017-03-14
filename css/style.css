@@ -1,241 +1,241 @@
 body {
-  font-family: "Roboto", sans-serif;
-  background-color: white;
-  padding-top: 190px;
+    font-family: "Roboto", sans-serif;
+    background-color: white;
+    padding-top: 190px;
 }
 #pageTitle {
-  width: 100%;
-  top: 70px;
-  text-align: center;
-  padding-top: 1%;
-  padding-bottom: 2%;
-  border-bottom: 1px solid #ccc;
-  position: fixed;
-  white-space: nowrap;
-  overflow: hidden;
-  background-color: white;
-  display: block;
-  z-index: 1;
+    width: 100%;
+    top: 70px;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: white;
+    display: block;
+    z-index: 1;
 }
 #pageTitle h2 {
-  color: #002395;
-  padding-left: 1.3em;
+    color: #002395;
+    padding-left: 1.3em;
 }
 hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }
 a {
-  color: black;
+    color: black;
 }
 a:hover {
-  color: black;
+    color: black;
 }
 a:visited {
-  color: black;
+    color: black;
 }
 a:active {
-  color: black;
+    color: black;
 }
 #rectangle {
-  width: 50px;
-  height: 100%;
-  top: 0;
-  /*background: white;*/
-  position: fixed;
-  z-index: 0;
-  left: 0px;
+    width: 50px;
+    height: 100%;
+    top: 0;
+    /*background: white;*/
+    position: fixed;
+    z-index: 0;
+    left: 0px;
 }
 #quiz {
-  padding-left: 50px;
+    padding-left: 50px;
 }
 #quiz p.timer {
-  width: 200px;
-  left: 50%;
-  transform-origin: -100px;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  z-index: 2030;
-  color: #002395;
+    width: 200px;
+    left: 50%;
+    transform-origin: -100px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 2030;
+    color: #002395;
 }
 .hidden {
-  display: none;
-  visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 .helper_height {
-  height: 100%;
+    height: 100%;
 }
 .radio label {
-  color: #4b4b4b;
-  display: inline-block;
-  margin-top: 0;
+    color: #4b4b4b;
+    display: inline-block;
+    margin-top: 0;
 }
 footer.quiz {
-  background-color: white;
-  position: fixed;
-  height: 50px;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid #ccc;
-  text-align: center;
-  padding-top: 0px;
-  /* <==== adjust this for distance between items and footer top line */
-  padding-left: 50px;
-  padding-right: 50px;
-  line-height: 50px;
+    background-color: white;
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    padding-top: 0px;
+    /* <==== adjust this for distance between items and footer top line */
+    padding-left: 50px;
+    padding-right: 50px;
+    line-height: 50px;
 }
 footer.quiz a#nextSection {
-  float: right;
+    float: right;
 }
 footer.quiz a#previousSection {
-  float: left;
+    float: left;
 }
 footer.quiz a {
-  text-decoration: none;
+    text-decoration: none;
 }
 footer.quiz a:hover {
-  text-decoration: none;
-  outline: none;
+    text-decoration: none;
+    outline: none;
 }
 #previousButton {
-  font-size: large;
-  /*left:50px;*/
-  font-weight: bold;
-  /*position:fixed;*/
-  /*bottom:15px;*/
+    font-size: large;
+    /*left:50px;*/
+    font-weight: bold;
+    /*position:fixed;*/
+    /*bottom:15px;*/
 }
 #nextButton {
-  font-size: large;
-  /*right: 50px;*/
-  font-weight: bold;
-  /*position: fixed;*/
-  /*bottom: 15px;*/
+    font-size: large;
+    /*right: 50px;*/
+    font-weight: bold;
+    /*position: fixed;*/
+    /*bottom: 15px;*/
 }
 .inline {
-  display: inline;
+    display: inline;
 }
 #timerPlacement {
-  font-size: medium;
-  width: 500px;
-  font-weight: bold;
+    font-size: medium;
+    width: 500px;
+    font-weight: bold;
 }
 .hoursClass {
-  display: none;
+    display: none;
 }
 .minutesClass {
-  display: inline;
+    display: inline;
 }
 .secondsClass {
-  display: inline;
+    display: inline;
 }
 .white-container {
-  padding: 0;
+    padding: 0;
 }
 .moving-row {
-  padding: 2em;
-  position: absolute;
-  background-color: white;
-  display: block;
-  width: 100%;
-  padding-top: 50px;
+    padding: 2em;
+    position: absolute;
+    background-color: white;
+    display: block;
+    width: 100%;
+    padding-top: 50px;
 }
 fieldset {
-  margin-top: 30px;
-  margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 input[type='radio']:focus {
-  outline: none;
+    outline: none;
 }
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8) url('assets/loading.gif') 50% 50% no-repeat;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8) url('assets/loading.gif') 50% 50% no-repeat;
 }
 body.loading {
-  overflow: hidden;
+    overflow: hidden;
 }
 body.loading .modal {
-  display: block;
+    display: block;
 }
 .popup {
-  margin: 70px auto;
-  padding: 20px;
-  top: 50%;
-  background: #fff;
-  border-radius: 5px;
-  width: 40%;
-  position: relative;
-  transition: all 5s ease-in-out;
+    margin: 70px auto;
+    padding: 20px;
+    top: 50%;
+    background: #fff;
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    transition: all 5s ease-in-out;
 }
 .popup h2 {
-  margin-top: 0;
-  color: #333;
-  font-family: Tahoma, Arial, sans-serif;
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
 }
 .popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
 }
 .popup .close:hover {
-  color: #06D85F;
+    color: #06D85F;
 }
 .popup .content {
-  max-height: 30%;
-  overflow: auto;
+    max-height: 30%;
+    overflow: auto;
 }
 .overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms;
-  visibility: hidden;
-  opacity: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
 }
 .overlay:target {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 @keyframes slideOutRight {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    visibility: hidden;
-    transform: translate3d(200%, 0, 0);
-  }
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        visibility: hidden;
+        transform: translate3d(200%, 0, 0);
+    }
 }
 .slideOutRight {
-  animation-name: slideOutRight;
+    animation-name: slideOutRight;
 }
 @keyframes slideEnRight {
-  from {
-    visibility: hidden;
-    transform: translate3d(50%, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+    from {
+        visibility: hidden;
+        transform: translate3d(50%, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
 }
 .slideEnRight {
-  animation-name: slideInRight;
+    animation-name: slideInRight;
 }
 /*# sourceMappingURL=style.css.map */

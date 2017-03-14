@@ -1,4 +1,3 @@
-//Constants
 var PDF_GEN_OPTION_ANSWERS_SHORT = 0;
 var PDF_GEN_OPTION_SHOW_GRAPH = 1;
 var PDF_GEN_OPTION_SHOW_ANSWERS = 2;
@@ -7,7 +6,6 @@ var PDF_GEN_OPTION_USER_REPORT_COMPARE = 4;
 var PDF_GEN_OPTION_SHOW_ANSWERS_SCORES = 5;
 var PDF_GEN_OPTION_SHOW_BEST_ANSWERS = 6;
 
-//Constants from DB "nova_api_get_report_data.php" call
 var DB_QUIZ_RESULTS_ID = 0;
 var DB_QUIZ_RESULTS_QUIZ_ID = 1;
 var DB_QUIZ_RESULTS_USER_ID = 2;
@@ -41,18 +39,14 @@ window.addEventListener("load", function () {
     if (userTableAgency) {
         GetAllUsersAgencyFromServer();
     }
-    /**
-     *  LOGIN, LOGOUT
-     */
+    /**LOGIN, LOGOUT*/
     var login = document.getElementById("onLogin")
     if (login)
         login.addEventListener("click", onLogin);
     var logout = document.getElementById("onLogout")
     if (logout)
         logout.addEventListener("click", onLogout);
-    /**
-     * USER
-     */
+    /**USER*/
     var userEdit = document.getElementById("onUserEdit");
     if (userEdit)
         userEdit.addEventListener("click", onUserEdit);
@@ -71,9 +65,6 @@ window.addEventListener("load", function () {
     var userEditPassword = document.getElementById("onUserEditPassword");
     if (userEditPassword)
         userEditPassword.addEventListener("click", onUserEditPassword);
-    var userEditDepartment = document.getElementById("onUserEditDepartment");
-    if (userEditDepartment)
-        userEditDepartment.addEventListener("click", onUserEditDepartment);
     var userEditProfile = document.getElementById("onUserEditProfile");
     if (userEditProfile)
         userEditProfile.addEventListener("click", onUserEditProfile);
@@ -86,47 +77,36 @@ window.addEventListener("load", function () {
     var userEditAgency = document.getElementById("onUserEditAgency");
     if (userEditAgency)
         userEditAgency.addEventListener("click", onUserEditAgency);
-    /**
-     * DEPARTMENT
-     */
+    /**DEPARTMENT*/
     var addDepartment = document.getElementById("onDepartmentAdd");
     if (addDepartment)
         addDepartment.addEventListener("click", onDepartmentAdd);
     var editDepartment = document.getElementById("onDepartmentEdit");
     if (editDepartment)
         editDepartment.addEventListener("click", onDepartmentEdit);
-    /**
-     * QUIZ
-     */
+    /**QUIZ*/
     var addQuiz = document.getElementById("onAddQuiz");
     if (addQuiz)
         addQuiz.addEventListener("click", onAddQuiz);
     var userResult = document.getElementById("onUserResult");
     if (userResult)
         userResult.addEventListener("click", onUserResult);
-
-    /**/
     var cancelAll = document.getElementById("cancelAll")
     if (cancelAll)
         cancelAll.addEventListener("click", onCancelAll);
-    /**
-     * TEST
-     */
+    /**TEST*/
     var test = document.getElementById("test");
     if (test)
         test.addEventListener("click", onTest);
-
     $("input.editInput").keyup(function () {
         $(this).addClass('changed');
     });
     $(".cancelAll").click(function () {
         location.reload();
     });
-
     $(window).resize(function () {
         sizeImg();
     });
-
     sizeImg();
 
 });
@@ -169,31 +149,27 @@ function onCancelAll()
 {
     location.reload();
 }
-/**
- *  LOGIN, LOGOUT
- */
+/**LOGIN, LOGOUT*/
 var onLoginComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         var url = window.location.pathname.split("/");
-        if (url[url.length - 1] == 'login' || url[url.length - 1] == 'connexion' || url[url.length - 1] == 'logout')
-        {
+        if (url[url.length - 1] == 'login'
+                || url[url.length - 1] == 'connexion'
+                || url[url.length - 1] == 'logout') {
             var newUrl = baseUrl + '/profile';
             window.location.assign(newUrl);
-        } else
-        {
+        } else {
             location.reload();
         }
-    } else if (data.responseText === "forceChange")
-    {
+    } else if (data.responseText === "forceChange") {
         var url = window.location.pathname.split("/");
-        if (url[url.length - 1] == 'login' || url[url.length - 1] == 'connexion' || url[url.length - 1] == 'logout')
-        {
+        if (url[url.length - 1] == 'login'
+                || url[url.length - 1] == 'connexion'
+                || url[url.length - 1] == 'logout') {
             var newUrl = baseUrl + '/change';
             window.location.assign(newUrl);
-        } else
-        {
+        } else {
             location.reload();
         }
     } else {
@@ -218,8 +194,7 @@ function onLogin(e)
 
 var onLogoutComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         var newUrl = baseUrl + '/login';
         window.location.assign(newUrl);
     }
@@ -234,23 +209,12 @@ function onLogout()
     });
 }
 
-/**
- *  USER
- */
-function onUserFind()
-{
-    var userFind = document.getElementById('find_user_form');
-    var url = baseUrl + '/' + account + '/user/find?search_term=' + userFind["email"].value + '&page=' + userFind["page"].value + "&per_page=" + userFind["page_per"].value;
-    window.location.assign(url);
-}
-
+/**USER*/
 var onUserEditComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         location.reload();
-    } else
-    {
+    } else {
         location.reload();
     }
 }
@@ -284,10 +248,8 @@ function onUserEditPermission()
     var data = {};
     data.id = form["prevoius_permission"].value;
     data.userPermission;
-    for (var i = 0; i < form["permission_list"].length; i++)
-    {
-        if (form["permission_list"][i].checked)
-        {
+    for (var i = 0; i < form["permission_list"].length; i++) {
+        if (form["permission_list"][i].checked) {
             data.userPermission = form["permission_list"][i].value;
         }
     }
@@ -309,10 +271,8 @@ function onUserEditAgency()
     var data = {};
     data.id = form["id"].value;
     data.departmentId;
-    for (var i = 0; i < form["user_agency"].length; i++)
-    {
-        if (form["user_agency"][i].checked)
-        {
+    for (var i = 0; i < form["user_agency"].length; i++) {
+        if (form["user_agency"][i].checked) {
             data.departmentId = form["user_agency"][i].value;
         }
     }
@@ -398,8 +358,7 @@ function onUsersCreate()
 
 var onUsersCreateAccountComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         var url = baseUrl + '/' + account + '/user/list';
         window.location.assign(url);
     }
@@ -422,21 +381,16 @@ function onUserAddAccount()
 
 var onUserRemoveComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         var url = baseUrl + '/' + account + '/user/list';
         window.location.assign(url);
-    } else
-    {
-        if (data.responseText === "404")
-        {
+    } else {
+        if (data.responseText === "404") {
             document.getElementById("errorMsg").innerHTML = error404;
         }
-        if (data.responseText === "409")
-        {
+        if (data.responseText === "409") {
             document.getElementById("errorMsg").innerHTML = error409;
-        } else
-        {
+        } else {
             document.getElementById("errorMsg").innerHTML = unknownError;
         }
         $('#msgModal').modal('show');
@@ -461,8 +415,7 @@ function onUserRemove()
 
 var onUserEditPasswordComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         var newUrl = baseUrl + '/profile';
         window.location.assign(newUrl);
     }
@@ -471,8 +424,7 @@ var onUserEditPasswordComplete = function (data)
 function onUserEditPassword()
 {
     var form = document.getElementById('edit_user_password_form');
-    if ((form["psw"].value != form["psw1"].value) || (form["psw"].value == ''))
-    {
+    if ((form["psw"].value != form["psw1"].value) || (form["psw"].value == '')) {
         return;
     }
     var psw = form["psw"].value.trim();
@@ -488,8 +440,7 @@ function onUserEditPassword()
 function onUserChangePassword()
 {
     var form = document.getElementById('change_user_password_form');
-    if ((form["psw"].value != form["psw1"].value) || (form["psw"].value == ''))
-    {
+    if ((form["psw"].value != form["psw1"].value) || (form["psw"].value == '')) {
         return;
     }
     var psw = form["psw"].value.trim();
@@ -502,48 +453,6 @@ function onUserChangePassword()
         headers: {Authorization: encoded},
         data: JSON.stringify(data),
         complete: onUserEditPasswordComplete
-    });
-}
-
-var onUserEditDepartmentComplete = function (data)
-{
-    if (data.responseText === "true")
-    {
-        var newUrl = baseUrl + '/' + account + '/user';
-        window.location.assign(newUrl);
-    }
-}
-
-function onUserEditDepartment()
-{
-    var form = document.getElementById('edit_user_password_form');
-    var divs = form.querySelectorAll('div.children');
-    var data = {};
-    data.info = [];
-    for (var i = 0; i < divs.length; i++)
-    {
-        var selected = divs[i].querySelector('input[name="selected"]');
-        var is_recursive = divs[i].querySelector('input[name="is_recursive"]');
-        var authorization = divs[i].querySelector('input[name="authorization"]');
-        if (selected.checked === true)
-        {
-            var info = {};
-            info.userInfo = form['user_id'].value;
-            info.departmentInfo = selected.value;
-            info.authorization = authorization.value;
-            info.isRecursive = is_recursive.checked;
-            data.info.push(info);
-        }
-    }
-    data.authorizations = authorizations;
-    $.ajax({
-        method: "POST",
-        url: baseUrl + "/php/user_edit_department.php",
-        processData: false,
-        dataType: "json",
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        complete: onUserEditDepartmentComplete
     });
 }
 
@@ -565,13 +474,10 @@ function onUserEditProfile()
     });
 }
 
-/**
- *  DEPARTMENT
- */
+/**DEPARTMENT*/
 var onDepartmentAddComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         location.reload();
     }
 }
@@ -584,11 +490,9 @@ function onDepartmentAdd()
         data['name'] = form["name"].value;
     }
     data['description'] = form["description"].value;
-    if (form["parent"].value != 0)
-    {
+    if (form["parent"].value != 0) {
         data['parent'] = parseInt(form["parent"].value);
-    } else
-    {
+    } else {
         data['parent'] = null;
     }
 
@@ -605,8 +509,7 @@ function onDepartmentAdd()
 
 var onDepartmentEditComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         location.reload();
     }
 }
@@ -634,14 +537,10 @@ function onDepartmentEdit()
         complete: onDepartmentEditComplete
     });
 }
-
-/**
- *  QUIZ
- */
+/**QUIZ*/
 var onQuizAddComplete = function (data)
 {
-    if (data.responseText === "true")
-    {
+    if (data.responseText === "true") {
         location.reload();
     }
 }
@@ -677,9 +576,8 @@ function onAddQuiz()
     data['isEnabled'] = form["IS_ENABLED"].checked;
     data['isUserSeeGoodAnswer'] = form["IS_USER_SEE_GOOD_ANSWER"].checked;
     data['agencies'] = [];
-    for (var i = 0; i < form['agency_quiz'].length; i++)
-    {
-        if (form['agency_quiz'][i].checked == true) {
+    for (var i = 0; i < form['agency_quiz'].length; i++) {
+        if (form['agency_quiz'][i].checked === true) {
             data.agencies.push(form['agency_quiz'][i].value);
         }
     }
@@ -700,9 +598,7 @@ function onAddQuiz()
     });
 }
 
-/***
- * RESULTS
- */
+/**RESULTS*/
 function onUserResult()
 {
     var form = document.getElementById('quizResultsSelf');
@@ -717,9 +613,7 @@ function onUserResult()
         data: idQuiz,
         dataType: "text",
         success: function (return_data) {
-            //If cannot access database, we are in OFFLINE mode
-            if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR" || return_data == "DB_READ_ERROR")
-            {
+            if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR" || return_data == "DB_READ_ERROR") {
                 alert("ERREUR: lecture de la base de donn\351es impossible...");
                 return;
             }
@@ -729,8 +623,7 @@ function onUserResult()
             var data2 = return_data_array[2];
             CreateUserPDF(JSON.stringify(data0), JSON.stringify(data1), JSON.stringify(data2));
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown)
-        {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("ERREUR: lecture de la base de donn\351es impossible...");
         }
     });
@@ -740,58 +633,44 @@ function onUserResult()
  */
 function validateInput(inpt, a)
 {
-    if (inpt.type == 'checkbox' || inpt.type == 'hidden')
-    {
+    if (inpt.type == 'checkbox' || inpt.type == 'hidden') {
         return true;
     }
-    if (a === undefined)
-    {
+    if (a === undefined) {
         var a = inpt.name.toLowerCase();
     }
-    if (a.search('text') != -1)
-    {
-        if (inpt.value != '')
-        {
+    if (a.search('text') != -1) {
+        if (inpt.value != '') {
             return true;
-        } else
-        {
+        } else {
             return false;
         }
     }
-    if (a.search('phone') != -1)
-    {
+    if (a.search('phone') != -1) {
         var pattern = /^(\+1)? ?\(?[0-9]{3}\)? ?-?[0-9]{3} ?-?[0-9]{2} ?-?[0-9]{2}$/;
     }
-    if (a.search('password') != -1)
-    {
+    if (a.search('password') != -1) {
         var pattern = /^.{4,16}$/;
     }
-    if (a.search('name') != -1 || a.search('city') != -1 || a.search('province') != -1 || a.search('country') != -1 || a.search('company') != -1 || a.search('description') != -1)
-    {
+    if (a.search('name') != -1 || a.search('city') != -1 || a.search('province') != -1 || a.search('country') != -1 || a.search('company') != -1 || a.search('description') != -1) {
         var pattern = /^[a-zA-Z0-9ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ_-\s]{2,256}$/;
     }
-    if (a.search('email') != -1)
-    {
+    if (a.search('email') != -1) {
         var pattern = /^.{2,30}@.{2,30}\.[a-zA-Z]{2,6}$/;
     }
-    if (a.search('code') != -1)
-    {
+    if (a.search('code') != -1) {
         var pattern = /^[a-zA-Z0-9\s\- ]{2,64}$/;
     }
-    if (a.search('expires') != -1 || a.search('date') != -1)
-    {
+    if (a.search('expires') != -1 || a.search('date') != -1) {
         var pattern = /(^20(1[5-9]{1}|[2-9]{1}[0-9]{1})-(0[1-9]{1}|1[0-2]{1})-([0-2]{1}[0-9]{1}|3[0-1]{1})$|^[a-zA-Z]{3,10} ([0-2]{1}[0-9]{1}|3[0-1]{1}), 20(1[0-9]{1}|[2-9]{1}[0-9]{1}), [0-9]{1,2}:[0-9]{1,2} (pm|am)$)/;
     }
-    if (a.search('address') != -1)
-    {
+    if (a.search('address') != -1) {
         var pattern = /^.{0,256}$/;
     }
-    if (a.search('file') != -1)
-    {
+    if (a.search('file') != -1) {
         var pattern = /^[a-zA-Z0-9\\:\/]{0,256}.zip$/;
     }
-    if (a.search('number') != -1)
-    {
+    if (a.search('number') != -1) {
         var pattern = /^[0-9]{0,256}$/;
     }
     if (inpt.value.match(pattern)) {
@@ -812,7 +691,6 @@ function GetAllUsersFromServer()
         cache: false,
         dataType: "text",
         success: function (return_data) {
-            //If cannot access database
             if (return_data == "FALSE")
             {
                 alert("ERREUR: base de donn\351es innaccessible...");
@@ -841,7 +719,6 @@ function GetAllUsersAgencyFromServer()
         data: id.value,
         dataType: "text",
         success: function (return_data) {
-            //If cannot access database
             if (return_data == "FALSE")
             {
                 alert("ERREUR: base de donn\351es innaccessible...");
@@ -858,10 +735,7 @@ function GetAllUsersAgencyFromServer()
         }
     });
 }
-
-/**
- *  DATATABLE
- */
+/**DATATABLE*/
 function LoadDataTable()
 {
     tableUsers = $('#usersTable').DataTable(
@@ -883,8 +757,6 @@ function LoadDataTable()
                         text: 'S&eacute;lectionner tout',
                         className: 'black',
                         action: function () {
-                            //table.rows().select();
-                            //Reset selection first
                             table.rows().deselect();
                             table.rows({search: 'applied'}).select();
                         }

@@ -3,16 +3,14 @@
 (isset($view->is_corpo_admin) && $view->is_corpo_admin === TRUE) ||
 (isset($view->is_user) && $view->is_user === TRUE)
 }
-
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
 
-        <!--<title><?php echo "quiz TITLE";?>BP - QUIZ VALIDATION</title>-->
+        <title>{$data->quizData->pageTitle}</title>
 
         <link href="{$head->baseUrl}/css/animate.css" rel="stylesheet">
-
         <link href="{$head->baseUrl}/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
         <link href="{$head->baseUrl}/js/libs/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
@@ -58,7 +56,6 @@
 
             <div class='container-fluid' id='quiz'>
                 <div id="quiz-carousel" class="carousel slide" data-ride="carousel">
-                    <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         {assign var="secc" value=0}
                         {foreach from=$data->quizData->section item=article}
@@ -98,35 +95,22 @@
                     </a>
                     {assign var="timerQuiz" value=($smarty.session.quizStartTime + 1200) - $smarty.now}
                     <p class="timer"></p>
-
                     {literal}
                         <script>
-                            //var start = new Date({/literal}   {$smarty.session.quizStartTime}{literal} * 1000);
-                            //var finish = new Date(start.getTime() + parseInt({/literal}{$data->TIME_TO_COMPLETE} {literal} * 1000));
-
-                            var start = {/literal}{$smarty.session.quizStartTime}{literal};
-                            var finish = start + {/literal}{$data->TIME_TO_COMPLETE}{literal};
-                            var secondspasses = parseInt({/literal}{$smarty.now}{literal});
-                            var timerQuiz = function () {
-
-                                var testerTimeQuiz = true;
-                                
-                                var currentTime = (finish - (secondspasses));
-                                secondspasses += 1;
-                                var timer = {
-                                    'minutes': Math.floor(currentTime / 60),
-                                    'seconds': (Math.round(currentTime % 60) == 60) ? '00' : Math.round(currentTime % 60)
-                                }
-                                var addZero = (timer.seconds < 10) ? '0' : '';
-                                $('.timer').text('Il vous reste : ' + timer.minutes + " : " + addZero + timer.seconds);
-
-                                if (currentTime <= 0) {
-                                    testerTimeQuiz = false;
+                            var a = parseInt({/literal}{$smarty.now}{literal});
+                            var f = function () {
+                                var b = true;
+                                var c = ({/literal}{$smarty.session.quizStartTime}{literal} + {/literal}{$data->TIME_TO_COMPLETE}{literal} - a);
+                                a += 1;
+                                var d = {'e': Math.floor(c / 60), 'g': (Math.round(c % 60) == 60) ? '00' : Math.round(c % 60)}
+                                var h = (d.g < 10) ? '0' : '';
+                                $('.timer').text('Il vous reste : ' + d.e + " : " + h + d.g);
+                                if (c <= 0) {
+                                    b = false;
                                     nextForm(true);
                                 }
-
-                                if (testerTimeQuiz === true) {
-                                    setTimeout(timerQuiz, 1000);
+                                if (b === true) {
+                                    setTimeout(f, 1000);
                                 }
                             }
                         </script>
@@ -151,4 +135,3 @@
     </body>
 </html>
 {/if}
-

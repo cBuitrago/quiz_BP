@@ -15,4 +15,5 @@ class LoginPage extends AbstractPage {
         $this->view->title = "Login";
         $this->display("LoginPage.tpl");
     }
+
 }

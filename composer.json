@@ -2,20 +2,20 @@
     "name": "novaconcept/web-common",
     "description": "Description of project web-common.",
     "authors":
-    [
-        {
-            "name": "Massimo Canonico",
-            "email": "mcanonico@novaconcept.com"
-        }
-    ],
+            [
+                {
+                    "name": "Massimo Canonico",
+                    "email": "mcanonico@novaconcept.com"
+                }
+            ],
     "autoload":
-    {
-        "psr-4":
-        {
-            "com\\novaconcept\\utility\\": "com/novaconcept/utility/",
-            "com\\novaconcept\\page\\": "com/novaconcept/page/"
-        }
-    },
+            {
+                "psr-4":
+                        {
+                            "com\\novaconcept\\utility\\": "com/novaconcept/utility/",
+                            "com\\novaconcept\\page\\": "com/novaconcept/page/"
+                        }
+            },
     "require": {
         "smarty/smarty": "v3.1.27"
     }
