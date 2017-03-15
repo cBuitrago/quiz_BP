@@ -7,20 +7,16 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
-
         <title>{$data->quizData->pageTitle}</title>
-
         <link href="{$head->baseUrl}/css/animate.css" rel="stylesheet">
         <link href="{$head->baseUrl}/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
         <link href="{$head->baseUrl}/js/libs/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.css">
         <link href="{$head->baseUrl}/css/style.css" rel="stylesheet">
-
         <script src="{$head->baseUrl}/js/libs/jquery/jquery.js" type="text/javascript"></script>
         <script type="text/javascript" src="{$head->baseUrl}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
         <script src="{$head->baseUrl}/js/utils.js"></script>
-        <script src="{$head->baseUrl}/js/javascript/jquery.simple.timer.js"></script>
         <script src="{$head->baseUrl}/js/quiz.min.js"  type="text/javascript"></script>
         <script type="text/javascript"> baseUrl = "{$head->baseUrl}";</script>
         <script type="text/javascript">var account = {if isset($smarty.session.accountInfo)}{$smarty.session.accountInfo}{else}0{/if}</script>
@@ -53,7 +49,6 @@
             <h2 style='text-align:left;' >{$data->quizData->pageTitle}</h2>
         </div>
         <article class="container">
-
             <div class='container-fluid' id='quiz'>
                 <div id="quiz-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
