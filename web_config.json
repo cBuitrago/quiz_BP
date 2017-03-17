@@ -2,7 +2,7 @@
     "settings":
             {
                 "pageNamespace": "com\\novaconcept\\page\\",
-                "devMode": true,
+                "devMode": false,
                 "defaultLanguage": "fr",
                 "dev":
                         {
@@ -17,13 +17,13 @@
                         },
                 "prod":
                         {
-                            "host": "www.dev-novaconcept.com",
-                            "webDirectory": "/var/www/dev-novaconcept.com",
-                            "webPath": "/_CFCQuiz/admin_panel",
+                            "host": "www.bpquizenligne.com",
+                            "webDirectory": "/var/www/html",
+                            "webPath": "/qui_BP",
                             "privateKey": "0c783c017072650241fd8c04f1e78b1e",
                             "publicKey": "607352b7a2224366782ba5a66d21264f",
-                            "endpointCore": "dev-novaconcept.com/_CFCQuiz/api/core",
-                            "endpointAdmin": "ec2-52-37-94-27.us-west-2.compute.amazonaws.com/admin",
+                            "endpointCore": "www.bpquizenligne.com/quiz_core",
+                            "endpointAdmin": "www.bpquizenligne.com/quiz_BP",
                             "version": 1
                         }
             },
