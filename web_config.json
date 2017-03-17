@@ -19,7 +19,7 @@
                         {
                             "host": "www.bpquizenligne.com",
                             "webDirectory": "/var/www/html",
-                            "webPath": "/qui_BP",
+                            "webPath": "/quiz_BP",
                             "privateKey": "0c783c017072650241fd8c04f1e78b1e",
                             "publicKey": "607352b7a2224366782ba5a66d21264f",
                             "endpointCore": "www.bpquizenligne.com/quiz_core",
