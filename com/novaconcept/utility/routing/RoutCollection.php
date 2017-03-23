@@ -16,11 +16,13 @@ class RoutCollection {
         $this->pageNamespace = WebConfig::getData()->settings->pageNamespace;
 
         $this->host = WebConfig::getEnvironment()->host;
-        $hostPath = WebConfig::getEnvironment()->webPath;
-        $hostPath = ltrim($hostPath, "/");
-        $hostPath = rtrim($hostPath, "/");
-        $this->hostPath = explode("/", $hostPath);
-
+        
+        if (WebConfig::getEnvironment()->webPath != "") {
+            $hostPath = WebConfig::getEnvironment()->webPath;
+            $hostPath = ltrim($hostPath, "/");
+            $hostPath = rtrim($hostPath, "/");
+            $this->hostPath = explode("/", $hostPath);
+        }
         foreach (WebConfig::getData()->routs as $value) {
             $this->addRout(new Rout($value->requestMethod, $value->requestPath, $value->pageClass, $value->pageMethod));
         }
@@ -34,11 +36,24 @@ class RoutCollection {
         $request = new RequestUtil();
         $pathParams = $request->getPathParams();
         $pathParams = array_slice($pathParams, count($this->hostPath));
-
+    	
         foreach ($this->routs as $rout) {
             if ($rout->validatePattern($request->getRequestMethod(), $pathParams)) {
                 $newRouth = implode("/", $rout->getRequestPath());
                 $request->setPathParamByName($newRouth, $pathParams);
+                $class = $this->pageNamespace . $rout->getClass($request);
+                $method = $rout->getMethod();
+                $instance = new $class($request);
+                $instance->$method();
+                return;
+            }
+        }
+        
+        $pathParams = array();
+        foreach ($this->routs as $rout)
+        {
+            if ($rout->validatePattern($request->getRequestMethod(), $pathParams))
+            {
                 $class = $this->pageNamespace . $rout->getClass($request);
                 $method = $rout->getMethod();
                 $instance = new $class($request);

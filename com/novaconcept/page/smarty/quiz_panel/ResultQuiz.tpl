@@ -10,11 +10,11 @@
 
         <title>{$view->title}</title>
         <link href="{$head->baseUrl}/css/animate.css" rel="stylesheet">
-        <link href="{$head->baseUrl}/css/style.css" rel="stylesheet">
+        <link href="{$head->baseUrl}/css/style.min.css" rel="stylesheet">
         <link href="{$head->baseUrl}/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
         <link href="{$head->baseUrl}/js/libs/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.css">
+        <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.min.css">
         <script type="text/javascript"> baseUrl = "{$head->baseUrl}";</script>
         <script type="text/javascript">var account = {if isset($smarty.session.accountInfo)}{$smarty.session.accountInfo}{else}0{/if}</script>
         <script src="{$head->baseUrl}/js/libs/jquery/jquery.js" type="text/javascript"></script>
@@ -22,7 +22,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
         <script src="{$head->baseUrl}/js/javascript/jspdf_1_2_61.debug.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/javascript/jspdf.plugin.autotable_2_0_22.js" type="text/javascript"></script>
-        <script src="{$head->baseUrl}/js/utils.js"></script>
+        <script src="{$head->baseUrl}/js/utils.min.js"></script>
         <script src="{$head->baseUrl}/js/javascript/jquery.simple.timer.js"></script>
         <script src="{$head->baseUrl}/js/javascript/pdf_generator.min.js"  type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/main.min.js"  type="text/javascript"></script>
@@ -30,7 +30,7 @@
     <body>
         <nav class="head">
             <div class="image">
-                <img src="/quiz_panel/media/images/logoCompany.png">
+                <img src="{$head->baseUrl}/media/images/logoCompany.png">
             </div>
             <div class="dropdown">
                 <button class="dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

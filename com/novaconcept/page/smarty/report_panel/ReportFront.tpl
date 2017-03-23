@@ -23,7 +23,7 @@
         <script type="text/javascript" charset="utf8" src="{$head->baseUrl}/js/javascript/ellipsis.js"></script>
         <script type="text/javascript" charset="utf8" src="{$head->baseUrl}/js/javascript/dataTables.select.min.js"></script>
         <script type="text/javascript" charset="utf8" src="{$head->baseUrl}/js/javascript/dataTables.buttons.min.js"></script>
-        <script src="{$head->baseUrl}/js/utils.js" type="text/javascript"></script>
+        <script src="{$head->baseUrl}/js/utils.min.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/javascript/jspdf_1_2_61.debug.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/javascript/jspdf.plugin.autotable_2_0_22.js" type="text/javascript"></script>
         <script src="{$head->baseUrl}/js/javascript/pdf_generator.min.js"  type="text/javascript"></script>
@@ -33,6 +33,7 @@
         {include file="com/novaconcept/page/smarty/includes/NavTag.tpl" lang=$lang head=$head view=$view}
         <div class="load">
             <div>
+                <img src="{$head->baseUrl}/media/assets/loading.gif">
             </div>
         </div>
         <article class="container">
@@ -42,7 +43,7 @@
             <article class="center">
                 <div>
                     <ul class="nav nav-tabs" role="tablist">
-                        <p>Reports</p>
+                        <p>Rapports</p>
                     </ul>
                 </div>
                 <div class="tab-content">

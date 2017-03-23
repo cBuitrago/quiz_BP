@@ -25,7 +25,7 @@
                 <input type="text" name="TIME_TO_COMPLETE" id="TIME_TO_COMPLETE" >
             </div>
             <div class="single-input">
-                <label for="QUIZ_DATA">QUIZ_DATA</label>
+                <label for="QUIZ_DATA">Données du quiz</label>
                 <textarea name="QUIZ_DATA" id="QUIZ_DATA"></textarea>
             </div>
             <div class="single-input">

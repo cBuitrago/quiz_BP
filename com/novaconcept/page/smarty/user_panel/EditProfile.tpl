@@ -18,16 +18,16 @@
                             <h1>Éditer Information</h1>
                             <div class="double-input">
                                 <div>
-                                    <label for="firstName">{$lang->user->firstName}</label>    
+                                    <label for="firstName">Prénom</label>    
                                     <input type="text" name="firstName" id="firstName" value="{$smarty.session.userInfo->firstName}" >  
                                 </div>
                                 <div>
-                                    <label for="name">{$lang->user->name}</label>
+                                    <label for="name">Nom de famille</label>
                                     <input type="text" name="name" id="name" value="{$smarty.session.userInfo->name}" >
                                 </div>
                             </div>
                             <div>
-                                <label for="username">{$lang->user->username}</label>
+                                <label for="username">Nom d'utilisateur</label>
                                 <input type="text" name="username" id="username" value="{$smarty.session.userInfo->username}" >
                             </div>
                             <div class="double-input">
@@ -45,14 +45,14 @@
                     <hr>
                     <form id="edit_user_password_form">
                         <div class="containerEdit">
-                            <h1>CHANGER MOT DE PASSE</h1>
+                            <h1>Changer mot de passe</h1>
                             <div class="double-input">
                                 <div>
-                                    <label for="psw">{$lang->user->newPsw}</label>
+                                    <label for="psw">Nouveau mot de passe</label>
                                     <input type="text" name="psw" id="psw" >
                                 </div>
                                 <div>
-                                    <label for="psw1">{$lang->user->newPsw}</label>
+                                    <label for="psw1">Répéter mot de passe</label>
                                     <input type="text" name="psw1" id="psw1" >
                                 </div>
                             </div>

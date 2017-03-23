@@ -41,7 +41,7 @@ body {
 }
 body.login {
   background-color: #ffffff;
-  background-image: url('/quiz_panel/media/images/bg1.jpg');
+  background-image: url('../media/images/bg1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top left;

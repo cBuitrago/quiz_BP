@@ -3,7 +3,7 @@
     <body class="login">
         <nav>
             <div class="image">
-                <img src="/quiz_panel/media/images/logoCompany.png">
+                <img src="{$head->baseUrl}/media/images/logoCompany.png">
             </div>
             <div class="text-login">
                 <h1>Login</h1>

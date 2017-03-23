@@ -155,7 +155,9 @@ class RequestUtil {
         for ($i = 0; $i < $limit; $i++) {
             $name = rtrim($routNames[$i], "}");
             $name = ltrim($name, "{");
-            $this->paramsNames[$name] = $pathParams[$i];
+            if ( '' != $name){
+                $this->paramsNames[$name] = $pathParams[$i];
+            }
         }
     }
 

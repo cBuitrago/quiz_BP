@@ -2,14 +2,14 @@
     <div>
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#infoCorpo" aria-controls="home" role="tab" data-toggle="tab">Corpo Info</a>
+                <a href="#infoCorpo" aria-controls="home" role="tab" data-toggle="tab">Compagnie</a>
             </li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active bg-image" id="infoCorpo">
                 <div class="editItem">
-                    <h1>Éditer Corpo</h1>
-                    <p>Nom du corpo</p>
+                    <h1>Éditer Compagnie</h1>
+                    <p>Nom de la compagnie</p>
                     <form id="edit_department_form" method="post">
                         <input type="hidden"    name="id"           id="id"             value="{$data->corpo->id}">
                         <input type="hidden"    name="description"  id="description"    value="IS_CORPO">
@@ -28,7 +28,7 @@
                     </form>
                 </div>
                 <div class="addItem">
-                    <h1>Groupes du Corpo</h1>
+                    <h1>Groupes de la compagnie</h1>
                     <table class="">
                         <tbody>
                             {foreach from=$data->groups item=group}

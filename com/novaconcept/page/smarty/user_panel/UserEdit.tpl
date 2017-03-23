@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="single-input">
-            <label for="username">Username</label>
+            <label for="username">Nom d'utilisateur</label>
             <input type="text" name="username" id="username" value="{$data->username}">
         </div>
         <div class="double-input">
@@ -28,7 +28,7 @@
                        value="{$data->userAuthentication->attemptFail}">
             </div>
             <div>
-                <label for="created">Créé : </label>
+                <label for="created">Créé</label>
                 <input type="text" name="created" id="created" value="{date($lang->dateFormat, $data->createdOn)}" disabled="disabled">
             </div>
         </div>
@@ -41,7 +41,7 @@
             <div>
                 <input type="checkbox" name="authentication_force_change" id="authentication_is_active" 
                        value="authentication_force_change" {if $data->userAuthentication->isActive === TRUE}checked{/if}>
-                <label for="authentication_force_change">Forcer changement du psw</label>
+                <label for="authentication_force_change">Changer mot de passe</label>
             </div>
         </div>
         <div class="double-input">
@@ -59,7 +59,7 @@
 <hr>
 <form id="edit_user_permission_form">
     <div class="containerEdit">
-        <h1>{$lang->user->infoAuthorization}</h1>
+        <h1>Permissions de l'utilisateur</h1>
         <div>
             <input type="hidden" name="prevoius_permission" value="{$data->userAuthorization[0]->id}" >
             <input type="radio" id="corpo_permission" name="permission_list" value="14" 
@@ -67,7 +67,7 @@
                    {if (isset($view->is_group_admin) && $view->is_group_admin === TRUE) ||
                                     (isset($view->is_agency_admin) && $view->is_agency_admin === TRUE) ||
                                     (isset($view->is_user) && $view->is_user === TRUE) } disabled="disabled"{/if}>
-            <label for="corpo_permission"> Administrateur Corpo</label><br/>
+            <label for="corpo_permission"> Administrateur Compagnie</label><br/>
             <input type="radio" id="group_permission" name="permission_list" value="15" 
                    {if isset($data->userAuthorization[0]->userPermission) && $data->userAuthorization[0]->userPermission == "15" }checked{/if}
                    {if (isset($view->is_agency_admin) && $view->is_agency_admin === TRUE) ||
@@ -76,7 +76,7 @@
             <input type="radio" id="agency_permission" name="permission_list" value="16" 
                    {if isset($data->userAuthorization[0]->userPermission) && $data->userAuthorization[0]->userPermission == "16" }checked{/if}
                    {if (isset($view->is_user) && $view->is_user === TRUE) } disabled="disabled"{/if}>
-            <label for="agency_permission"> Administrateur Agency</label><br/>
+            <label for="agency_permission"> Administrateur Agence</label><br/>
             <input type="radio" id="user_permission" name="permission_list" value="17" 
                    {if isset($data->userAuthorization[0]->userPermission) && $data->userAuthorization[0]->userPermission == "17" }checked{/if}>
             <label for="user_permission"> Utilisateur</label><br/>
@@ -98,7 +98,7 @@
 <hr>
 <form id="edit_user_agency_form">
     <div class="containerEdit">
-        <h1>AGENCY</h1>
+        <h1>Agence</h1>
         <div>
             <input type="hidden" name="id" id="id" value="{$data->departmentAuthorization[0]->id}">
             {foreach from=$data->agencies item=department}
@@ -129,15 +129,15 @@
     <hr>
     <form id="change_user_password_form">
         <div class="containerEdit">
-            <h1>CHANGER MOT DE PASSE</h1>
+            <h1>Changer mot de passe</h1>
             <input type="hidden" name="id" id="id" value="{$data->id}">
             <div class="double-input">
                 <div>
-                    <label for="psw">{$lang->user->newPsw}</label>
+                    <label for="psw">Nouveau mot de passe</label>
                     <input type="text" name="psw" id="psw" >
                 </div>
                 <div>
-                    <label for="psw1">{$lang->user->newPsw}</label>
+                    <label for="psw1">Répéter mot de passe</label>
                     <input type="text" name="psw1" id="psw1" >
                 </div>
             </div>
@@ -156,7 +156,7 @@
     <hr>
     <form>
         <div class="containerEdit">
-            <button type="button" class="remove" id="onUserRemove">Effacer Utilisateur</button>
+            <button type="button" class="remove" id="onUserRemove">Effacer utilisateur</button>
         </div>
     </form>
     {/if}

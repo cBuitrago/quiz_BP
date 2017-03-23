@@ -152,10 +152,14 @@ div.load div {
   width: 100%;
   top: 147px;
   left: 104px;
-  background-image: url('../media/assets/loading.gif');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+  background-color: #ffffff;
+}
+div.load div img {
+  height: 100px;
+  width: 150px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
 }
 .hidden-load {
   visibility: hidden !important;

@@ -124,8 +124,9 @@ class AbstractPage {
         $lang = json_decode(file_get_contents("data/localization/" . $lang . ".json"));
         $lang->dateFormat = "F j, Y, g:i a";
         $head = new stdClass();
-        $head->baseUrl = "http://" . WebConfig::getEnvironment()->host . WebConfig::getEnvironment()->webPath;
-        $head->host = "http://" . WebConfig::getEnvironment()->host;
+        $head->path = WebConfig::getEnvironment()->host . WebConfig::getEnvironment()->webPath;
+        $head->baseUrl = WebConfig::getEnvironment()->webPath;
+        $head->host = WebConfig::getEnvironment()->host;
         $this->smarty->assign("lang", $lang);
         $this->smarty->assign("head", $head);
         $this->smarty->assign("view", $this->view);

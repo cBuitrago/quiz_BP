@@ -2,7 +2,7 @@
     "settings":
             {
                 "pageNamespace": "com\\novaconcept\\page\\",
-                "devMode": false,
+                "devMode": true,
                 "defaultLanguage": "fr",
                 "dev":
                         {
@@ -19,11 +19,11 @@
                         {
                             "host": "www.bpquizenligne.com",
                             "webDirectory": "/var/www/html",
-                            "webPath": "/quiz_BP",
+                            "webPath": "",
                             "privateKey": "0c783c017072650241fd8c04f1e78b1e",
                             "publicKey": "607352b7a2224366782ba5a66d21264f",
                             "endpointCore": "www.bpquizenligne.com/quiz_core",
-                            "endpointAdmin": "www.bpquizenligne.com/quiz_BP",
+                            "endpointAdmin": "www.bpquizenligne.com/",
                             "version": 1
                         }
             },
@@ -33,19 +33,11 @@
                     "requestMethod": "GET",
                     "requestPath":
                             [
-                                "/login"
+                                "",
+                                "login"
                             ],
                     "pageClass": "LoginPage",
                     "pageMethod": "getLogin"
-                },
-                {
-                    "requestMethod": "GET",
-                    "requestPath":
-                            [
-                                "/admin/{id}"
-                            ],
-                    "pageClass": "AdminPanel",
-                    "pageMethod": "selectAccount"
                 },
                 {
                     "requestMethod": "GET",

@@ -156,7 +156,8 @@ var onLoginComplete = function (data)
         var url = window.location.pathname.split("/");
         if (url[url.length - 1] == 'login'
                 || url[url.length - 1] == 'connexion'
-                || url[url.length - 1] == 'logout') {
+                || url[url.length - 1] == 'logout'
+                || url[url.length - 1] == '') {
             var newUrl = baseUrl + '/profile';
             window.location.assign(newUrl);
         } else {
@@ -166,7 +167,8 @@ var onLoginComplete = function (data)
         var url = window.location.pathname.split("/");
         if (url[url.length - 1] == 'login'
                 || url[url.length - 1] == 'connexion'
-                || url[url.length - 1] == 'logout') {
+                || url[url.length - 1] == 'logout'
+                || url[url.length - 1] == '') {
             var newUrl = baseUrl + '/change';
             window.location.assign(newUrl);
         } else {
@@ -452,7 +454,7 @@ function onUserChangePassword()
         url: baseUrl + "/php/user_change_password_ajax.php",
         headers: {Authorization: encoded},
         data: JSON.stringify(data),
-        complete: onUserEditPasswordComplete
+        complete: onUserEditComplete
     });
 }
 

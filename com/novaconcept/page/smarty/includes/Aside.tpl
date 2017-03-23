@@ -13,7 +13,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/corpo" {if (isset($view->is_corpo_active) ) }class="active"{/if}>
             <span class="nv-glyphicon nv-glyphicon-corpo"></span><br>
-            <span class="text">Corporate</span>
+            <span class="text">Compagnie</span>
         </a>
     </li>
     {/if}
@@ -61,7 +61,7 @@
     <li>
         <a href="{$head->baseUrl}/{$smarty.session.accountInfo}/report" {if (isset($view->is_report_active) ) }class="active"{/if}>
             <span class="nv-glyphicon nv-glyphicon-report"></span><br>
-            <span class="text">Reports</span>
+            <span class="text">Rapports</span>
         </a>
     </li>
     {/if}
