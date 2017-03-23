@@ -36,7 +36,7 @@
             <div>
                 <input type="checkbox" name="authentication_is_active" id="authentication_is_active" 
                        value="authentication_is_active" {if $data->userAuthentication->isActive === TRUE}checked{/if}>
-                <label for="authentication_is_active">{$lang->user->isActive}</label>
+                <label for="authentication_is_active">Usager actif ?</label>
             </div>
             <div>
                 <input type="checkbox" name="authentication_force_change" id="authentication_is_active" 
