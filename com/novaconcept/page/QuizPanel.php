@@ -10,7 +10,7 @@ class QuizPanel extends AbstractPage {
     public function front() {
         $this->view->title = "Quiz";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
         if (!$this->authorize(["is_user"]) &&
@@ -65,7 +65,7 @@ class QuizPanel extends AbstractPage {
 
     public function quiz() {
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
         if (!$this->authorize(["is_user"]) &&
@@ -105,7 +105,7 @@ class QuizPanel extends AbstractPage {
     public function addQuiz() {
         $this->view->title = "Quiz";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
         if (!$this->authorize(["is_corpo_admin"]) ||
@@ -136,7 +136,7 @@ class QuizPanel extends AbstractPage {
     public function resultsQuiz() {
         $this->view->title = "Results";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
 
@@ -178,7 +178,7 @@ class QuizPanel extends AbstractPage {
     public function quizEdit() {
         $this->view->title = "Quiz";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
 
@@ -214,7 +214,7 @@ class QuizPanel extends AbstractPage {
             header("Location: ../");
             return;
         }
-
+        $this->data->QUIZ_DATA = json_decode($this->data->QUIZ_DATA);
         $this->builder->reset();
         $this->builder->setEndpoint(WebConfig::getEnvironment()->endpointCore)
                 ->addPathParam(WebConfig::getEnvironment()->version)
@@ -225,7 +225,22 @@ class QuizPanel extends AbstractPage {
                 ->addPathParam('agencies')
                 ->setHttpMethod(RestBuilder::GET)
                 ->excecute();
-
+        
+        $answersScore = []; 
+        $sectionsArray = explode("|",  $this->data->ANSWER_JSON );
+        for($i = 0; $i < count($sectionsArray); $i++){
+            $questionArray = explode(";",  $sectionsArray[$i]);
+            for($j = 0; $j < count($questionArray); $j++){
+                $answerArray = explode(",",  $questionArray[$j]);
+                for($k = 0; $k < count($answerArray); $k++){
+                    $answersScore[$i][$j][$k] = $answerArray[$k]; 
+                }
+            }
+        }
+        $this->data->ANSWER_JSON = $answersScore;
+        $this->data->ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        
+        
         $this->data->agencies = json_decode($this->builder->getResponse());
         if ($this->builder->getResponseInfo()["http_code"] != 200) {
             $this->display("error/ForbiddenError.tpl");

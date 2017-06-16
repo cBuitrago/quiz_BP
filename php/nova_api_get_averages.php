@@ -13,8 +13,9 @@ $restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore . '/' . $we
         ->setKeys($webConfig::getEnvironment()->privateKey, $webConfig::getEnvironment()->publicKey)
         ->setPostData($dataArray)
         ->excecute();
-
 if ($restBuilder->getResponseInfo()["http_code"] == 200) {
     echo $restBuilder->getResponse();
+} else {
+    echo 'false';
 }
     

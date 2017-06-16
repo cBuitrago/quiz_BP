@@ -10,7 +10,7 @@ class ReportPanel extends AbstractPage {
     public function pdfGenerator() {
         $this->view->title = "Reports";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
 

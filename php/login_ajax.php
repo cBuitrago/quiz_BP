@@ -18,7 +18,7 @@ $restBuilder = new RestBuilder();
 $restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore . '/' . $webConfig::getEnvironment()->version . "/user_authentication/token")
         ->setHttpMethod(RestBuilder::POST)
         ->setKeys($webConfig::getEnvironment()->privateKey, $webConfig::getEnvironment()->publicKey)
-        ->addQueryParam("includes", "user_authentication,user_authorization_permission,user_permission,account_info,department_info")
+        ->addQueryParam("includes", "user_authentication,user_authorization_permission,user_permission,account_info,department_info,account_app_settings")
         ->setPostData($postData)
         ->excecute();
 
@@ -37,6 +37,12 @@ if ($restBuilder->getResponseInfo()["http_code"] == 201) {
     if (count($response->userInfo->accountInfo) === 1) {
         $_SESSION["accountInfo"] = $response->userInfo->accountInfo[0]->id;
         $_SESSION["accountName"] = $response->userInfo->accountInfo[0]->name;
+        $_SESSION["accountLogo"] = $response->userInfo->accountInfo[0]->settings->logo;
+        $_SESSION["accountAside"] = $response->userInfo->accountInfo[0]->settings->colors->aside;
+        $_SESSION["accountNav"] = $response->userInfo->accountInfo[0]->settings->colors->nav;
+        $_SESSION["accountPrincipal"] = $response->userInfo->accountInfo[0]->settings->colors->principal;
+        $_SESSION["accountBtnCancel"] = $response->userInfo->accountInfo[0]->settings->colors->btn_cancel;
+        $_SESSION["accountNav2"] = $response->userInfo->accountInfo[0]->settings->colors->nav2;
     }
 
     if ($response->userInfo->userAuthentication->forceChange !== NULL && $response->userInfo->userAuthentication->forceChange === TRUE) {

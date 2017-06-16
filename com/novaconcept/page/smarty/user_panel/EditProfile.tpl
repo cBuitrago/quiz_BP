@@ -35,7 +35,7 @@
                                         data-toggle="tooltip" data-placement="left" title="">
                                     Annuler
                                 </button>
-                                <button type="button" class="edit" id="onUserEditProfile" 
+                                <button type="button" class="nv-btn-default nv-principal-color" id="onUserEditProfile" 
                                         data-toggle="tooltip" data-placement="left" title="editer info de l'utilisateur">
                                     Éditer
                                 </button>
@@ -61,7 +61,7 @@
                                         data-toggle="tooltip" data-placement="left" title="">
                                     Annuler
                                 </button>
-                                <button type="button" class="edit" id="onUserEditPassword"
+                                <button type="button" class="nv-btn-default nv-principal-color" id="onUserEditPassword"
                                         data-toggle="tooltip" data-placement="left" title="changer mot de passe">
                                     Éditer
                                 </button>

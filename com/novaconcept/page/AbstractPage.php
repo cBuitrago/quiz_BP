@@ -54,7 +54,8 @@ class AbstractPage {
         $this->smarty = new Smarty();
         $this->data = new stdClass();
         $this->view = new stdClass();
-
+        $this->view->rout = (!empty($_SESSION["accountName"])) ? $_SESSION["accountName"] : "";
+        
         $smartyDirectory = WebConfig::getEnvironment()->webDirectory . WebConfig::getEnvironment()->webPath . "/com/novaconcept/page/smarty";
         $this->smarty->force_compile = WebConfig::getData()->settings->devMode;
         $this->smarty->setCompileDir($smartyDirectory . "/compile");

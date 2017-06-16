@@ -26,7 +26,10 @@
             </div>
             <div class="single-input">
                 <label for="QUIZ_DATA">Données du quiz</label>
-                <textarea name="QUIZ_DATA" id="QUIZ_DATA"></textarea>
+                <!--<textarea name="QUIZ_DATA" id="QUIZ_DATA"></textarea>-->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#startDtaQuiz">
+                    Commencer
+                </button>
             </div>
             <div class="single-input">
                 <input type="checkbox" name="LOCKED_ON_COMPLETION" id="LOCKED_ON_COMPLETION" >
@@ -62,10 +65,43 @@
                 {/foreach}
             </div>
             <div>
-                <button type="button" class="edit" id="onAddQuiz" 
+                <button type="button" class="nv-btn-default nv-principal-color" id="onAddQuiz" 
                         data-toggle="tooltip" data-placement="left" title="ajouter quiz">
                     Ajouter Quiz
                 </button>
             </div>
+        </div>
     </form>
+    <div class="modal fade" id="startDtaQuiz" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Données du quiz</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="single-input">
+                        <label for="QUIZ_TITLE">Titre du quiz</label>
+                        <input type="text" name="QUIZ_TITLE" id="QUIZ_ID" >
+                    </div>
+                    <div id="cp3" class="input-group colorpicker-component">
+                        <input type="text" value="#00AABB" class="form-control" />
+                        <span class="input-group-addon"><i></i></span>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#cp3').colorpicker({
+                                color: '#AA3399',
+                                format: 'rgb'
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {/if}

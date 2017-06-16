@@ -36,7 +36,6 @@ a{
 a:hover{
     color:black;
 }
-
 a:visited{
     color:black;
 }
@@ -50,6 +49,7 @@ a:active {
     position:fixed;
     z-index:0;
     left: 0px;
+    background-color: #0f2869;
 }
 #quiz{
     padding-left: 50px;
@@ -62,6 +62,12 @@ a:active {
         bottom: 0;
         z-index: 2030;
         color: #002395;
+    }
+    
+    div.item.active{
+        div.row{
+            overflow: auto;
+        }
     }
 }
 .hidden{

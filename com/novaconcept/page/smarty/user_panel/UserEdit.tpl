@@ -49,7 +49,7 @@
                     data-toggle="tooltip" data-placement="left" title="">
                 Annuler
             </button>
-            <button type="button" class="edit" id="onUserEdit" 
+            <button type="button" class="nv-btn-default nv-principal-color" id="onUserEdit" 
                     data-toggle="tooltip" data-placement="left" title="editer info de l'utilisateur">
                 Éditer
             </button>
@@ -86,7 +86,7 @@
                     data-toggle="tooltip" data-placement="left" title="">
                 Annuler
             </button>
-            <button type="button" class="edit" id="onUserEditPermission" 
+            <button type="button" class="nv-btn-default nv-principal-color" id="onUserEditPermission" 
                     data-toggle="tooltip" data-placement="left" title="changer permission de l'utilisateur">
                 Éditer
             </button>
@@ -112,7 +112,7 @@
                     data-toggle="tooltip" data-placement="left" title="">
                 Annuler
             </button>
-            <button type="button" class="edit" id="onUserEditAgency"
+            <button type="button" class="nv-btn-default nv-principal-color" id="onUserEditAgency"
                     data-toggle="tooltip" data-placement="left" title="changer l'agency de l'utilisateur">
                 Éditer
             </button>
@@ -146,7 +146,7 @@
                         data-toggle="tooltip" data-placement="left" title="">
                     Annuler
                 </button>
-                <button type="button" class="edit" id="onUserChangePassword"
+                <button type="button" class="nv-btn-default nv-principal-color" id="onUserChangePassword"
                         data-toggle="tooltip" data-placement="left" title="changer mot de passe de l'utilisateur">
                     Éditer
                 </button>

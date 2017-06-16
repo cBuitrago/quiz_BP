@@ -18,7 +18,7 @@
         {foreach from=$data item=user}
             <tr>
                 <td>{$user->email}</label></td>
-                <td><a class="edit" href="{$head->baseUrl}/{$smarty.session.accountInfo}/user/{$user->id}/edit">{$lang->user->edit}</a></td>
+                <td><a class="nv-btn-default nv-principal-color" href="{$head->baseUrl}/{$smarty.session.accountInfo}/user/{$user->id}/edit">{$lang->user->edit}</a></td>
                     {if isset($view->manage_departments) && $view->manage_departments === TRUE}
                     <td><a class="get" href="{$head->baseUrl}/{$smarty.session.accountInfo}/user/{$user->id}/edit/department">{$lang->user->departments}</a></td>
                     {/if}

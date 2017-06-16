@@ -14,12 +14,10 @@ $(document).ready(function () {
         nextForm(false);
     });
     totalSections = document.getElementById('quiz-carousel').querySelectorAll('.item').length;
-
-    f();
+    if (timer_start){ f(); }
 });
 
-function hiddenIndicators()
-{
+function hiddenIndicators() {
     $("#previousSection").removeClass('hidden');
     $("#nextSection").removeClass('hidden');
 
@@ -30,13 +28,11 @@ function hiddenIndicators()
         $("#nextSection").addClass('hidden');
 }
 
-function previousForm()
-{
+function previousForm() {
     $("a.left").click();
 }
 
-function nextForm(failed)
-{
+function nextForm(failed) {
     var failed = (typeof failed === 'undefined') ? false : failed;
     counter = $("#quiz-carousel .item.active").attr('data-slide-value');
     var tester = true;
@@ -63,8 +59,7 @@ function nextForm(failed)
     }
 }
 
-var onQuizResultsAddComplete = function (data)
-{
+var onQuizResultsAddComplete = function (data) {
     if (data.responseText === "false") {
         var newUrl = baseUrl + '/' + account + '/' + quiz;
         window.location.assign(newUrl);

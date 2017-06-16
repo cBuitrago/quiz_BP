@@ -248,6 +248,23 @@ chartjs_config_comparison =
 })(jsPDF.API);
 
 (function (API) {
+    API.PrintPageFooterStatistic = function (cur_page, nb_total_pages, record_nb, quiz_name, item_name) {
+        this.setLineWidth(0.1);
+        this.setDrawColor(0, 0, 0);
+        this.line(20, this.internal.pageSize.height - 32, this.internal.pageSize.width - 20, this.internal.pageSize.height - 32);
+        this.setFontSize(8);
+        this.setFontType("normal");
+        //	            this.text(510, 825, "Page " + cur_page + " de " + nb_total_pages);
+        this.textEx("Page " + cur_page + " de " + nb_total_pages, this.internal.pageSize.width - 20, this.internal.pageSize.height - 17, 'right', 'bottom');
+        var date = getCurrentDate();
+        if (record_nb != -1) //If user info provided
+        {
+            this.text(20, this.internal.pageSize.height - 17, quiz_name + " / " + item_name + " ( " + date + " ) ");
+        }
+    }
+})(jsPDF.API);
+
+(function (API) {
     API.PrintPageHeader = function (cur_title, cur_title_2) {
         this.setLineWidth(0.1);
         this.setDrawColor(0, 0, 0);
@@ -305,9 +322,24 @@ var splitRegex = /\r\n|\r|\n/g;
     }
 })(jsPDF.API);
 
+function getCurrentDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
 
-function CreateReportPDF(json_data, quiz_data)
-{
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = dd + '/' + mm + '/' + yyyy;
+
+    return today;
+}
+
+function CreateReportPDF(json_data, quiz_data) {
     var doc = new jsPDF('l', 'pt', [612, 792]);
     doc.setFont("helvetica");
     var startGraphX = (doc.internal.pageSize.width / 2);
@@ -316,8 +348,7 @@ function CreateReportPDF(json_data, quiz_data)
 
     var data = [];
     //Prepare data
-    for (var i = 0; i < json_data.length; i++)
-    {
+    for (var i = 0; i < json_data.length; i++) {
         data[i] = [];
         data[i][0] = json_data[i][DB_QUIZ_RESULTS_CORPORATE_NAME];
         data[i][1] = json_data[i][DB_QUIZ_RESULTS_GROUP_NAME];
@@ -330,8 +361,7 @@ function CreateReportPDF(json_data, quiz_data)
 
         //Calculate global score
         var score = "N/A";
-        if (json_data[i][DB_QUIZ_RESULTS_QUIZ_SCORE] != "")
-        {
+        if (json_data[i][DB_QUIZ_RESULTS_QUIZ_SCORE] != "") {
             var user_scores = GetUserScorePerSection(json_data[i][DB_QUIZ_RESULTS_QUIZ_SCORE]);
             var global_score = GetUserGlobalScore(user_scores);
             score = parseInt(global_score) + " %";
@@ -355,6 +385,8 @@ function CreateReportPDF(json_data, quiz_data)
     }
 
     doc.save("User_Participation.pdf");
+    $('.load').addClass("hidden-load");
+    $('body').removeClass("loading");
 }
 
 function CreatePDF(json_data, options_data, quiz_data) {
@@ -377,17 +409,15 @@ function CreatePDF(json_data, options_data, quiz_data) {
         data: JSON.stringify({data: json_data, data2: OPTION_COMPARE_TO}),
         dataType: "text",
         success: function (return_data) {
-
             //If cannot access database, we are in OFFLINE mode
             if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR" || return_data == "DB_READ_ERROR") {
-                alert("ERREUR: lecture de la base de donn\351es impossible...");
+                alert("ERREUR: lecture de la base de données impossible...");
                 return;
             }
             PrePDFCreation(json_data, options_data, quiz_data, return_data);
-
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("ERREUR: lecture de la base de donn\351es impossible...");
+            alert("ERREUR: lecture de la base de données impossible...");
         }
     });
 }
@@ -405,38 +435,31 @@ function CreateUserPDF(json_data, options_data, quiz_data) {
         data: JSON.stringify({data: json_data, data2: OPTION_COMPARE_TO}),
         dataType: "text",
         success: function (return_data) {
-
-            //If cannot access database, we are in OFFLINE mode
-            if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR" || return_data == "DB_READ_ERROR") {
-                alert("ERREUR: lecture de la base de donn\351es impossible...");
+            if (return_data == "false") {
+                alert("ERREUR: lecture de la base de données impossible...");
                 return;
             }
             PrePDFCreation(json_data, options_data, quiz_data, return_data);
-
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("ERREUR: lecture de la base de donn\351es impossible...");
+            alert("ERREUR: lecture de la base de données impossible...");
         }
     });
 }
 
-function GetSectionTitlesFromQuiz(quiz_array)
-{
+function GetSectionTitlesFromQuiz(quiz_array) {
     var quiz_sections = new Array();
-    for (var i = 0; i < quiz_array.section.length; i++)
-    {
+    for (var i = 0; i < quiz_array.section.length; i++) {
         quiz_sections.push(quiz_array.section[i].sectionTitle);
     }
     return quiz_sections;
 }
 
-function GetUserScorePerSection(user_scores_array)
-{
+function GetUserScorePerSection(user_scores_array) {
     var user_final_scores = new Array();
 
     var scores_string = user_scores_array.split(',');
-    for (var i = 0; i < scores_string.length; i++)
-    {
+    for (var i = 0; i < scores_string.length; i++) {
         var section_score = scores_string[i].substring(scores_string[i].lastIndexOf("r") + 1, scores_string[i].lastIndexOf("m"));
         var section_max_score = scores_string[i].substring(scores_string[i].lastIndexOf("m") + 1);
         //Score is 0 if section score is smaller than 0
@@ -446,26 +469,37 @@ function GetUserScorePerSection(user_scores_array)
     return user_final_scores;
 }
 
-function GetUserGlobalScore(scores_array)
-{
+function GetScorePerSection(scores_array) {
+    var final_scores = new Array();
+
+    //var scores_string = user_scores_array.split(',');
+    for (var i = 0; i < scores_array.length; i++) {
+        var section_score = Number((scores_array[i][0] < 0 ? 0 : scores_array[i][0]));
+        var section_max_score = Number(scores_array[i][1]);
+        if (section_score > section_max_score || section_max_score == 0) {
+            var final_score = 0;
+        } else {
+            var final_score = (section_score / section_max_score) * 100.0;
+        }
+        final_scores.push(final_score);
+    }
+    return final_scores;
+}
+
+function GetUserGlobalScore(scores_array) {
     var current_total = 0;
-    for (var i = 0; i < scores_array.length; i++)
-    {
+    for (var i = 0; i < scores_array.length; i++) {
         current_total += scores_array[i];
     }
     return current_total / scores_array.length;
 }
 
-function FindUserFirstResults(user_id, quiz_id, averages_array)
-{
+function FindUserFirstResults(user_id, quiz_id, averages_array) {
     //Find the quiz group first
     var users_quiz_group = -1;
     var current_quiz_order = -1;
-    for (var i = 0; i < averages_array.length; i++)
-    {
-        if (averages_array[i].USER_ID == user_id && averages_array[i].QUIZ_ID == quiz_id)
-        {
-
+    for (var i = 0; i < averages_array.length; i++) {
+        if (averages_array[i].USER_ID == user_id && averages_array[i].QUIZ_ID == quiz_id) {
             users_quiz_group = averages_array[i].QUIZ_GROUP_ID;
             current_quiz_order = averages_array[i].QUIZ_ORDER
         }
@@ -473,34 +507,28 @@ function FindUserFirstResults(user_id, quiz_id, averages_array)
 
     var first_result = new Array();
     //if result is already the first one or not found (for some reason)
-    if (current_quiz_order == 1 || current_quiz_order == -1)
-    {
+    if (current_quiz_order == 1 || current_quiz_order == -1) {
         return first_result; //empty array
     }
     //else we find first result and return it (if any)
-    for (var i = 0; i < averages_array.length; i++)
-    {
-        if (averages_array[i].USER_ID == user_id && averages_array[i].QUIZ_GROUP_ID == users_quiz_group && averages_array[i].QUIZ_ORDER == 1)
-        {
+    for (var i = 0; i < averages_array.length; i++) {
+        if (averages_array[i].USER_ID == user_id && averages_array[i].QUIZ_GROUP_ID == users_quiz_group && averages_array[i].QUIZ_ORDER == 1) {
             first_result = averages_array[i];
         }
     }
     return first_result; //can be empty if not found
 }
 
-function GetAveragesDataFromAveragesArray(averages_array)
-{
+function GetAveragesDataFromAveragesArray(averages_array) {
     var user_final_scores = new Array();
-    for (var i = 0; i < averages_array.length; i++)
-    {
+    for (var i = 0; i < averages_array.length; i++) {
         var final_score = (Number((averages_array[i][0] < 0 ? 0 : averages_array[i][0])) / Number(averages_array[i][1])) * 100.0;
         user_final_scores.push(final_score);
     }
     return user_final_scores;
 }
 
-function GetCurrentCompleteDate()
-{
+function GetCurrentCompleteDate() {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
@@ -516,8 +544,7 @@ function GetCurrentCompleteDate()
     return today;
 }
 
-function CreateStar(pdf_ref, x_pos, y_pos, spikes, radius, linewidth)
-{
+function CreateStar(pdf_ref, x_pos, y_pos, spikes, radius, linewidth) {
     var rot = Math.PI / 2 * 3;
     var x1 = x_pos;
     var y1 = y_pos;
@@ -545,14 +572,10 @@ function CreateStar(pdf_ref, x_pos, y_pos, spikes, radius, linewidth)
     pdf_ref.circle(x_pos, y_pos, radius);
 }
 
-
-function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
-{
+function PrePDFCreation(json_data, options_data, quiz_data, averages_data) {
     //Reset page counter
     PDF_Nb_Pages = 1;
     PDF_Nb_Pages_Per_User = [];
-
-
 
     //FONT with signs: zapfdingbats
     var jspdf_doc = new jsPDF('p', 'pt', 'a4');
@@ -580,11 +603,10 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
     });
 
     //*** DEBUT BOUCLE POUR TOUS LES RECORDS SELECTIONNES
-    for (var i = 0; i < json_data_array.length; i++)
-    {
+    for (var i = 0; i < json_data_array.length; i++) {
         progress_cur_element = i;
         //Update user with creation progress (taken care of in the timeoutLoop() function)
-        progress_message = "Cr\351ation donn\351e #" + i + " de " + json_data_array.length + " ...";
+        progress_message = "Création donnée #" + i + " de " + json_data_array.length + " ...";
 
         //Find quiz_data_array correct QUIZ ID from json_data
         var found_quiz = -1;
@@ -597,7 +619,7 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
 
         //Error if could not find QUIZ ID data
         if (found_quiz == -1) {
-            alert("ERREUR: impossible de trouver les donn\351es du quiz: " + json_data_array[i][DB_QUIZ_RESULTS_QUIZ_ID]);
+            alert("ERREUR: impossible de trouver les données du quiz: " + json_data_array[i][DB_QUIZ_RESULTS_QUIZ_ID]);
             return;
         }
         JSON_content = JSON.parse(quiz_data_array[found_quiz][DB_QUIZ_DATA_QUIZ_DATA]);
@@ -612,26 +634,22 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
         var comparison_label = "";
 
         //Prepare COMPARE TO if needed
+        console.log(averages_data);
         var averages_array = JSON.parse(averages_data);
-        if (OPTION_COMPARE_TO == "none")
-        {
+        if (OPTION_COMPARE_TO == "none") {
             //Check quiz order of current record (find it in the averages array)
             comparison_results = FindUserFirstResults(json_data_array[i][DB_QUIZ_RESULTS_USER_ID], json_data_array[i][DB_QUIZ_RESULTS_QUIZ_ID], averages_array);
-            if (typeof comparison_results.USER_ID !== "undefined")
-            {
+            if (typeof comparison_results.USER_ID !== "undefined") {
                 comparaison_data = GetUserScorePerSection(comparison_results.QUIZ_SCORE);
                 comparaison_global_score = GetUserGlobalScore(comparaison_data);
                 Comparison_Title = "Comparaison '" + json_data_array[i][DB_QUIZ_RESULTS_QUIZ_NAME] + "' avec '" + comparison_results.QUIZ_NAME + "'";
                 comparison_label = comparison_results.QUIZ_NAME;
             }
-        } else if (OPTION_COMPARE_TO == "CORPORATES")
-        {
+        } else if (OPTION_COMPARE_TO == "CORPORATES") {
             var corpo_averages = new Array();
             //Find the user's corporate averages record
-            for (var ii = 0; ii < averages_array.length; ii++)
-            {
-                if ((averages_array[ii][1] == json_data_array[ii][DB_QUIZ_RESULTS_QUIZ_ID]) && (averages_array[ii][2] == json_data_array[ii][DB_QUIZ_RESULTS_CORPORATE_ID]))
-                {
+            for (var ii = 0; ii < averages_array.length; ii++) {
+                if ((averages_array[ii][1] == json_data_array[i][DB_QUIZ_RESULTS_QUIZ_ID]) && (averages_array[ii][2] == json_data_array[i][DB_QUIZ_RESULTS_CORPORATE_ID])) {
                     corpo_averages = averages_array[ii][3];
                 }
             }
@@ -643,7 +661,7 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
             var group_averages = new Array();
             //Find the user's corporate averages record
             for (var ii = 0; ii < averages_array.length; ii++) {
-                if ((averages_array[ii][1] == json_data_array[ii][DB_QUIZ_RESULTS_QUIZ_ID]) && (averages_array[ii][2] == json_data_array[ii][DB_QUIZ_RESULTS_GROUP_ID])) {
+                if ((averages_array[ii][1] == json_data_array[i][DB_QUIZ_RESULTS_QUIZ_ID]) && (averages_array[ii][2] == json_data_array[i][DB_QUIZ_RESULTS_GROUP_ID])) {
                     group_averages = averages_array[ii][3];
                 }
             }
@@ -655,7 +673,7 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
             var agency_averages = new Array();
             //Find the user's corporate averages record
             for (var ii = 0; ii < averages_array.length; ii++) {
-                if ((averages_array[ii][1] == json_data_array[ii][DB_QUIZ_RESULTS_QUIZ_ID]) && (averages_array[ii][2] == json_data_array[ii][DB_QUIZ_RESULTS_AGENCY_ID])) {
+                if ((averages_array[ii][1] == json_data_array[i][DB_QUIZ_RESULTS_QUIZ_ID]) && (averages_array[ii][2] == json_data_array[i][DB_QUIZ_RESULTS_AGENCY_ID])) {
                     agency_averages = averages_array[ii][3];
                 }
             }
@@ -670,8 +688,7 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
         Chart.defaults.global.defaultFontSize = 16;
 
         //Add new dataset if a comparison title has been set
-        if (Comparison_Title != "")
-        {
+        if (Comparison_Title != "") {
             chartjs_config_comparison.data.datasets[0].data = user_scores;
             chartjs_config_comparison.data.datasets[0].label = json_data_array[i][DB_QUIZ_RESULTS_QUIZ_NAME];
             chartjs_config_comparison.data.labels = quiz_sectionNames;
@@ -682,26 +699,21 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
             chartjs_config_comparison.options.title.text = Comparison_Title;
 
             currentChart = new Chart.Radar(context2, chartjs_config_comparison);
-        }
-        //No comparison, display regular chart
-        else
-        {
+        } //No comparison, display regular chart
+        else {
             chartjs_config.data.datasets[0].data = user_scores;
             chartjs_config.data.datasets[0].label = json_data_array[i][DB_QUIZ_RESULTS_QUIZ_NAME];
             chartjs_config.data.labels = quiz_sectionNames;
             currentChart = new Chart.Radar(context2, chartjs_config);
         }
 
-//	        currentChart = new Chart.Radar(context2, chartjs_config);
-
-
+//	currentChart = new Chart.Radar(context2, chartjs_config);
         chart_area_img = offscreenCanvas.toDataURL('image/jpeg', 1.0);
 
         jspdf_doc = GeneratePDF(jspdf_doc, i);
 
         //Add page if needed
-        if (i < json_data_array.length - 1)
-        {
+        if (i < json_data_array.length - 1) {
             jspdf_doc.addPage();
             PDF_Nb_Pages++;
         }
@@ -713,10 +725,8 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
 
     //Print all pages footer
     var footer_cur_page = 1;
-    for (var i = 0; i < json_data_array.length; i++)
-    {
-        for (var j = 0; j < PDF_Nb_Pages_Per_User[i]; j++)
-        {
+    for (var i = 0; i < json_data_array.length; i++) {
+        for (var j = 0; j < PDF_Nb_Pages_Per_User[i]; j++) {
             jspdf_doc.setPage(footer_cur_page);
             jspdf_doc.PrintPageFooter(footer_cur_page, PDF_Nb_Pages, i);
             footer_cur_page++;
@@ -726,17 +736,125 @@ function PrePDFCreation(json_data, options_data, quiz_data, averages_data)
     // Output as Data URI
     //doc.output('datauri');
     jspdf_doc.save("User_Report.pdf");
+    $('.load').addClass("hidden-load");
+    $('body').removeClass("loading");
 
     return;
 }
 
-function FindBestAnswerIndex(answer_array)
-{
+function CreateStatisticReportPDF(json_data) {
+    //We start by getting averages from server
+    $.ajax({
+        url: "../php/nova_api_get_averages_answers.php",
+        type: 'post',
+        async: true,
+        headers: {"cache-control": "no-cache"},
+        cache: false,
+        data: JSON.stringify({data: json_data}),
+        dataType: "text",
+        success: function (return_data) {
+            //If cannot access database, we are in OFFLINE mode
+            if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR" || return_data == "DB_READ_ERROR") {
+                alert("ERREUR: lecture de la base de données impossible...");
+                return;
+            }
+            PrePDFStatisticCreation(return_data, json_data, quiz_table);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("ERREUR: lecture de la base de données impossible...");
+        }
+    });
+}
+
+function PrePDFStatisticCreation(data, json_data, quiz_data) {
+
+    var item_name = 5;
+
+    PDF_Nb_Pages = 1;
+    PDF_Nb_Pages_Per_User = [];
+
+    var jspdf_doc = new jsPDF('p', 'pt', 'a4');
+    jspdf_doc.setFont("helvetica");
+
+    jspdf_doc.setLineWidth(1);
+
+    json_data_array = JSON.parse(data);
+    quiz_data_array = quiz_data;
+
+    offscreenCanvas = document.createElement('canvas');
+    offscreenCanvas.width = 800;
+    offscreenCanvas.height = 800;
+    var context2 = offscreenCanvas.getContext('2d');
+    Chart.plugins.register({
+        beforeDraw: function (chartInstance) {
+            var ctx = chartInstance.chart.ctx;
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+        }
+    });
+
+    for (var i = 0; i < json_data_array.length; i++) {
+        progress_cur_element = i;
+
+        var found_quiz = -1;
+
+        for (var ii = 0; ii < quiz_data.length; ii++) {
+            if (quiz_data[ii][DB_QUIZ_DATA_QUIZ_ID] == json_data[0]) {
+                found_quiz = ii;
+            }
+        }
+
+        if (found_quiz == -1) {
+            alert("ERREUR: impossible de trouver les données");
+            return;
+        }
+        JSON_content = JSON.parse(quiz_data[found_quiz][DB_QUIZ_DATA_QUIZ_DATA]);
+        //Prepare Graph info from data
+        var quiz_sectionNames = GetSectionTitlesFromQuiz(JSON_content);
+        var item_score = GetScorePerSection(json_data_array[i][3]);
+        global_score = GetUserGlobalScore(item_score);
+
+        Chart.defaults.global.defaultFontStyle = "bold";
+        Chart.defaults.global.defaultFontSize = 16;
+
+        chartjs_config.data.datasets[0].data = item_score;
+        chartjs_config.data.datasets[0].label = quiz_data[found_quiz][DB_QUIZ_DATA_QUIZ_NAME] + ' - ' + json_data_array[i][item_name];
+
+        chartjs_config.data.labels = quiz_sectionNames;
+        currentChart = new Chart.Radar(context2, chartjs_config);
+
+        chart_area_img = offscreenCanvas.toDataURL('image/jpeg', 1.0);
+
+        jspdf_doc = GenerateStatisticPDF(jspdf_doc, i);
+
+        if (i < json_data_array.length - 1) {
+            jspdf_doc.addPage();
+            PDF_Nb_Pages++;
+        }
+
+    }
+
+    var footer_cur_page = 1;
+    for (var i = 0; i < json_data_array.length; i++) {
+        for (var j = 0; j < PDF_Nb_Pages_Per_User[i]; j++) {
+            jspdf_doc.setPage(footer_cur_page);
+            jspdf_doc.PrintPageFooterStatistic(footer_cur_page, PDF_Nb_Pages, i, quiz_data[found_quiz][DB_QUIZ_DATA_QUIZ_NAME], json_data_array[i][item_name]);
+            footer_cur_page++;
+        }
+    }
+
+    jspdf_doc.save("Statistic_Report.pdf");
+    $('.load').addClass("hidden-load");
+    $('body').removeClass("loading");
+    
+    return;
+}
+
+function FindBestAnswerIndex(answer_array) {
     return answer_array.indexOf(Math.max.apply(null, answer_array)); //returns -1 if not found (fomr some reason)
 }
 
-function GetCurrentQuestionGoodAnswerArray(quiz_id)
-{
+function GetCurrentQuestionGoodAnswerArray(quiz_id) {
     var found_quiz_answers = "";
     //Get current quiz good answers string
     for (var ii = 0; ii < quiz_data_array.length; ii++) {
@@ -765,16 +883,27 @@ function GetCurrentQuestionGoodAnswerArray(quiz_id)
     return good_asnwers_array;
 }
 
-function GetTextQuestionScore(user_answer, section_nb, question_nb, quiz_id)
-{
-    var good_asnwers_array = GetCurrentQuestionGoodAnswerArray(quiz_id);
-    var current_answer_array = good_asnwers_array[section_nb][question_nb];
+function GetTextQuestionScore(user_answer, section_nb, question_nb, quiz_id) {
+    var good_answers_array = GetCurrentQuestionGoodAnswerArray(quiz_id);
+    var current_answer_array = good_answers_array[section_nb][question_nb];
     var bestAnswerIndex = current_answer_array.indexOf(Math.max.apply(null, current_answer_array));
     return parseInt(current_answer_array[user_answer]) + " / " + parseInt(current_answer_array[bestAnswerIndex]);
 }
 
-function GetImageForQuestionAnswer(user_answer, section_nb, question_nb, answer_nb, quiz_id)
-{
+function GetImageForStatisticQuestionAnswer(section_nb, question_nb, answer_nb, quiz_id) {
+
+    var good_asnwers_array = GetCurrentQuestionGoodAnswerArray(quiz_id);
+    var current_answer_array = good_asnwers_array[section_nb][question_nb];
+    var bestAnswerIndex = current_answer_array.indexOf(Math.max.apply(null, current_answer_array));
+
+    if (answer_nb == bestAnswerIndex) {
+        return IMG_Best_Answer;
+    }
+
+    return IMG_unchecked;
+}
+
+function GetImageForQuestionAnswer(user_answer, section_nb, question_nb, answer_nb, quiz_id) {
     /*	    var found_quiz_answers = "";
      //Get current quiz good answers string
      for (var ii = 0; ii < quiz_data_array.length; ii++) {
@@ -809,8 +938,7 @@ function GetImageForQuestionAnswer(user_answer, section_nb, question_nb, answer_
     var current_answer_array = good_asnwers_array[section_nb][question_nb];
     var bestAnswerIndex = current_answer_array.indexOf(Math.max.apply(null, current_answer_array));
 
-    if (OPTION_Show_Best_Answers)
-    {
+    if (OPTION_Show_Best_Answers) {
         //If current question answer is not user answer nor the best, it's an unchecked box
         if ((answer_nb != user_answer) && (answer_nb != bestAnswerIndex)) {
             return IMG_unchecked;
@@ -829,20 +957,17 @@ function GetImageForQuestionAnswer(user_answer, section_nb, question_nb, answer_
         }
     }
     // Only show suer answer
-    else
-    {
+    else {
         //If current question answer is not user answer nor the best, it's an unchecked box
         if ((answer_nb != user_answer)) {
             return IMG_unchecked;
-        } else
-        {
+        } else {
             return IMG_Best_Answer;
         }
     }
 }
 
-function GeneratePDF(doc, current_record)
-{
+function GeneratePDF(doc, current_record) {
     previousData = sortSelectedAnswers(json_data_array[current_record][DB_QUIZ_RESULTS_ANSWERS]);
 
     //Constants for data structure
@@ -866,8 +991,7 @@ function GeneratePDF(doc, current_record)
 //		alert(chart_area_img);
 
     var i = j = k = 0;
-    for (i = 0; i < JSON_content.section.length; i++)
-    {
+    for (i = 0; i < JSON_content.section.length; i++) {
         var Section_Content = new Array();
         //Section general info
         Section_Content.push(new Array());
@@ -878,14 +1002,12 @@ function GeneratePDF(doc, current_record)
 
         //Section questions
         var Section_Content_Questions = new Array();
-        for (j = 0; j < JSON_content.section[i].question.length; j++)
-        {
+        for (j = 0; j < JSON_content.section[i].question.length; j++) {
             Section_Content_Questions.push(new Array());
             Section_Content_Questions[j][0] = JSON_content.section[i].question[j].questionTitle;
             //Questions answers
             var Section_Content_Questions_Answers = new Array();
-            for (k = 0; k < JSON_content.section[i].question[j].answer.length; k++)
-            {
+            for (k = 0; k < JSON_content.section[i].question[j].answer.length; k++) {
                 Section_Content_Questions_Answers.push(new Array());
                 Section_Content_Questions_Answers[k][0] = JSON_content.section[i].question[j].answer[k].answerText;
                 Section_Content_Questions_Answers[k][1] = JSON_content.section[i].question[j].answer[k].weight;
@@ -895,9 +1017,6 @@ function GeneratePDF(doc, current_record)
         }
         PDF_Sections.push(Section_Content);
     }
-
-
-
 
     var CurrentPageNumber = 1;
 
@@ -910,8 +1029,7 @@ function GeneratePDF(doc, current_record)
     }
 
     //Print Radar graph is option selected
-    if (OPTION_Radar_graph)
-    {
+    if (OPTION_Radar_graph) {
         IMG_Chart.src = chart_area_img;
         //adImage(data, type, pos_x, pox_y, height, width)
         //doc.addImage(IMG_Chart, 'PNG', (595/2) - (400/2) + 30, 250, 400, 400);
@@ -922,7 +1040,7 @@ function GeneratePDF(doc, current_record)
         doc.setFontSize(10);
         doc.setFontType("normal");
         doc.setTextColor(0);
-        doc.PrintPageHeader(PDF_Title, "R\351sum\351 des r\351sultats");
+        doc.PrintPageHeader(PDF_Title, "Résumé des résultats");
         //doc.PrintPageFooter(CurrentPageNumber, total_nb_Pages);
 
         //Print Global scores
@@ -931,8 +1049,7 @@ function GeneratePDF(doc, current_record)
         doc.setTextColor(0);
 //			doc.text(500, 100, "Note globale: " + parseInt(user_global_score, 10) + " %");
         doc.CenterText("Note globale: " + parseInt(user_global_score, 10) + " %", 670);
-        if (comparaison_global_score != -1)
-        {
+        if (comparaison_global_score != -1) {
             var comparaison_name = "";
             if (OPTION_COMPARE_TO == "none")
                 comparaison_name = "Ancienne note: ";
@@ -947,8 +1064,7 @@ function GeneratePDF(doc, current_record)
         }
 
         //Start a new page if QA display option enabled
-        if (OPTION_Show_Questions)
-        {
+        if (OPTION_Show_Questions) {
             doc.addPage();
             CurrentPageNumber++;
             PDF_Nb_Pages++;
@@ -1013,8 +1129,7 @@ function GeneratePDF(doc, current_record)
                 var question_title_total_height = doc.internal.getFontSize() * splitTitle.length;
 
                 //Question score rectangle and text
-                if (OPTION_Show_Answers_Scores)
-                {
+                if (OPTION_Show_Answers_Scores) {
                     doc.setFillColor(question_score_rect_color_r, question_score_rect_color_g, question_score_rect_color_b);
                     doc.rect(pos_Section_starting_x + queston_title_start_x_from_section_start + question_title_max_width + question_score_start_x_from_question_end,
                             current_y + next_question_spacing - doc.internal.getFontSize() + 3,
@@ -1111,7 +1226,7 @@ function GeneratePDF(doc, current_record)
             doc.setFontSize(10);
             doc.setFontType("normal");
             doc.setTextColor(0);
-            doc.PrintPageHeader(PDF_Title, "R\351ponses aux questions");
+            doc.PrintPageHeader(PDF_Title, "Réponses aux questions");
 //		        doc.PrintPageFooter(CurrentPageNumber, total_nb_Pages);
 
             //Add page if needed
@@ -1132,6 +1247,231 @@ function GeneratePDF(doc, current_record)
     PDF_Nb_Pages_Per_User.push(total_nb_Pages);
 
     return doc;
+}
+
+function GenerateStatisticPDF(doc, current_record) {
+
+    var SECTION_CONTENT_TITLE = 0;
+    var SECTION_CONTENT_COLOR_RED = 1;
+    var SECTION_CONTENT_COLOR_GREEN = 2;
+    var SECTION_CONTENT_COLOR_BLUE = 3;
+    var SECTION_CONTENT_QUESTIONS = 4;
+
+    var SECTION_CONTENT_QUESTIONS_TITLE = 0;
+    var CONST_SECTION_CONTENT_QUESTIONS_ANSWERS = 1;
+
+    var CONTENT_CONTENT_QUESTIONS_ANSWERS_TEXT = 0;
+    var CONTENT_CONTENT_QUESTIONS_ANSWERS_WEIGHT = 1;
+
+    var STATISTIC_CURRENT_ANSWER = 4
+    var STATISTIC_CURRENT_ANSWER_TOTAL = 'total';
+
+    var nb_section_per_pages = 2;
+
+    //Get page title
+    var PDF_Title = JSON_content.pageTitle;
+    var PDF_Sections = new Array();
+
+    var i = j = k = 0;
+    for (i = 0; i < JSON_content.section.length; i++) {
+        var Section_Content = new Array();
+        //Section general info
+        Section_Content.push(new Array());
+        Section_Content[0] = JSON_content.section[i].sectionTitle;
+        Section_Content[1] = JSON_content.section[i].color.red;
+        Section_Content[2] = JSON_content.section[i].color.green;
+        Section_Content[3] = JSON_content.section[i].color.blue;
+
+        //Section questions
+        var Section_Content_Questions = new Array();
+        for (j = 0; j < JSON_content.section[i].question.length; j++) {
+            Section_Content_Questions.push(new Array());
+            Section_Content_Questions[j][0] = JSON_content.section[i].question[j].questionTitle;
+            //Questions answers
+            var Section_Content_Questions_Answers = new Array();
+            for (k = 0; k < JSON_content.section[i].question[j].answer.length; k++) {
+                Section_Content_Questions_Answers.push(new Array());
+                Section_Content_Questions_Answers[k][0] = JSON_content.section[i].question[j].answer[k].answerText;
+                Section_Content_Questions_Answers[k][1] = JSON_content.section[i].question[j].answer[k].weight;
+            }
+            Section_Content_Questions[j].push(Section_Content_Questions_Answers);
+            Section_Content[4] = Section_Content_Questions;
+        }
+        PDF_Sections.push(Section_Content);
+    }
+
+    var CurrentPageNumber = 1;
+
+    var total_nb_Pages;
+    total_nb_Pages = Math.ceil(PDF_Sections.length / nb_section_per_pages);
+
+    IMG_Chart.src = chart_area_img;
+
+    doc.addImage(IMG_Chart, 'JPEG', (595 / 2) - (500 / 2), 150, 500, 500);
+
+    //Print page footer
+    total_nb_Pages += 1; //Add Radar Graph pahe to page count
+    doc.setFontSize(10);
+    doc.setFontType("normal");
+    doc.setTextColor(0);
+    doc.PrintPageHeader(PDF_Title, "Résumé des résultats");
+
+    doc.setFontSize(10);
+    doc.setFontType("normal");
+    doc.setTextColor(0);
+    doc.CenterText("Note globale: " + parseInt(global_score, 10) + " %", 670);
+
+    doc.addPage();
+    CurrentPageNumber++;
+    PDF_Nb_Pages++;
+
+    var section_main_width = 40;
+    var section_main_height = 362;
+    var section_question_width = 22;
+    var pos_Section_starting_x = 20;
+    var pos_Section_starting_y = 100;
+    var question_rect_spacing = 12;
+    var queston_title_start_x_from_section_start = 80;
+    var question_title_max_width = 410;
+    var answer_text_start_x_from_question = 30;
+    var answer_text_max_width = 430;
+    var question_answer_spacing = 10;
+    var answers_spacing = 8;
+    var answer_checked_start_x = 3;
+    var checked_y_correction = -13;
+    var question_rect_bottom_padding = 5;
+    var inter_section_spacing = 10;
+    var question_score_start_x_from_question_end = 2;
+    var question_score_rect_width = 40;
+    var question_score_rect_height = 15;
+    var question_score_rect_color_r = 159;
+    var question_score_rect_color_g = 202;
+    var question_score_rect_color_b = 143;
+
+    var Section_Title_font_Size = 14;
+    var Question_Rectangle_Font_Size = 8;
+    var Question_Title_Font_Size = 12;
+    var Question_Asnwers_Font_Size = 10;
+    var Score_Rectangle_Text_Font_Size = 10;
+
+    var rectangle_cur_x = 0;
+    var rectangle_cur_y = 0;
+    var rectangle_cur_height = 0;
+    var rectangle_cur_width = 0;
+
+    //Sections
+    var section_bottom_y_pos = 0;
+    var current_pos_Section_starting_y = pos_Section_starting_y; //Keep track of Y lon multiple section per pages
+    for (var i = 0; i < PDF_Sections.length; i++) {
+        //Question title
+        var next_question_spacing = 0;
+        doc.setFontSize(12);
+        var current_y = current_pos_Section_starting_y + doc.internal.getFontSize();
+        var total_section_rectangle_height = 0;
+        for (var j = 0; j < PDF_Sections[i][SECTION_CONTENT_QUESTIONS].length; j++) {
+            var current_quesion_total_height = 0;
+
+            doc.setFontType("bold");
+            doc.setTextColor(0);
+            doc.setFontSize(Question_Title_Font_Size);
+            var splitTitle = doc.splitTextToSize(PDF_Sections[i][SECTION_CONTENT_QUESTIONS][j][SECTION_CONTENT_QUESTIONS_TITLE], question_title_max_width);
+            doc.text(pos_Section_starting_x + queston_title_start_x_from_section_start, current_y + next_question_spacing, splitTitle);
+            var question_title_total_height = doc.internal.getFontSize() * splitTitle.length;
+
+            var next_spacing_answer = question_title_total_height + question_answer_spacing;
+            var questions_total_height = 0;
+            for (var k = 0; k < PDF_Sections[i][SECTION_CONTENT_QUESTIONS][j][CONST_SECTION_CONTENT_QUESTIONS_ANSWERS].length; k++) {
+                splitTitle = [];
+                doc.setFontType("normal");
+                doc.setTextColor(0);
+                doc.setFontSize(Question_Asnwers_Font_Size);
+                splitTitle = doc.splitTextToSize(PDF_Sections[i][SECTION_CONTENT_QUESTIONS][j][CONST_SECTION_CONTENT_QUESTIONS_ANSWERS][k][CONTENT_CONTENT_QUESTIONS_ANSWERS_TEXT], answer_text_max_width - 20);
+
+                doc.CenterTextInRect(getPercentageAnswer(json_data_array[current_record][STATISTIC_CURRENT_ANSWER]['s' + i + 'q' + j][k], json_data_array[current_record][STATISTIC_CURRENT_ANSWER]['s' + i + 'q' + j][STATISTIC_CURRENT_ANSWER_TOTAL]),
+                        "horizontal",
+                        pos_Section_starting_x + queston_title_start_x_from_section_start + answer_checked_start_x,
+                        current_y + checked_y_correction + next_spacing_answer + next_question_spacing,
+                        18,
+                        18);
+
+                doc.addImage(GetImageForStatisticQuestionAnswer(i, j, k, json_data_array[current_record][1]),
+                        'jpg',
+                        pos_Section_starting_x + queston_title_start_x_from_section_start + answer_checked_start_x + 28,
+                        current_y + checked_y_correction + next_spacing_answer + next_question_spacing,
+                        18,
+                        18);
+
+                doc.text(pos_Section_starting_x + queston_title_start_x_from_section_start + answer_text_start_x_from_question + 25, current_y + next_spacing_answer + next_question_spacing, splitTitle);
+                next_spacing_answer += answers_spacing + (doc.internal.getFontSize() * splitTitle.length);
+                questions_total_height += answers_spacing + (doc.internal.getFontSize() * splitTitle.length);
+            }
+
+            current_quesion_total_height = questions_total_height + question_title_total_height + question_answer_spacing;
+
+            //Restore Question title font size so rect Y calculation working
+            doc.setFontSize(Question_Title_Font_Size);
+
+            //Draw question rectangle
+            doc.setFillColor(parseInt(PDF_Sections[i][SECTION_CONTENT_COLOR_RED]), parseInt(PDF_Sections[i][SECTION_CONTENT_COLOR_GREEN]), parseInt(PDF_Sections[i][SECTION_CONTENT_COLOR_BLUE]));
+            rectangle_cur_x = pos_Section_starting_x + section_main_width + question_rect_spacing - question_rect_bottom_padding;
+            rectangle_cur_y = current_y - doc.internal.getFontSize() + next_question_spacing;
+            rectangle_cur_width = section_question_width;
+            rectangle_cur_height = current_quesion_total_height + question_rect_bottom_padding;
+
+            doc.rect(rectangle_cur_x, rectangle_cur_y, rectangle_cur_width, rectangle_cur_height, 'F');
+            section_bottom_y_pos = current_y - doc.internal.getFontSize() + next_question_spacing + current_quesion_total_height + question_rect_bottom_padding;
+            total_section_rectangle_height += current_quesion_total_height + question_rect_bottom_padding;
+            doc.setFontType("bold");
+            doc.setTextColor(255);
+            doc.setFontSize(Question_Rectangle_Font_Size);
+            doc.CenterTextInRect("Question " + (j + 1), "vertical", rectangle_cur_x, rectangle_cur_y, rectangle_cur_width, rectangle_cur_height);
+            next_question_spacing += question_rect_spacing + questions_total_height + question_title_total_height + question_answer_spacing;
+        }
+
+        //Draw section first rectangle
+        doc.setTextColor(255);
+        doc.setFontSize(Section_Title_font_Size);
+        doc.setFontType("bold");
+        doc.setFillColor(parseInt(PDF_Sections[i][SECTION_CONTENT_COLOR_RED]), parseInt(PDF_Sections[i][SECTION_CONTENT_COLOR_GREEN]), parseInt(PDF_Sections[i][SECTION_CONTENT_COLOR_BLUE]));
+        rectangle_cur_x = pos_Section_starting_x;
+        rectangle_cur_y = current_pos_Section_starting_y;
+        rectangle_cur_width = section_main_width;
+        rectangle_cur_height = section_bottom_y_pos - current_pos_Section_starting_y;
+        doc.rect(rectangle_cur_x, rectangle_cur_y, rectangle_cur_width, rectangle_cur_height, 'F');
+        doc.CenterTextInRect(PDF_Sections[i][SECTION_CONTENT_TITLE], "vertical", rectangle_cur_x, rectangle_cur_y, rectangle_cur_width, rectangle_cur_height);
+
+        //Print page footer
+        doc.setFontSize(10);
+        doc.setFontType("normal");
+        doc.setTextColor(0);
+        doc.PrintPageHeader(PDF_Title, "Réponses aux questions");
+
+        //Add page if needed
+        if (i < PDF_Sections.length - 1) {
+            //Add page if page is already full of sections
+            if (((i + 1) % nb_section_per_pages) == 0) {
+                doc.addPage();
+                CurrentPageNumber++;
+                PDF_Nb_Pages++;
+                current_pos_Section_starting_y = pos_Section_starting_y; //Reset section starting Y
+            } else {
+                //Add inter-section to Y tracking
+                current_pos_Section_starting_y = rectangle_cur_y + rectangle_cur_height + inter_section_spacing;
+            }
+        }
+    }
+    PDF_Nb_Pages_Per_User.push(total_nb_Pages);
+
+    return doc;
+}
+
+function getPercentageAnswer(cur_answer, total) {
+    if (cur_answer == undefined) {
+        var percentage_str = '0.0% ';
+    } else {
+        var percentage_str = String(((parseInt(cur_answer) / parseInt(total)) * 100).toFixed(1)) + '% ';
+    }
+    return percentage_str;
 }
 
 //Get images source

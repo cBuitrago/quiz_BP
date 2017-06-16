@@ -22,7 +22,7 @@
                                 data-toggle="tooltip" data-placement="left" title="">
                             Annuler
                         </button>
-                        <button type="button" class="edit" id="onDepartmentEdit" 
+                        <button type="button" class="nv-btn-default nv-principal-color" id="onDepartmentEdit" 
                                 data-toggle="tooltip" data-placement="left" title="editer le nom de l'agence">
                             Éditer
                         </button>

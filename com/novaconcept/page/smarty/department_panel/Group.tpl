@@ -31,7 +31,7 @@
                     <input type="hidden" name="description" id="description" value="IS_GROUP">
                     <input type="hidden" name="parent" id="parent" value="{$data->corpo->id}">
                     <input type="text" name="name" id="name">
-                    <button type="button" class="edit" id="onDepartmentAdd" 
+                    <button type="button" class="nv-btn-default nv-principal-color" id="onDepartmentAdd" 
                             data-toggle="tooltip" data-placement="left" title="ajouter groupe">
                         Créér groupe
                     </button>

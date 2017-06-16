@@ -50,7 +50,7 @@ isset($view->is_group_admin) && $view->is_group_admin === TRUE}
                 {else if isset($view->is_group_admin) && $view->is_group_admin === TRUE}
                     <input type="hidden"    name="parent"       id="parent"         value="{$data->group->group->id}">
                 {/if}
-                <button type="button" class="edit"  id="onDepartmentAdd" 
+                <button type="button" class="nv-btn-default nv-principal-color"  id="onDepartmentAdd" 
                         data-toggle="tooltip" data-placement="left" title="ajouter une agence">
                     Créér agence
                 </button>

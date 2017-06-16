@@ -9,6 +9,7 @@
                             "host": "192.168.1.133",
                             "webDirectory": "/var/www/html",
                             "webPath": "/quiz_panel",
+                            "uploadFolder":"/media/images",
                             "privateKey": "0c783c017072650241fd8c04f1e78b1e",
                             "publicKey": "607352b7a2224366782ba5a66d21264f",
                             "endpointCore": "192.168.1.133/quiz_core",
@@ -20,6 +21,7 @@
                             "host": "www.bpquizenligne.com",
                             "webDirectory": "/var/www/html",
                             "webPath": "",
+                            "uploadFolder":"/media/images",
                             "privateKey": "0c783c017072650241fd8c04f1e78b1e",
                             "publicKey": "607352b7a2224366782ba5a66d21264f",
                             "endpointCore": "www.bpquizenligne.com/quiz_core",
@@ -191,6 +193,15 @@
                             ],
                     "pageClass": "ReportPanel",
                     "pageMethod": "pdfGenerator"
+                },
+                {
+                    "requestMethod": "GET",
+                    "requestPath":
+                            [
+                                "{accountName}"
+                            ],
+                    "pageClass": "LoginPage",
+                    "pageMethod": "loginCompany"
                 }
             ]
 }

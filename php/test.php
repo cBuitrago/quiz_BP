@@ -45,11 +45,11 @@ $data[] = array(
   ->setPostData($request->getPostData())
   ->excecute(); */
 
-$restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore . '/' . $webConfig::getEnvironment()->version . "/account_info/" . $_SESSION['accountInfo'] . "/averages?includes=CORPORATES")
+/*$restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore . '/' . $webConfig::getEnvironment()->version . "/account_info/" . $_SESSION['accountInfo'] . "/averages?includes=CORPORATES")
         ->setHttpMethod(RestBuilder::POST)
         ->setKeys($webConfig::getEnvironment()->privateKey, $webConfig::getEnvironment()->publicKey)
         ->setPostData($data)
-        ->excecute();
+        ->excecute();*/
 
 /* $restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore.'/'.$webConfig::getEnvironment()->version."/account_info/".$_SESSION['accountInfo']."/quizResults")
   ->setHttpMethod(RestBuilder::POST)
@@ -57,5 +57,10 @@ $restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore . '/' . $we
   ->setPostData($data)
   ->excecute(); */
 
+$restBuilder->setEndpoint($webConfig::getEnvironment()->endpointCore.'/'.$webConfig::getEnvironment()->version."/account_info/1/create_users")
+  ->setHttpMethod(RestBuilder::POST)
+  ->setKeys($webConfig::getEnvironment()->privateKey, $webConfig::getEnvironment()->publicKey)
+  ->setPostData($data)
+  ->excecute();
 print_r($restBuilder->getResponse());
 print_r($restBuilder->getResponseInfo());

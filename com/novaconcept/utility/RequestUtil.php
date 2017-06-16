@@ -140,8 +140,7 @@ class RequestUtil {
             if ($extention !== NULL)
                 $fileName .= $extention;
             $uploadFIle = ApiConfig::getEnvironment()->wwwDataFolder . ApiConfig::getEnvironment()->uploadFolder . '/' . $fileName;
-            if (rename($_FILES['upload_file']['tmp_name'], $uploadFIle))
-                ; {
+            if (rename($_FILES['upload_file']['tmp_name'], $uploadFIle)){
                 $this->postFile = $uploadFIle;
             }
         }

@@ -10,7 +10,7 @@ class UserPanel extends AbstractPage {
     public function front() {
         $this->view->title = "User";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
         if (!$this->authorize(["is_user"]) &&
@@ -41,7 +41,7 @@ class UserPanel extends AbstractPage {
     public function edit() {
         $this->view->title = "User";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
         if (!$this->authorize(["is_agency_admin"]) &&
@@ -91,7 +91,7 @@ class UserPanel extends AbstractPage {
     public function editProfile() {
         $this->view->title = "Personal Info";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
 
@@ -111,7 +111,7 @@ class UserPanel extends AbstractPage {
     public function editPassword() {
         $this->view->title = "Change Password";
         if ($this->builder->hasToken() == FALSE) {
-            $this->display("LoginPage.tpl");
+            header("Location: " . WebConfig::getEnvironment()->webPath . "/" . $this->view->rout);
             return;
         }
 

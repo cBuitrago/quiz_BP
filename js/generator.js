@@ -6,6 +6,9 @@ var PDF_GEN_OPTION_USER_REPORT_COMPARE = 4;
 var PDF_GEN_OPTION_SHOW_ANSWERS_SCORES = 5;
 var PDF_GEN_OPTION_SHOW_BEST_ANSWERS = 6;
 
+var PDF_GEN_OPTION_STATISTIC_QUIZ = 0;
+var PDF_GEN_OPTION_STATISTIC_TO_COMPARE = 1;
+
 var DB_QUIZ_RESULTS_ID = 0;
 var DB_QUIZ_RESULTS_QUIZ_ID = 1;
 var DB_QUIZ_RESULTS_USER_ID = 2;
@@ -35,7 +38,26 @@ var CreatePDF_Param_quiz_data;
 var chartjs_config;
 var offscreenCanvas;
 var currentChart;
+
+window.addEventListener("load", function () {
+    var participation_report = document.getElementById("GenerateParticipationReport");
+    if (participation_report) {
+        participation_report.addEventListener("click", GenerateParticipationReport);
+    }
+    
+    var users_reports = document.getElementById("GenerateUsersReports");
+    if (users_reports) {
+        users_reports.addEventListener("click", GenerateUsersReports);
+    }
+    
+    var statistic_report = document.getElementById("GenerateStatisticReport");
+    if (statistic_report) {
+        statistic_report.addEventListener("click", GenerateStatisticReport);
+    }
+});
+
 $body = $("body");
+
 $(document).on({
     ajaxStart: function () {
         $body.addClass("loading");
@@ -44,11 +66,14 @@ $(document).on({
         $body.removeClass("loading");
     }
 });
-function GenerateParticipationReport()
-{
+
+function GenerateParticipationReport() {
+    $('.load').removeClass("hidden-load");
+    $('body').addClass("loading");
+    $('body').scrollTop(0);
     var count = table.rows({selected: true}).count();
     if (count == 0) {
-        alert("Vous devez s\351lectionner au minimum une donn\351e dans le tableau...");
+        alert("Vous devez sélectionner au minimum une donnée dans le tableau...");
         return;
     }
 
@@ -56,11 +81,24 @@ function GenerateParticipationReport()
     CreateReportPDF(selected_data);
 }
 
-function GenerateUsersReports()
-{
+function GenerateStatisticReport() {
+    $('.load').removeClass("hidden-load");
+    $('body').addClass("loading");
+    $('body').scrollTop(0);
+    var options_array = new Array();
+    options_array[0] = document.getElementById("quiz_report_statistic").value;
+    options_array[1] = document.getElementById("statistic_report_compare").value;
+    CreateStatisticReportPDF(options_array);
+
+}
+
+function GenerateUsersReports() {
+    $('.load').removeClass("hidden-load");
+    $('body').addClass("loading");
+    $('body').scrollTop(0);
     var count = table.rows({selected: true}).count();
     if (count == 0) {
-        alert("Vous devez s\351lectionner au minimum une donn\351e dans le tableau...");
+        alert("Vous devez sélectionner au minimum une donnée dans le tableau...");
         return;
     }
     var selected_data = table.rows('.selected').data();
@@ -72,9 +110,9 @@ function GenerateUsersReports()
     if (incomplete_count > 0) {
         var message;
         if (incomplete_count == 1)
-            message = "1 quiz n'a pas \351t\351 compl\351t\351, celui-ci sera ignor\351... Voulez-vous poursuivre ?";
+            message = "1 quiz n'a pas été complété, celui-ci sera ignoré... Voulez-vous poursuivre ?";
         else
-            message = incomplete_count + " quiz n'ont pas \351t\351s compl\351t\351s, ceux-ci seront ignor\351s... Voulez-vous poursuivre ?";
+            message = incomplete_count + " quiz n'ont pas étés complétés, ceux-ci seront ignorés... Voulez-vous poursuivre ?";
         if (!confirm(message)) {
             return;
         }
@@ -93,7 +131,7 @@ function GenerateUsersReports()
     options_array[PDF_GEN_OPTION_SHOW_ANSWERS_SCORES] = document.getElementById('show_answers_score').checked ? 1 : 0;
     options_array[PDF_GEN_OPTION_SHOW_BEST_ANSWERS] = document.getElementById('show_best_answers').checked ? 1 : 0;
     if ((options_array[PDF_GEN_OPTION_SHOW_GRAPH] == 0) && (options_array[PDF_GEN_OPTION_SHOW_ANSWERS] == 0)) {
-        alert("Les options de ne pas afficher le graphique de r\351sultats et de ne pas afficher les questions/r\351ponses ne peuvent pas \352tre s\351lestionn\351es en m\352me temps...");
+        alert("Les options de ne pas afficher le graphique de résultats et de ne pas afficher les questions/réponses ne peuvent pas être sélectionnées en même temps...");
         return;
     }
     CreatePDF_Param_json_data = JSON.stringify(selected_array);
@@ -102,8 +140,7 @@ function GenerateUsersReports()
     CreatePDF(CreatePDF_Param_json_data, CreatePDF_Param_options_data, CreatePDF_Param_quiz_data);
 }
 
-function ApplyFilters()
-{
+function ApplyFilters() {
     var quiz_select = document.getElementById("filter_quiz_id");
     var corporate_select = document.getElementById("filter_corporate_id");
     var group_select = document.getElementById("filter_group_id");
@@ -152,10 +189,10 @@ $('#submitBtn').click(function () {
         dataType: "text",
         success: function (return_data) {
             if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR") {
-                alert("ERREUR: base de donn\351es innaccessible...");
+                alert("ERREUR: base de données innaccessible...");
                 return;
             } else if (return_data == "ID_ALREADY_EXISTS") {
-                alert("Le ID D\351mo existe d\351j\340 dans la base de donn\351es, merci de choisir un nouveau nom...");
+                alert("Le ID Démo existe déjà dans la base de données, merci de choisir un nouveau nom...");
                 document.getElementsByName('id_demo').focus();
                 return;
             }
@@ -165,8 +202,8 @@ $('#submitBtn').click(function () {
         }
     });
 });
-function GetAllQuizInfoFromServer()
-{
+
+function GetAllQuizInfoFromServer() {
     $.ajax({
         url: "../php/nova_api_get_report_data.php",
         type: 'post',
@@ -176,7 +213,7 @@ function GetAllQuizInfoFromServer()
         dataType: "text",
         success: function (return_data) {
             if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR" || return_data == "DB_READ_ERROR") {
-                Alert("ERREUR: lecture de la base de donn\351es impossible...");
+                Alert("ERREUR: lecture de la base de données impossible...");
                 return;
             }
             return_data_array = JSON.parse(return_data);
@@ -186,13 +223,12 @@ function GetAllQuizInfoFromServer()
             LoadDataTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("ERREUR: lecture de la base de donn\351es impossible...");
+            alert("ERREUR: lecture de la base de données impossible...");
         }
     });
 }
 
-function GetQuizStructureFromServer()
-{
+function GetQuizStructureFromServer() {
     $.ajax({
         url: "nova_api_manager_get.php",
         type: 'post',
@@ -203,20 +239,19 @@ function GetQuizStructureFromServer()
         dataType: "text",
         success: function (return_data) {
             if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR") {
-                Alert("ERREUR: lecture de la base de donn\351es impossible...");
+                Alert("ERREUR: lecture de la base de données impossible...");
                 return;
             }
             quiz_table = JSON.parse(return_data);
             LoadDataTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("ERREUR: lecture de la base de donn\351es impossible...");
+            alert("ERREUR: lecture de la base de données impossible...");
         }
     });
 }
 
-function GetQuizResultsFromServer()
-{
+function GetQuizResultsFromServer() {
     $.ajax({
         url: "nova_api_manager_get.php",
         type: 'post',
@@ -227,20 +262,19 @@ function GetQuizResultsFromServer()
         dataType: "text",
         success: function (return_data) {
             if (return_data == "QUERY_ERROR" || return_data == "DB_OPEN_ERROR") {
-                Alert("ERREUR: lecture de la base de donn\351es impossible...");
+                Alert("ERREUR: lecture de la base de données impossible...");
                 return;
             }
             update_data = JSON.parse(return_data);
             GetQuizStructureFromServer();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("ERREUR: lecture de la base de donn\351es impossible...");
+            alert("ERREUR: lecture de la base de données impossible...");
         }
     });
 }
 
-function compareSecondColumn(a, b)
-{
+function compareSecondColumn(a, b) {
     if (a[1] === b[1]) {
         return 0;
     } else {
@@ -255,6 +289,7 @@ Array.prototype.contains = function (v) {
     }
     return false;
 };
+
 Array.prototype.unique_quiz_id = function () {
     var arr = [];
     for (var i = 0; i < this.length; i++) {
@@ -307,8 +342,7 @@ Array.prototype.unique_agency_id = function () {
     return arr.sort(compareSecondColumn);
 }
 
-function LoadDataTable()
-{
+function LoadDataTable() {
     table = $('#example').removeAttr('width').DataTable(
             {
                 aLengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tous"]],
@@ -325,7 +359,7 @@ function LoadDataTable()
                 dom: 'Bflrtip',
                 buttons: [
                     {
-                        text: 'S&eacute;lectionner tout',
+                        text: 'Sélectionner tout',
                         className: 'black tout',
                         action: function () {
                             table.rows().deselect();
@@ -333,7 +367,7 @@ function LoadDataTable()
                         }
                     },
                     {
-                        text: 'S&eacute;lectionner aucun',
+                        text: 'Sélectionner aucun',
                         className: 'black aucun',
                         action: function () {
                             table.rows().deselect();
@@ -353,41 +387,41 @@ function LoadDataTable()
                     {name: "AGENCY_NAME", data: DB_QUIZ_RESULTS_AGENCY_NAME, title: "Agence", className: "dt-center", width: "100"},
                     {name: "QUIZ_ID", data: DB_QUIZ_RESULTS_QUIZ_ID, title: "ID Quiz", visible: false},
                     {name: "QUIZ_NAME", data: DB_QUIZ_RESULTS_QUIZ_NAME, title: "Quiz", className: "dt-center", width: "100"},
-                    {name: "START_DATE", data: DB_QUIZ_RESULTS_START_DATE, title: "Date d&eacute;but", className: "dt-center", width: "100"},
+                    {name: "START_DATE", data: DB_QUIZ_RESULTS_START_DATE, title: "Date début", className: "dt-center", width: "100"},
                     {name: "END_DATE", data: DB_QUIZ_RESULTS_END_DATE, title: "Date fin", className: "dt-center", width: "100"},
                     {name: "PROGRESS_ID", data: DB_QUIZ_RESULTS_PROGRESS_ID, title: "ID Progr&egrave;s", visible: false},
                     {name: "PROGRESS_NAME", data: DB_QUIZ_RESULTS_PROGRESS_NAME, title: "Progr&egrave;s", className: "dt-center", width: "100"},
-                    {name: "ANSWERS", data: DB_QUIZ_RESULTS_ANSWERS, title: "R&eacute;ponses", visible: false},
+                    {name: "ANSWERS", data: DB_QUIZ_RESULTS_ANSWERS, title: "Réponses", visible: false},
                     {name: "QUIZ_SCORE", data: DB_QUIZ_RESULTS_QUIZ_SCORE, title: "Pointage Quiz", visible: false},
-                    {name: "PREVIOUS_ANSWERS", data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes R&eacute;ponses", visible: false},
+                    {name: "PREVIOUS_ANSWERS", data: DB_QUIZ_RESULTS_PREVIOUS_ANSWERS, title: "Anciennes Réponses", visible: false},
                     {name: "PREVIOUS_SCORES", data: DB_QUIZ_RESULTS_PREVIOUS_SCORES, title: "Pointage Quiz", visible: false}
                 ],
                 language: {
                     sProcessing: "Traitement en cours...",
                     sSearch: "",
-                    sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
-                    sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                    sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
-                    sInfoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    sLengthMenu: "Afficher _MENU_ éléments",
+                    sInfo: "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
+                    sInfoEmpty: "Affichage de l'élément 0 à 0 sur 0 élément",
+                    sInfoFiltered: "(filtré de _MAX_ éléments au total)",
                     sInfoPostFix: "",
                     sLoadingRecords: "Chargement en cours...",
-                    sZeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                    sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
+                    sZeroRecords: "Aucun élément à afficher",
+                    sEmptyTable: "Aucune donnée disponible dans le tableau",
                     oPaginate: {
                         sFirst: "Premier",
-                        sPrevious: "Pr&eacute;c&eacute;dent",
+                        sPrevious: "Précédent",
                         sNext: "Suivant",
                         sLast: "Dernier"
                     },
                     oAria: {
                         sSortAscending: ": activer pour trier la colonne par ordre croissant",
-                        sSortDescending: ": activer pour trier la colonne par ordre d&eacute;croissant"
+                        sSortDescending: ": activer pour trier la colonne par ordre décroissant"
                     },
                     select: {
                         rows: {
-                            _: "%d lignes s&eacute;lectionn&eacute;es",
-                            0: "Cliquez pour s&eacute;lectionner une ligne",
-                            1: "1 ligne s&eacute;lectionn&eacute;e"
+                            _: "%d lignes sélectionnées",
+                            0: "Cliquez pour sélectionner une ligne",
+                            1: "1 ligne sélectionnée"
                         }
                     }
                 },

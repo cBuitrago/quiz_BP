@@ -2,10 +2,9 @@
     <html>
         {include file="com/novaconcept/page/smarty/includes/HeadTag.tpl" lang=$lang head=$head view=$view}
         <body>
-
             <nav class="head">
                 <div class="image">
-                    <img src="{$head->baseUrl}/media/images/logoCompany.png">
+                    <img src="{$head->baseUrl}/media/images/{$smarty.session.accountLogo}">
                 </div>
                 <div class="dropdown">
                     <button class="dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

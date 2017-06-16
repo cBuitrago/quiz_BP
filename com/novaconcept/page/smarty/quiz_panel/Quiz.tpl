@@ -12,26 +12,41 @@
         <link href="{$head->baseUrl}/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
         <link href="{$head->baseUrl}/js/libs/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.min.css">
+        <link rel="stylesheet" type="text/css" href="{$head->baseUrl}/css/main.css">
         <link href="{$head->baseUrl}/css/style.css" rel="stylesheet">
         <script src="{$head->baseUrl}/js/libs/jquery/jquery.js" type="text/javascript"></script>
-        <script type="text/javascript" src="{$head->baseUrl}/js/libs/twitter-bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="{$head->baseUrl}/js/bootstrap.js"></script>
         <script src="{$head->baseUrl}/js/utils.min.js"></script>
-        <script src="{$head->baseUrl}/js/quiz.min.js"  type="text/javascript"></script>
+        <script src="{$head->baseUrl}/js/quiz.js"  type="text/javascript"></script>
         <script type="text/javascript"> baseUrl = "{$head->baseUrl}";</script>
         <script type="text/javascript">var account = {if isset($smarty.session.accountInfo)}{$smarty.session.accountInfo}{else}0{/if}</script>
         <style>
-            canvas {
-                -moz-user-select: none;
-                -webkit-user-select: none;
-                -ms-user-select: none;
-            }
+            article.aside{literal}{{/literal}background-color: {$smarty.session.accountAside}{literal}}{/literal}
+            nav div.image{literal}{{/literal}background-color: {$smarty.session.accountNav}{literal}}{/literal}
+            button.add{literal}{{/literal}background-color: {$smarty.session.accountPrincipal};
+                                          border-color: {$smarty.session.accountPrincipal}{literal}}{/literal}
+            button.cancel{literal}{{/literal}background-color: {$smarty.session.accountBtnCancel};
+                                             border-color: {$smarty.session.accountBtnCancel}{literal}}{/literal}
+            .nv-principal-color{literal}{{/literal}background-color: {$smarty.session.accountPrincipal}{literal}}{/literal}
+            ul.nav-tabs{literal}{{/literal}background-color: {$smarty.session.accountNav2}{literal}}{/literal}
+            nav{literal}{{/literal}background-color: {$smarty.session.accountNav}{literal}}{/literal}
+            article.center ul.nav-tabs li.active a{literal}{{/literal}background-color: {$smarty.session.accountNav2};
+                                                                      border-color: {$smarty.session.accountNav2};
+                                                                      border-bottom-color: {$smarty.session.accountPrincipal};{literal}}{/literal}
+            article.center ul.nav-tabs li.active a:hover{literal}{{/literal}background-color: {$smarty.session.accountNav2};
+                                                                            border-color: {$smarty.session.accountNav2};
+                                                                            border-bottom-color: {$smarty.session.accountPrincipal};
+            {literal}}{/literal}
+            article.center ul.nav-tabs li a:hover{literal}{{/literal}background-color: {$smarty.session.accountNav2};
+                                                                     border-color: {$smarty.session.accountNav2};
+                                                                     border-bottom-color: {$smarty.session.accountPrincipal};
+            {literal}}{/literal}
         </style>
     </head>
     <body>
         <nav class="head">
             <div class="image">
-                <img src="/quiz_panel/media/images/logoCompany.png">
+                <img src="{$head->baseUrl}/media/images/{$smarty.session.accountLogo}">
             </div>
             <div class="dropdown">
                 <button class="dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -39,7 +54,7 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
-                    <li><a href="{$head->baseUrl}/profile">Profile</a></li>
+                    <li><a href="{$head->baseUrl}/profile">Profil</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{$head->baseUrl}/logout">{$lang->includes->logOut}</a></li>
                 </ul>
@@ -65,7 +80,7 @@
                                             </h2>
                                             {foreach from=$article->question item=question}
                                                 {assign var="ans" value=0}
-                                                <fieldset id= 'question_{$quest}' required> <p><b>{$question->questionTitle}</p></b>
+                                                <fieldset id= 'question_{$quest}' required><p><b>{$question->questionTitle}</p></b>
                                                     {foreach from=$question->answer item=answer}
                                                         <div class='radio radio-info'>
                                                             <input type='radio' value='s{$secc}q{$quest}a{$ans}' id='s{$secc}q{$quest}a{$ans}' name='question_{$quest}' required>
@@ -92,6 +107,13 @@
                     <p class="timer"></p>
                     {literal}
                         <script>
+                        {/literal}
+                        {if $data->TIME_TO_COMPLETE == 0}
+                            var timer_start = false;
+                        {else}
+                            var timer_start = true;
+                        {/if}
+                        {literal}
                             var a = parseInt({/literal}{$smarty.now}{literal}), f = function () {
                                 var t = !0, e = {/literal}{$smarty.session.quizStartTime}{literal} + {/literal}{$data->TIME_TO_COMPLETE}{literal} - a
                                 a += 1
